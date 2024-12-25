@@ -1,0 +1,14 @@
+﻿Сперва список продуктов проходит через фильтрацию по категориям.Потом по соответствию ПОИСКовым запросам. Далее сортируется. 
+В конце концов делится на страницы заданного размера.
+Фильтрация->Поиск->Сортировка->Размеры страниц->Пагинация
+Попробовать впихнуть селектор размера страниц в PageLinkTagHelper
+Полезные страницы
+https://habr.com/ru/articles/510742/
+https://www.c-sharpcorner.com/article/passing-data-from-asp-net-mvc-to-javascript-a-guide-to-using-viewbag-and-viewda/?ysclid=m3h6s8o8f7284310540
+https://metanit.com/sharp/aspnet5/12.4.php
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-8.0
+https://aspnetcore.readthedocs.io/en/stable/tutorials/first-mvc-app/search.html
+localhost:5000/Products/название_категории/Search=поисковый_запрос/направление_сортировки/Page1/Size1 - конечный вид URL
+https://translated.turbopages.org/proxy_u/en-ru.ru.1fb381a3-6749a371-30a91e5b-74722d776562/https/bobbyhadz.com/blog/javascript-convert-object-to-query-string
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-6.0
+https://min.news/en/tech/a18fd7ea5f76c7c89874c699a7b6466f.html

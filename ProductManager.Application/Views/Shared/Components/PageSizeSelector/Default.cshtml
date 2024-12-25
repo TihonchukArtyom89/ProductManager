@@ -1,0 +1,21 @@
+﻿@model BaseListViewModel
+
+<form method="post" id=@("form"+@Model.PageViewModel.Pseudonym+"PageSizeSelector") asp-controller="Product" asp-action="ProductList" asp-route-category="@ViewBag.SelectedCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
+    <div class="d-grip gap-2">
+        <b class="m-1">Выберите размер страницы</b>
+        <select id="pageSizeSelector" name="pageSize">
+            @foreach (int pageSize in Model.PageSizes)
+            {
+                @if (pageSize == ViewBag.SelectedPageSize)
+                {
+                    <option selected>@pageSize</option>
+                }
+                else
+                {
+                    <option value="@pageSize">@pageSize</option>
+                }
+            }
+        </select>
+        <button id="submitButton" type="submit" class="btn btn-outline-secondary btn-sm">Выбрать</button>
+    </div>
+</form>

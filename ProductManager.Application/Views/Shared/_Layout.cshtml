@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Управление товарами предприятия</title>
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="bg-dark text-white p-2">
+        <span class="navbar-brand ml-2">Управление товарами предприятия</span>
+        <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Главная</a>
+        <a asp-action="ProductList" asp-controller="Product" class="btn btn-primary">Товары</a>
+        <a class="btn btn-primary">Прайс-листы</a>
+    </div>
+    <div class="row m-1 p-1">
+        @RenderBody()
+        <div class="col-12">
+        </div>
+    </div>
+</body>
+</html>
