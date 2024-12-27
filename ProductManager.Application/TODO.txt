@@ -10,33 +10,13 @@
 -try to make another in another list some features with items of list without page reloading 
 
 make at now
-- create new solution on net8.0
-- add web app to this solution
-- add unit tests project to this solution
-- fix http port
-- add folders to web app
-- add files from previous project (PriceListEditorMK2)
-- replace name from previous project
-- update .net sdk version from 8.0.100 to 8.0.303
-- add EF NuGet and tool packages
-- define connectiuon string
-- change project file to use WriteLine without Console
-- add Initial migration
-- fix error with initialization of connection string
-- add bootstrap
-- migrate to .net8 or make project with .net 8.0
-- fix error when a go product list page
-- fix most of unit tests
-- search at all products before divide at pages
-- make search in specified category when redirect after changing category
-- fix page redirect in search result after changing page size
-- make product list page 1 if product count is less then a current product list page
-- remove price when products count is zero
+- update .net sdk
+- rework sorting feature 
+- clean code of product controller
 
 make in future
 - make start application without db (maybe a check of existing database or some rereading book)
-- fix old unit tests (Can_Redirect_To_First_Page_When_Products_Count_Is_Zero) -break after move to the top search feature
-- fix old unit tests (3 sorting unit tests)
+- fix not display products on page when product count on page is less then page size
+- fix old unit tests 
 - add unit tests for search (check if the result on some equal expected)
-- rework sorting feature (at first sort then pagination)
-- try to add search feature(see on links in DevNote txt - https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-6.0) 
+- try to add search feature( see on links in DevNote txt - https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-6.0 ) 

@@ -38,34 +38,7 @@ public class ProductController : Controller
             products = products.Where(e => e.ProductName.ToLower().Contains(searchString.ToLower()) || e.ProductDescription.ToLower().Contains(searchString.ToLower()));
             totalItems = category == null ? products.Count() : products.Where(e => e.CategoryID == CurrentCategory!.CategoryID).Count();
         }
-        products = products.Where(p => CurrentCategory == null || p.CategoryID == CurrentCategory.CategoryID).OrderBy(p => p.ProductID);
-        if (products.Count() == 0 && productPage != 1)
-        {
-            productPage = 1;
-            products = productRepository.Products.Where(p => CurrentCategory == null || p.CategoryID == CurrentCategory.CategoryID).OrderBy(p => p.ProductID);
-        }
-        if (productPage > (int)totalItems / pageSize)
-        {//check if current page is more than pages 
-            productPage = 1;
-        }
-        //decimal? productPrice = 0;
-        //if(totalItems == 0)
-        //{
-        //    productPrice = null;
-        //}
-        products = products.Skip((productPage - 1) * pageSize).Take(pageSize);
-        ViewBag.ProductCount = products.Count();
-        ViewBag.SelectedPage = productPage;
-        products = products.Count() != 0 ? products :
-            products.Append(
-                new Product()
-                {
-                    CategoryID = 0,
-                    ProductID = 0,
-                    ProductName = namePlaceholder,
-                    ProductDescription = descriptionPlaceholder,
-                    ProductPrice = 0.00M,
-                });
+        products = products.Where(p => CurrentCategory == null || p.CategoryID == CurrentCategory.CategoryID);
         switch (sortOrder)
         {
             case SortOrder.PriceAsc:
@@ -89,6 +62,35 @@ public class ProductController : Controller
                 ViewBag.SortOrder = SortOrder.Neutral;
                 break;
         }
+        if (products.Count() == 0 && productPage != 1)
+        {
+            productPage = 1;
+            products = productRepository.Products.Where(p => CurrentCategory == null || p.CategoryID == CurrentCategory.CategoryID).OrderBy(p => p.ProductID);
+        }
+        if (productPage > (int)totalItems / pageSize)
+        {//check if current page is more than pages 
+            productPage = 1;
+        }
+        int ProductOnPage = pageSize;
+        var a = products.Count() - products.Skip((int)Math.Ceiling((decimal)totalItems / pageSize) - 1).Count();
+        var b = (int)Math.Ceiling((decimal)totalItems / pageSize);
+        if (/*products.Count() - products.Skip((int)Math.Ceiling((decimal)totalItems / pageSize) - 1).Count() < ProductOnPage &&*/ productPage == (int)Math.Ceiling((decimal)totalItems / pageSize))
+        {//check if products on last page is less then a page size
+            ProductOnPage = products.Count() - products.Skip((int)Math.Ceiling((decimal)totalItems / pageSize) - 1).Count();
+        }
+        products = products.Skip((productPage - 1) * pageSize).Take(ProductOnPage);
+        ViewBag.ProductCount = products.Count();
+        ViewBag.SelectedPage = productPage;
+        products = products.Count() != 0 ? products :
+            products.Append(
+                new Product()
+                {
+                    CategoryID = 0,
+                    ProductID = 0,
+                    ProductName = namePlaceholder,
+                    ProductDescription = descriptionPlaceholder,
+                    ProductPrice = 0.00M,
+                });
         ProductsListViewModel viewModel = new ProductsListViewModel
         {
             Products = products,
@@ -102,19 +104,5 @@ public class ProductController : Controller
             CurrentCategory = (CurrentCategory ?? new Category { CategoryName = null ?? "" }).CategoryName,
         };
         return View(viewModel);
-    }
-    [HttpPost]
-    public IActionResult RedirectWithPageSizeSelected(string? category, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
-    {
-        if (sortOrder == SortOrder.NameAsc || sortOrder == SortOrder.NameDesc)
-        {
-            sortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
-        }
-        if (sortOrder == SortOrder.PriceAsc || sortOrder == SortOrder.PriceDesc)
-        {
-            sortOrder = sortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
-        }
-        ViewBag.SelectedPageSize = pageSize;
-        return RedirectToAction("ProductList", "Product", new { category = category, sortOrder = sortOrder, productPage = productPage, pageSize = pageSize });
     }
 }
