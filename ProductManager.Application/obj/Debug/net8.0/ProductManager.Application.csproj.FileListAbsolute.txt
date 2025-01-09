@@ -126,7 +126,6 @@ G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\staticwebassets\ms
 G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.ProductManager.Application.props
 G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\staticwebassets.pack.json
 G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\scopedcss\bundle\ProductManager.Application.styles.css
-G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\ProductM.B6266756.Up2Date
 G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\ProductManager.Application.dll
 G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\refint\ProductManager.Application.dll
 G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\ProductManager.Application.pdb
@@ -134,3 +133,4 @@ G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\ProductManager.App
 G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\ref\ProductManager.Application.dll
 G:\ProductManager\ProductManager.Application\bin\Debug\net8.0\libman.json
 G:\ProductManager\ProductManager.Application\bin\Debug\net8.0\ProductManager.Application.staticwebassets.runtime.json
+G:\ProductManager\ProductManager.Application\obj\Debug\net8.0\ProductManager.Application.csproj.CopyComplete

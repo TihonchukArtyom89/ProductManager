@@ -10,13 +10,11 @@
 -try to make another in another list some features with items of list without page reloading 
 
 make at now
-- update .net sdk
-- rework sorting feature 
-- clean code of product controller
+- fix some data on index view
+- fix not display products on page when product count on page is less then page size
+- fix sorting unit tests 
 
 make in future
 - make start application without db (maybe a check of existing database or some rereading book)
-- fix not display products on page when product count on page is less then page size
-- fix old unit tests 
-- add unit tests for search (check if the result on some equal expected)
+- add unit tests for search (check if the result on some equal expected - search in all and specified categories, on severall pages) 
 - try to add search feature( see on links in DevNote txt - https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-6.0 ) 

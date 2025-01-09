@@ -257,24 +257,24 @@ public class ProductControllerTests
         ProductController productController = new(mockRepository.Object);
         //Act
         ProductsListViewModel? resultNameAsc1 = productController.ProductList(null, null, SortOrder.NameAsc, 1, 5)?.ViewData.Model as ProductsListViewModel ?? new();
-        ProductsListViewModel? resultNameAsc2 = productController.ProductList(null, null, SortOrder.NameAsc, 1, 5)?.ViewData.Model as ProductsListViewModel ?? new();
+        ProductsListViewModel? resultNameAsc2 = productController.ProductList(null, null, SortOrder.NameAsc, 2, 5)?.ViewData.Model as ProductsListViewModel ?? new();
         ProductsListViewModel? resultNameDesc1 = productController.ProductList(null, null, SortOrder.NameDesc, 1, 5)?.ViewData.Model as ProductsListViewModel ?? new();
-        ProductsListViewModel? resultNameDesc2 = productController.ProductList(null, null, SortOrder.NameDesc, 1, 5)?.ViewData.Model as ProductsListViewModel ?? new();
+        ProductsListViewModel? resultNameDesc2 = productController.ProductList(null, null, SortOrder.NameDesc, 2, 5)?.ViewData.Model as ProductsListViewModel ?? new();
         //Assert
         Assert.Equal("P1", resultNameAsc1.Products.FirstOrDefault()!.ProductName);
         Assert.Equal("P2", resultNameAsc1.Products.Skip(1).FirstOrDefault()!.ProductName);
         Assert.Equal("P3", resultNameAsc1.Products.Skip(2).FirstOrDefault()!.ProductName);
         Assert.Equal("P4", resultNameAsc1.Products.Skip(3).FirstOrDefault()!.ProductName);
         Assert.Equal("P5", resultNameAsc1.Products.Skip(4).FirstOrDefault()!.ProductName);
-        Assert.Equal("P6", resultNameAsc2.Products.Skip(5).FirstOrDefault()!.ProductName);
-        Assert.Equal("P7", resultNameAsc2.Products.Skip(6).FirstOrDefault()!.ProductName);
+        Assert.Equal("P6", resultNameAsc2.Products.FirstOrDefault()!.ProductName);
+        Assert.Equal("P7", resultNameAsc2.Products.Skip(1).FirstOrDefault()!.ProductName);
         Assert.Equal("P7", resultNameDesc1.Products.FirstOrDefault()!.ProductName);
         Assert.Equal("P6", resultNameDesc1.Products.Skip(1).FirstOrDefault()!.ProductName);
         Assert.Equal("P5", resultNameDesc1.Products.Skip(2).FirstOrDefault()!.ProductName);
         Assert.Equal("P4", resultNameDesc1.Products.Skip(3).FirstOrDefault()!.ProductName);
         Assert.Equal("P3", resultNameDesc1.Products.Skip(4).FirstOrDefault()!.ProductName);
-        Assert.Equal("P2", resultNameDesc2.Products.Skip(5).FirstOrDefault()!.ProductName);
-        Assert.Equal("P1", resultNameDesc2.Products.Skip(6).FirstOrDefault()!.ProductName);
+        Assert.Equal("P2", resultNameDesc2.Products.FirstOrDefault()!.ProductName);
+        Assert.Equal("P1", resultNameDesc2.Products.Skip(1).FirstOrDefault()!.ProductName);
     }
     [Fact]
     public void Can_Right_Sort_Product_On_Price()
@@ -302,22 +302,22 @@ public class ProductControllerTests
         ProductsListViewModel? resultPriceAsc1 = productController.ProductList(null, null, SortOrder.PriceAsc, 1, 5)?.ViewData.Model as ProductsListViewModel ?? new();
         ProductsListViewModel? resultPriceAsc2 = productController.ProductList(null, null, SortOrder.PriceAsc, 2, 5)?.ViewData.Model as ProductsListViewModel ?? new();
         ProductsListViewModel? resultPriceDesc1 = productController.ProductList(null, null, SortOrder.PriceDesc, 1, 5)?.ViewData.Model as ProductsListViewModel ?? new();
-        ProductsListViewModel? resultPriceDesc2 = productController.ProductList(null, null, SortOrder.PriceDesc, 1, 5)?.ViewData.Model as ProductsListViewModel ?? new();
+        ProductsListViewModel? resultPriceDesc2 = productController.ProductList(null, null, SortOrder.PriceDesc, 2, 5)?.ViewData.Model as ProductsListViewModel ?? new();
         //Assert
         Assert.Equal("P1", resultPriceAsc1.Products.FirstOrDefault()!.ProductName);
         Assert.Equal("P2", resultPriceAsc1.Products.Skip(1).FirstOrDefault()!.ProductName);
         Assert.Equal("P3", resultPriceAsc1.Products.Skip(2).FirstOrDefault()!.ProductName);
         Assert.Equal("P4", resultPriceAsc1.Products.Skip(3).FirstOrDefault()!.ProductName);
         Assert.Equal("P5", resultPriceAsc1.Products.Skip(4).FirstOrDefault()!.ProductName);
-        Assert.Equal("P6", resultPriceAsc2.Products.Skip(5).FirstOrDefault()!.ProductName);
-        Assert.Equal("P7", resultPriceAsc2.Products.Skip(6).FirstOrDefault()!.ProductName);
+        Assert.Equal("P6", resultPriceAsc2.Products.FirstOrDefault()!.ProductName);
+        Assert.Equal("P7", resultPriceAsc2.Products.Skip(1).FirstOrDefault()!.ProductName);
         Assert.Equal("P7", resultPriceDesc1.Products.FirstOrDefault()!.ProductName);
         Assert.Equal("P6", resultPriceDesc1.Products.Skip(1).FirstOrDefault()!.ProductName);
         Assert.Equal("P5", resultPriceDesc1.Products.Skip(2).FirstOrDefault()!.ProductName);
         Assert.Equal("P4", resultPriceDesc1.Products.Skip(3).FirstOrDefault()!.ProductName);
         Assert.Equal("P3", resultPriceDesc1.Products.Skip(4).FirstOrDefault()!.ProductName);
-        Assert.Equal("P2", resultPriceDesc2.Products.Skip(5).FirstOrDefault()!.ProductName);
-        Assert.Equal("P1", resultPriceDesc2.Products.Skip(6).FirstOrDefault()!.ProductName);
+        Assert.Equal("P2", resultPriceDesc2.Products.FirstOrDefault()!.ProductName);
+        Assert.Equal("P1", resultPriceDesc2.Products.Skip(1).FirstOrDefault()!.ProductName);
     }
     [Fact]
     public void Can_Right_Sort_Product_On_Default()
@@ -343,14 +343,14 @@ public class ProductControllerTests
         ProductController productController = new(mockRepository.Object);
         //Act
         ProductsListViewModel? resultPriceNeutral1 = productController.ProductList(null, null, SortOrder.Neutral, 1, 5)?.ViewData.Model as ProductsListViewModel ?? new();
-        ProductsListViewModel? resultPriceNeutral2 = productController.ProductList(null, null, SortOrder.Neutral, 1, 5)?.ViewData.Model as ProductsListViewModel ?? new();
+        ProductsListViewModel? resultPriceNeutral2 = productController.ProductList(null, null, SortOrder.Neutral, 2, 5)?.ViewData.Model as ProductsListViewModel ?? new();
         //Assert
         Assert.Equal("P7", resultPriceNeutral1.Products.FirstOrDefault()!.ProductName);
         Assert.Equal("P4", resultPriceNeutral1.Products.Skip(1).FirstOrDefault()!.ProductName);
         Assert.Equal("P3", resultPriceNeutral1.Products.Skip(2).FirstOrDefault()!.ProductName);
         Assert.Equal("P2", resultPriceNeutral1.Products.Skip(3).FirstOrDefault()!.ProductName);
         Assert.Equal("P6", resultPriceNeutral1.Products.Skip(4).FirstOrDefault()!.ProductName);
-        Assert.Equal("P5", resultPriceNeutral2.Products.Skip(5).FirstOrDefault()!.ProductName);
-        Assert.Equal("P1", resultPriceNeutral2.Products.Skip(6).FirstOrDefault()!.ProductName);
+        Assert.Equal("P5", resultPriceNeutral2.Products.FirstOrDefault()!.ProductName);
+        Assert.Equal("P1", resultPriceNeutral2.Products.Skip(1).FirstOrDefault()!.ProductName);
     }
 }

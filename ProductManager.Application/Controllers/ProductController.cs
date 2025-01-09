@@ -67,18 +67,11 @@ public class ProductController : Controller
             productPage = 1;
             products = productRepository.Products.Where(p => CurrentCategory == null || p.CategoryID == CurrentCategory.CategoryID).OrderBy(p => p.ProductID);
         }
-        if (productPage > (int)totalItems / pageSize)
+        if (productPage > (int)Math.Ceiling((decimal)totalItems / pageSize))
         {//check if current page is more than pages 
             productPage = 1;
         }
-        int ProductOnPage = pageSize;
-        var a = products.Count() - products.Skip((int)Math.Ceiling((decimal)totalItems / pageSize) - 1).Count();
-        var b = (int)Math.Ceiling((decimal)totalItems / pageSize);
-        if (/*products.Count() - products.Skip((int)Math.Ceiling((decimal)totalItems / pageSize) - 1).Count() < ProductOnPage &&*/ productPage == (int)Math.Ceiling((decimal)totalItems / pageSize))
-        {//check if products on last page is less then a page size
-            ProductOnPage = products.Count() - products.Skip((int)Math.Ceiling((decimal)totalItems / pageSize) - 1).Count();
-        }
-        products = products.Skip((productPage - 1) * pageSize).Take(ProductOnPage);
+        products = products.Skip((productPage - 1) * pageSize).Take(pageSize);
         ViewBag.ProductCount = products.Count();
         ViewBag.SelectedPage = productPage;
         products = products.Count() != 0 ? products :
