@@ -12,3 +12,6 @@ localhost:5000/Products/название_категории/Search=поиско�
 https://translated.turbopages.org/proxy_u/en-ru.ru.1fb381a3-6749a371-30a91e5b-74722d776562/https/bobbyhadz.com/blog/javascript-convert-object-to-query-string
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-6.0
 https://min.news/en/tech/a18fd7ea5f76c7c89874c699a7b6466f.html
+фронтенд:
+https://habr.com/ru/companies/domclick/articles/526244/
+https://pikabu.ru/story/s_nulya_do_frontendrazrabotchika_nachalo_7366304?ysclid=m5qnkdfgqx958364497

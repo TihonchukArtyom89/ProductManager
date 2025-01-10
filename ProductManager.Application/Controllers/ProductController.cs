@@ -71,6 +71,8 @@ public class ProductController : Controller
         {//check if current page is more than pages 
             productPage = 1;
         }
+        var a = Environment.Version.Major;
+        var b = Environment.Version.Minor;
         products = products.Skip((productPage - 1) * pageSize).Take(pageSize);
         ViewBag.ProductCount = products.Count();
         ViewBag.SelectedPage = productPage;

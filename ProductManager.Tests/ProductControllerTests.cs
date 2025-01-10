@@ -353,4 +353,38 @@ public class ProductControllerTests
         Assert.Equal("P5", resultPriceNeutral2.Products.FirstOrDefault()!.ProductName);
         Assert.Equal("P1", resultPriceNeutral2.Products.Skip(1).FirstOrDefault()!.ProductName);
     }
+    [Fact]
+    public void Can_Right_Search_Products()
+    {
+        //Arrange
+        Mock<IProductRepository> mockRepository = new Mock<IProductRepository>();
+        mockRepository.Setup(mr => mr.Products).Returns((new Product[]
+        {
+            new Product{ProductID = 7, ProductName = "Pr1", CategoryID = 1, ProductPrice=1.00M},
+            new Product{ProductID = 4, ProductName = "P2", CategoryID = 2, ProductPrice=2.00M},
+            new Product{ProductID = 3, ProductName = "Pr3", CategoryID = 1, ProductPrice=3.00M},
+            new Product{ProductID = 2, ProductName = "P4", CategoryID = 2, ProductPrice=4.00M},
+            new Product{ProductID = 6, ProductName = "Pr5", CategoryID = 3, ProductPrice=5.00M},
+            new Product{ProductID = 5, ProductName = "P6", CategoryID = 1, ProductPrice=6.00M},
+            new Product{ProductID = 1, ProductName = "Pr7", CategoryID = 2, ProductPrice=7.00M}
+        }).AsQueryable<Product>());
+        mockRepository.Setup(mr => mr.Categories).Returns((new Category[]
+        {
+            new Category{CategoryID = 1, CategoryName = "C1" },
+            new Category{CategoryID = 2, CategoryName = "C2" },
+            new Category{CategoryID = 3, CategoryName = "C3" }
+        }).AsQueryable<Category>());
+        ProductController productController = new(mockRepository.Object);
+        //Act
+        ProductsListViewModel? resultSearch1 = productController.ProductList(null, "Pr", SortOrder.Neutral, 1, 3)?.ViewData.Model as ProductsListViewModel ?? new();
+        ProductsListViewModel? resultSearch2 = productController.ProductList(null, "Pr", SortOrder.Neutral, 2, 3)?.ViewData.Model as ProductsListViewModel ?? new();
+        ProductsListViewModel? resultSearch3 = productController.ProductList("C1", "Pr", SortOrder.Neutral, 1, 2)?.ViewData.Model as ProductsListViewModel ?? new();
+        //Assert
+        Assert.Equal("Pr7", resultSearch1.Products.FirstOrDefault()!.ProductName);
+        Assert.Equal("Pr3", resultSearch1.Products.Skip(1).FirstOrDefault()!.ProductName);
+        Assert.Equal("Pr5", resultSearch1.Products.Skip(2).FirstOrDefault()!.ProductName);
+        Assert.Equal("Pr1", resultSearch2.Products.FirstOrDefault()!.ProductName);
+        Assert.Equal("Pr3", resultSearch3.Products.FirstOrDefault()!.ProductName);
+        Assert.Equal("Pr1", resultSearch3.Products.Skip(1).FirstOrDefault()!.ProductName);
+    }
 }

@@ -4,17 +4,21 @@
 +add classes to data model of application for mapping with visual diagram of databases
 +make pagination for product list view
 +create category selector for product list view
--add a few features to product list 
--add buttons with crud actions displaying on model popup on product list view
++add a few features to product list (pagination, page size selecting, category filtering, sorting on name, price, default, searching)
+-add buttons with crud actions displaying on modal popup on product list view
 -make another list of pricelists of products (controller, view & buttons etc.) 
 -try to make another in another list some features with items of list without page reloading 
+-add some features from technical specification (get from doc file)
+-make project more stylish with using frontend 
 
 make at now
 - fix some data on index view
-- fix not display products on page when product count on page is less then page size
-- fix sorting unit tests 
+- add unit test for search feature 
+- add search feature
 
 make in future
 - make start application without db (maybe a check of existing database or some rereading book)
-- add unit tests for search (check if the result on some equal expected - search in all and specified categories, on severall pages) 
-- try to add search feature( see on links in DevNote txt - https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-6.0 ) 
+- add modal popup of show details of product
+- add modal popup of create new product
+- add modal popup of edit existing product
+- add modal popup of delete existing product
