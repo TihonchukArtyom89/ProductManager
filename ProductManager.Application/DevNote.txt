@@ -15,3 +15,5 @@ https://min.news/en/tech/a18fd7ea5f76c7c89874c699a7b6466f.html
 фронтенд:
 https://habr.com/ru/companies/domclick/articles/526244/
 https://pikabu.ru/story/s_nulya_do_frontendrazrabotchika_nachalo_7366304?ysclid=m5qnkdfgqx958364497
+всплывающие окна/modal popup
+https://github.com/CodAffection/jQuery-Ajax-with-ASP.NET-Core-MVC-using-Modal-PopUp/blob/main/jQuery%20Ajax%20CRUD/jQuery%20Ajax%20CRUD/Controllers/TransactionController.cs

@@ -9,12 +9,12 @@
 -make another list of pricelists of products (controller, view & buttons etc.) 
 -try to make another in another list some features with items of list without page reloading 
 -add some features from technical specification (get from doc file)
--make project more stylish with using frontend 
+-make project more stylish with using frontend
+-add administration feature with blazor and to create, update and delete category of product in administration panel
 
 make at now
-- fix some data on index view
-- add unit test for search feature 
-- add search feature
+- add some items in to do list
+- add doc file with detailed description of pricelist part of this application
 
 make in future
 - make start application without db (maybe a check of existing database or some rereading book)
