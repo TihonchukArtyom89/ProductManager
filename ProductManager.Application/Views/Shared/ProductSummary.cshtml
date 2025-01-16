@@ -9,6 +9,37 @@
                 <span class="badge rounded-pill bg-primary text-white" style="float:right">
                     <small>@Model.ProductPrice ₽</small>
                 </span>
+@*                 <button class="btn btn-info" data-toggle="modal" data-target="@("Product_ " + Model.ProductID + "_Detail")" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@Model.ProductID">Подробнее о @Model.ProductName</button>
+ *@
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=@("#Product_"+Model.ProductID+"_Detail")>
+                    Подробнее о @Model.ProductName
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="@("Product_"+Model.ProductID+"_Detail")" tabindex="-1" aria-labelledby="DetailProductLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="DetailProductLabel">Подробности</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-body">
+                                    <p>Ид продукта: @Model.ProductID</p>
+                                    <p>Название продукта: @Model.ProductName</p>
+                                    <p>Описание продукта: @Model.ProductDescription</p>
+                                    <p>Цена продукта: @Model.ProductPrice</p>
+                                    @* <p>Категория продукта: @Model.Category!.CategoryName</p> *@
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+@*                                 <button type="button" class="btn btn-primary">Save changes</button> *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </h4>
     </div>

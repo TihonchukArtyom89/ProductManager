@@ -16,4 +16,64 @@ https://min.news/en/tech/a18fd7ea5f76c7c89874c699a7b6466f.html
 https://habr.com/ru/companies/domclick/articles/526244/
 https://pikabu.ru/story/s_nulya_do_frontendrazrabotchika_nachalo_7366304?ysclid=m5qnkdfgqx958364497
 всплывающие окна/modal popup
-https://github.com/CodAffection/jQuery-Ajax-with-ASP.NET-Core-MVC-using-Modal-PopUp/blob/main/jQuery%20Ajax%20CRUD/jQuery%20Ajax%20CRUD/Controllers/TransactionController.cs
+https://github.com/CodAffection/jQuery-Ajax-with-ASP.NET-Core-MVC-using-Modal-PopUp/blob/main/jQuery%20Ajax%20CRUD/jQuery%20Ajax%20CRUD/Controllers/TransactionController.cs 
+примеры разметок всплывающих окон
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+    </div>
+</div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailsModal">Подробнее</button>
+<div id="detailsModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Подробнее о продукте</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Ид продукта: @Model.ProductID</p>
+                <p>Название продукта: @Model.ProductName</p>
+                <p>Описание продукта: @Model.ProductDescription</p>
+                <p>Цена продукта: @Model.ProductPrice</p>
+                @* <p>Категория продукта: @Model.Category!.CategoryName</p> *@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                @* <button type="button" class="btn btn-primary">Save changes</button> *@
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+https://www.youtube.com/watch?v=SdbfR4dTHsc
+https://www.youtube.com/watch?v=2NlBXhfwoOo <- blazor crud
+https://www.youtube.com/watch?v=1n7MRc4VjOw <- useful basicsn 

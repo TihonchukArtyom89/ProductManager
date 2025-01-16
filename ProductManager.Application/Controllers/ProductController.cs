@@ -71,8 +71,6 @@ public class ProductController : Controller
         {//check if current page is more than pages 
             productPage = 1;
         }
-        var a = Environment.Version.Major;
-        var b = Environment.Version.Minor;
         products = products.Skip((productPage - 1) * pageSize).Take(pageSize);
         ViewBag.ProductCount = products.Count();
         ViewBag.SelectedPage = productPage;
@@ -99,5 +97,18 @@ public class ProductController : Controller
             CurrentCategory = (CurrentCategory ?? new Category { CategoryName = null ?? "" }).CategoryName,
         };
         return View(viewModel);
+    }
+    //[HttpPost]
+    public IActionResult ProductDetail(long productId)//
+    {
+        Product product = productRepository.Products.Where(e=>e.ProductID == productId).FirstOrDefault() ?? new Product()
+        {
+            CategoryID = 0,
+            ProductID = 0,
+            ProductName = "Нет в наличии!",
+            ProductDescription = "Данного продукта не имеется!",
+            ProductPrice = 0.00M,
+        };
+        return PartialView("ProductDetail",product);
     }
 }

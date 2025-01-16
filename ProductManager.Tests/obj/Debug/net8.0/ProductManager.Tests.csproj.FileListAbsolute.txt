@@ -147,4 +147,4 @@ G:\ProductManager\ProductManager.Tests\obj\Debug\net8.0\ProductManager.Tests.gen
 G:\ProductManager\ProductManager.Tests\obj\Debug\net8.0\ref\ProductManager.Tests.dll
 G:\ProductManager\ProductManager.Tests\bin\Debug\net8.0\libman.json
 G:\ProductManager\ProductManager.Tests\bin\Debug\net8.0\ProductManager.Application.staticwebassets.runtime.json
-G:\ProductManager\ProductManager.Tests\obj\Debug\net8.0\ProductManager.Tests.csproj.CopyComplete
+G:\ProductManager\ProductManager.Tests\obj\Debug\net8.0\ProductM.3EA9CE84.Up2Date
