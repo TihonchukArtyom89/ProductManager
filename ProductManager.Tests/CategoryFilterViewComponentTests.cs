@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.ViewComponents;
 using ProductManager.Application.Components;
 using Microsoft.AspNetCore.Routing;
 using ProductManager.Application.ViewModels;
+using ProductManager.Application.Models;
+using ProductManager.Application.Models.DBEntities;
 
 namespace ProductManager.Tests
 {

@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model ProductManager.Application.Models.DBEntities.Product
 
 <div class="card card-outline-primary m-1 p-1">
     <div class="bg-faded p-1">
@@ -9,15 +9,14 @@
                 <span class="badge rounded-pill bg-primary text-white" style="float:right">
                     <small>@Model.ProductPrice ₽</small>
                 </span>
-@*                 <button class="btn btn-info" data-toggle="modal" data-target="@("Product_ " + Model.ProductID + "_Detail")" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@Model.ProductID">Подробнее о @Model.ProductName</button>
- *@
+                @*<button class="btn btn-info" data-toggle="modal" data-target="@("Product_ " + Model.ProductID + "_Detail")" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@Model.ProductID">Подробнее о @Model.ProductName</button>*@
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=@("#Product_"+Model.ProductID+"_Detail")>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=@("#Product_" + Model.ProductID + "_Detail")>
                     Подробнее о @Model.ProductName
                 </button>
-
+                <partial name="~/Views/Shared/Product/ProductDetail.cshtml" model="Model" />
                 <!-- Modal -->
-                <div class="modal fade" id="@("Product_"+Model.ProductID+"_Detail")" tabindex="-1" aria-labelledby="DetailProductLabel" aria-hidden="true">
+@*                 <div class="modal fade" id="@("Product_"+Model.ProductID+"_Detail")" tabindex="-1" aria-labelledby="DetailProductLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -30,16 +29,14 @@
                                     <p>Название продукта: @Model.ProductName</p>
                                     <p>Описание продукта: @Model.ProductDescription</p>
                                     <p>Цена продукта: @Model.ProductPrice</p>
-                                    @* <p>Категория продукта: @Model.Category!.CategoryName</p> *@
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-@*                                 <button type="button" class="btn btn-primary">Save changes</button> *@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> *@
             }
         </h4>
     </div>

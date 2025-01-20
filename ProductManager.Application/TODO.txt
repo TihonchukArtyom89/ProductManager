@@ -13,15 +13,11 @@
 -add administration feature with blazor and to create, update and delete category of product in administration panel
 
 make at now
-- install jquery library
-- script bootstrap activated
-- add simple modal popup of show details of product
-- script jquery activated
+- add more folders
 
 make in future
 - make start application without db (maybe a check of existing database or some rereading book)
 - add modal popup with partial view and method of controller of show details of product
-- add more folders
 - add modal popup of create new product
 - add modal popup of edit existing product
 - add modal popup of delete existing product

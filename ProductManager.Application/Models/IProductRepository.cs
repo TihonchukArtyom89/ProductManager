@@ -1,5 +1,7 @@
 ﻿
 
+using ProductManager.Application.Models.DBEntities;
+
 namespace ProductManager.Application.Models;
 
 public interface IProductRepository

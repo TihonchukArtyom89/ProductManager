@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ProductManager.Application.Components;
 using ProductManager.Application.Infrastructure;
+using ProductManager.Application.Models;
+using ProductManager.Application.Models.DBEntities;
 using ProductManager.Application.ViewModels;
 using System;
 using System.Collections.Generic;

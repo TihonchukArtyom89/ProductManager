@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ProductManager.Application.Models;
+namespace ProductManager.Application.Models.DBEntities;
 //класс для формирования справочной таблицы для необязательных параметров (ид,тип, название)
 public class OptionalParameter
 {

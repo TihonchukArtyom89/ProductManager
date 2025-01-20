@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductManager.Application.Models.DBEntities;
 using System.Collections.Generic;
 
 namespace ProductManager.Application.Models;

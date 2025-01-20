@@ -1,4 +1,4 @@
-﻿using ProductManager.Application.Models;
+﻿using ProductManager.Application.Models.DBEntities;
 
 namespace ProductManager.Application.ViewModels;
 

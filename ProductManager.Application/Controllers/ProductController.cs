@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductManager.Application.Models;
+using ProductManager.Application.Models.DBEntities;
 using ProductManager.Application.ViewModels;
 using System.Web;
 

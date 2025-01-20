@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ProductManager.Application.Models;
+namespace ProductManager.Application.Models.DBEntities;
 //класс для формирования таблицы в бд посвящённой товарам
 [Table("Products")]
 public class Product

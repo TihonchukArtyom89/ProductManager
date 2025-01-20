@@ -1,4 +1,6 @@
-﻿namespace ProductManager.Application.Models;
+﻿using ProductManager.Application.Models.DBEntities;
+
+namespace ProductManager.Application.Models;
 
 public class EFProductRepository : IProductRepository
 {

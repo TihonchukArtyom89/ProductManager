@@ -1,3 +1,4 @@
+using ProductManager.Application.Models.DBEntities;
 using ProductManager.Application.ViewModels;
 
 namespace ProductManager.Tests;
