@@ -13,7 +13,8 @@
 -add administration feature with blazor and to create, update and delete category of product in administration panel
 
 make at now
-- add more folders
+- add category for products without category
+- rework seed data in Program cs
 
 make in future
 - make start application without db (maybe a check of existing database or some rereading book)

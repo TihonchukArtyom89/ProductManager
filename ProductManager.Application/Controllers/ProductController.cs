@@ -110,6 +110,19 @@ public class ProductController : Controller
             ProductDescription = "Данного продукта не имеется!",
             ProductPrice = 0.00M,
         };
-        return PartialView("ProductDetail",product);
+        return PartialView("~/Views/Shared/Product/ProductDetail", product);
+    }
+
+    public IActionResult CreateProduct()
+    {
+        Product product = new Product();
+        product.CategoryID = 0;
+        return PartialView("~/Views/Shared/Product/ProductCreate", product);
+    }
+    [HttpPost]
+    public IActionResult CreateProduct(Product product)
+    {
+        productRepository.CreateProduct(product);
+        return RedirectToAction("Productlist","Product");
     }
 }

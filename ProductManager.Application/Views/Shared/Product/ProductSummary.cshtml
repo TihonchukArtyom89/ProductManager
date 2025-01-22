@@ -11,10 +11,14 @@
                 </span>
                 @*<button class="btn btn-info" data-toggle="modal" data-target="@("Product_ " + Model.ProductID + "_Detail")" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@Model.ProductID">Подробнее о @Model.ProductName</button>*@
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=@("#Product_" + Model.ProductID + "_Detail")>
+@*                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=@("#Product_" + Model.ProductID + "_Detail")>
+                    Подробнее о @Model.ProductName
+                </button> *@
+                @* <partial name="~/Views/Shared/Product/ProductDetail.cshtml" model="Model" /> *@
+                <button type="button" class="btn btn-info" asp-action="ProductDetail" asp-controller="Product" asp-route-productId="@Model.ProductID">
                     Подробнее о @Model.ProductName
                 </button>
-                <partial name="~/Views/Shared/Product/ProductDetail.cshtml" model="Model" />
+                @* <partial name="../Shared/Product/ProductDetail" model="Model" /> *@
                 <!-- Modal -->
 @*                 <div class="modal fade" id="@("Product_"+Model.ProductID+"_Detail")" tabindex="-1" aria-labelledby="DetailProductLabel" aria-hidden="true">
                     <div class="modal-dialog">

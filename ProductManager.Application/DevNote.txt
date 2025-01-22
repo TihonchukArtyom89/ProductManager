@@ -74,6 +74,11 @@ https://github.com/CodAffection/jQuery-Ajax-with-ASP.NET-Core-MVC-using-Modal-Po
         </div>
     </div>
 </div>
-https://www.youtube.com/watch?v=SdbfR4dTHsc
+https://www.youtube.com/watch?v=SdbfR4dTHsc - 
 https://www.youtube.com/watch?v=2NlBXhfwoOo <- blazor crud
 https://www.youtube.com/watch?v=1n7MRc4VjOw <- useful basicsn 
+https://www.youtube.com/watch?v=z58rXjCA8-k
+https://www.youtube.com/watch?v=X3Jc5UfGhhE
+https://www.youtube.com/watch?v=VF6wlRshzDQ <- check this code
+
+https://dotnetgenetics.blogspot.com/2020/11/bootstrap-modal-in-aspnet-mvc-with-crud.html
