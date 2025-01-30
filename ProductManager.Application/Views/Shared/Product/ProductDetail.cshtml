@@ -1,6 +1,13 @@
 ﻿@model ProductManager.Application.Models.DBEntities.Product
 
-<div id="@("Product_ " + Model.ProductID + "_Detail")" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ProductDetailLabel" aria-hidden="true">
+<div class="modal-body">
+    <p>Ид продукта: @Model.ProductID</p>
+    <p>Название продукта: @Model.ProductName</p>
+    <p>Описание продукта: @Model.ProductDescription</p>
+    <p>Цена продукта: @Model.ProductPrice</p>
+</div>
+
+@* <div id="@("Product_ " + Model.ProductID + "_Detail")" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ProductDetailLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -17,4 +24,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> *@

@@ -100,29 +100,48 @@ public class ProductController : Controller
         return View(viewModel);
     }
     //[HttpPost]
-    public IActionResult ProductDetail(long productId)//
-    {
-        Product product = productRepository.Products.Where(e=>e.ProductID == productId).FirstOrDefault() ?? new Product()
-        {
-            CategoryID = 0,
-            ProductID = 0,
-            ProductName = "Нет в наличии!",
-            ProductDescription = "Данного продукта не имеется!",
-            ProductPrice = 0.00M,
-        };
-        return PartialView("~/Views/Shared/Product/ProductDetail", product);
-    }
-
+    //public IActionResult ProductDetail(long productId)//
+    //{
+    //    Product product = productRepository.Products.Where(e=>e.ProductID == productId).FirstOrDefault() ?? new Product()
+    //    {
+    //        CategoryID = 0,
+    //        ProductID = 0,
+    //        ProductName = "Нет в наличии!",
+    //        ProductDescription = "Данного продукта не имеется!",
+    //        ProductPrice = 0.00M,
+    //    };
+    //    return PartialView("~/Views/Shared/Product/ProductDetail", product);
+    //}
+    [HttpGet]
     public IActionResult CreateProduct()
     {
         Product product = new Product();
         product.CategoryID = 0;
-        return PartialView("~/Views/Shared/Product/ProductCreate", product);
+        return PartialView(viewName: "~/Views/Shared/Product/_ProductCreatePartialView", model: product);
     }
     [HttpPost]
     public IActionResult CreateProduct(Product product)
     {
         productRepository.CreateProduct(product);
-        return RedirectToAction("Productlist","Product");
+        return RedirectToAction(actionName: "Productlist", controllerName: "Product");
+    }
+    [HttpGet]
+    public IActionResult UpdateProduct(long id)
+    {
+        Product product = productRepository.Products.Where(e=>e.ProductID == id).FirstOrDefault() ?? new Product()
+        {
+            CategoryID = 0,
+            ProductID = 0,
+            ProductName = "Продукт не найден",
+            ProductDescription = "Продуктов с таким '" + id + "' нет!",
+            ProductPrice = 0.00M,
+        };
+        return PartialView(viewName: "~/Views/Shared/Product/_ProductUpdatePartialView", model: product);
+    }
+    [HttpPost]
+    public IActionResult UpdateProduct(Product product)
+    {
+        productRepository.UpdateProduct(product);
+        return RedirectToAction(actionName: "Productlist", controllerName: "Product");
     }
 }

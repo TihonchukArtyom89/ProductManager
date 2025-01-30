@@ -13,10 +13,12 @@
 -add administration feature with blazor and to create, update and delete category of product in administration panel
 
 make at now
-- add category for products without category
-- rework seed data in Program cs
+- add create and update actiom to product controller
+- add update action to repository pattern
 
 make in future
+- add category field to product detail modal popup
+- add dropdownlist with categories to create and update products form
 - make start application without db (maybe a check of existing database or some rereading book)
 - add modal popup with partial view and method of controller of show details of product
 - add modal popup of create new product

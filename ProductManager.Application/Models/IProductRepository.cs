@@ -11,5 +11,6 @@ public interface IProductRepository
 
     void SaveProduct(Product p);
     void CreateProduct(Product p);
+    void UpdateProduct(Product p);
     void DeleteProduct(Product p);
 }

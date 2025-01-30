@@ -82,3 +82,20 @@ https://www.youtube.com/watch?v=X3Jc5UfGhhE
 https://www.youtube.com/watch?v=VF6wlRshzDQ <- check this code
 
 https://dotnetgenetics.blogspot.com/2020/11/bootstrap-modal-in-aspnet-mvc-with-crud.html
+https://www.quickpickdeal.com/coding/crud-operation-using-partial-view-in-mvc-with-modal-popup
+https://www.c-sharpcorner.com/article/render-partial-view-as-modal-popup-using-ajax-call-with-json/?ysclid=m6837nlrs5343974131
+https://learn.microsoft.com/en-us/archive/msdn-technet-forums/702076b1-a1e5-4b13-a2b3-01b25b1696e5
+https://codemagik.wordpress.com/2015/04/07/render-mvc-partial-view-inside-bootstrap-modal-dialog/
+https://www.codingfusion.com/Post/Using-Bootstrap-Modal-window-as-PartialView-in-Net-MVC
+https://findnerd.com/list/view/Modal-popup-using-Partial-View/18440/
+https://www.c-sharpcorner.com/article/create-asp-net-mvc-crud-application-with-entity-framework-using-ajax-request-and2/
+https://www.scholarhat.com/tutorial/mvc/crud-operations-using-jquery-dialog-entity-framework-and-aspnet-mvc
+--
+https://www.c-sharpcorner.com/article/create-asp-net-mvc-crud-application-with-entity-framework-using-ajax-request-and2/
+https://dotnettutorials.net/lesson/crud-operation-on-a-single-page-in-asp-net-core-mvc/
+https://www.udemy.com/course/complete-aspnet-core-21-course/?couponCode=MT24125AROW
+https://www.youtube.com/@LearnWithIndrjeet <- on future
+https://www.c-sharpcorner.com/article/crud-operations-in-asp-net-core-using-entity-framework-core-code-first/ <-!!!!look at this
+https://www.youtube.com/watch?v=X3Jc5UfGhhE <- 3:15
+https://www.youtube.com/watch?v=JYP8kILu-ZU <-watch this in home
+https://www.youtube.com/watch?v=gRBC50ddQzw <-???

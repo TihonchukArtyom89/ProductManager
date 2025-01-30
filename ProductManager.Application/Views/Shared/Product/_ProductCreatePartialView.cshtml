@@ -1,0 +1,64 @@
+﻿@model ProductManager.Application.Models.DBEntities.Product
+
+@* <div class="modal-body">
+    <p>Ид продукта: @Model.ProductID</p>
+    <p>Название продукта: @Model.ProductName</p>
+    <p>Описание продукта: @Model.ProductDescription</p>
+    <p>Цена продукта: @Model.ProductPrice</p>
+</div> *@
+
+@* <div id="@("Product_ " + Model.ProductID + "_Detail")" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ProductDetailLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Подробнее о продукте</h5>
+            </div>
+            <div class="modal-body">
+                <p>Ид продукта: @Model.ProductID</p>
+                <p>Название продукта: @Model.ProductName</p>
+                <p>Описание продукта: @Model.ProductDescription</p>
+                <p>Цена продукта: @Model.ProductPrice</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close" onclick="javascript:window.location.reload()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div> *@
+<div class="modal fade" id="createProduct" aria-labelledby="createProductLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createProductLabel">Добавление нового продукта</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Product" asp-action="CreateProduct" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ProductName" class="control-label"></label>
+                        <input asp-for="ProductName" class="form-control" />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                    </div>
+                    @* здесь будет выпадающий список для категорий продукта *@
+                    <div class="form-group">
+                        <label asp-for="ProductDescription" class="control-label"></label>
+                        <input asp-for="ProductDescription" class="form-control" />
+                        <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductPrice" class="control-label"></label>
+                        <input asp-for="ProductPrice" class="form-control" />
+                        <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal">Добавить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
