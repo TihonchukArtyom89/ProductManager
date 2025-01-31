@@ -13,10 +13,17 @@
 -add administration feature with blazor and to create, update and delete category of product in administration panel
 
 make at now
-- add create and update actiom to product controller
-- add update action to repository pattern
+
+- update views for using create and update action
+- clean partial views of create and update action
+- make showing modal popup of create product with partial view
+- rewrite url link
 
 make in future
+
+- fix close button on modal popup of create product
+- fix exception when when adding product (it throwing because of category setting missing)
+- fix ot not showing update product modal popup 
 - add category field to product detail modal popup
 - add dropdownlist with categories to create and update products form
 - make start application without db (maybe a check of existing database or some rereading book)

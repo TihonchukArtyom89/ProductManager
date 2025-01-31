@@ -117,7 +117,7 @@ public class ProductController : Controller
     {
         Product product = new Product();
         product.CategoryID = 0;
-        return PartialView(viewName: "~/Views/Shared/Product/_ProductCreatePartialView", model: product);
+        return PartialView(viewName: "../Shared/Product/_ProductCreatePartialView", model: product);
     }
     [HttpPost]
     public IActionResult CreateProduct(Product product)
@@ -136,7 +136,7 @@ public class ProductController : Controller
             ProductDescription = "Продуктов с таким '" + id + "' нет!",
             ProductPrice = 0.00M,
         };
-        return PartialView(viewName: "~/Views/Shared/Product/_ProductUpdatePartialView", model: product);
+        return PartialView(viewName: "../Shared/Product/_ProductUpdatePartialView", model: product);
     }
     [HttpPost]
     public IActionResult UpdateProduct(Product product)
