@@ -14,13 +14,12 @@
 
 make at now
 
-- update views for using create and update action
-- clean partial views of create and update action
-- make showing modal popup of create product with partial view
-- rewrite url link
+- some clean on SeedData cs
+- add command of database resetting in DevNote txt
+- fix sqlexception of can`t openning database (rename copy of old db and drop with command)
 
 make in future
-
+- make check in SeedData cs if existing database (if no create new db with some test data - software migration management)
 - fix close button on modal popup of create product
 - fix exception when when adding product (it throwing because of category setting missing)
 - fix ot not showing update product modal popup 

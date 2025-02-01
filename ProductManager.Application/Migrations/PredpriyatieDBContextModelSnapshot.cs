@@ -52,7 +52,7 @@ namespace ProductManager.Application.Migrations
                     b.ToTable("PriceListProductProduct");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.Category", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Category", b =>
                 {
                     b.Property<long?>("CategoryID")
                         .ValueGeneratedOnAdd()
@@ -69,7 +69,7 @@ namespace ProductManager.Application.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.OptionalParameter", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.OptionalParameter", b =>
                 {
                     b.Property<long?>("OptionalParameterID")
                         .ValueGeneratedOnAdd()
@@ -90,7 +90,7 @@ namespace ProductManager.Application.Migrations
                     b.ToTable("OptionalParameters");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.PriceList", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PriceList", b =>
                 {
                     b.Property<long?>("PriceListID")
                         .ValueGeneratedOnAdd()
@@ -113,7 +113,7 @@ namespace ProductManager.Application.Migrations
                     b.ToTable("PriceLists");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.PriceListOptionalParameter", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PriceListOptionalParameter", b =>
                 {
                     b.Property<long?>("OptionalParameterEntryID")
                         .ValueGeneratedOnAdd()
@@ -140,7 +140,7 @@ namespace ProductManager.Application.Migrations
                     b.ToTable("PriceListOptionalParameters");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.PriceListProduct", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PriceListProduct", b =>
                 {
                     b.Property<long?>("PriceListLineID")
                         .ValueGeneratedOnAdd()
@@ -166,7 +166,7 @@ namespace ProductManager.Application.Migrations
                     b.ToTable("PriceListProducts");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.Product", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Product", b =>
                 {
                     b.Property<long?>("ProductID")
                         .ValueGeneratedOnAdd()
@@ -198,13 +198,13 @@ namespace ProductManager.Application.Migrations
 
             modelBuilder.Entity("PriceListPriceListProduct", b =>
                 {
-                    b.HasOne("ProductManager.Application.Models.PriceListProduct", null)
+                    b.HasOne("ProductManager.Application.Models.DBEntities.PriceListProduct", null)
                         .WithMany()
                         .HasForeignKey("PriceListProductsPriceListLineID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProductManager.Application.Models.PriceList", null)
+                    b.HasOne("ProductManager.Application.Models.DBEntities.PriceList", null)
                         .WithMany()
                         .HasForeignKey("PriceListsPriceListID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -213,22 +213,22 @@ namespace ProductManager.Application.Migrations
 
             modelBuilder.Entity("PriceListProductProduct", b =>
                 {
-                    b.HasOne("ProductManager.Application.Models.PriceListProduct", null)
+                    b.HasOne("ProductManager.Application.Models.DBEntities.PriceListProduct", null)
                         .WithMany()
                         .HasForeignKey("PriceListProductsPriceListLineID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProductManager.Application.Models.Product", null)
+                    b.HasOne("ProductManager.Application.Models.DBEntities.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.PriceListOptionalParameter", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PriceListOptionalParameter", b =>
                 {
-                    b.HasOne("ProductManager.Application.Models.OptionalParameter", "OptionalParameter")
+                    b.HasOne("ProductManager.Application.Models.DBEntities.OptionalParameter", "OptionalParameter")
                         .WithMany("PriceListOptionalParameters")
                         .HasForeignKey("OptionalParameterID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -237,9 +237,9 @@ namespace ProductManager.Application.Migrations
                     b.Navigation("OptionalParameter");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.PriceListProduct", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PriceListProduct", b =>
                 {
-                    b.HasOne("ProductManager.Application.Models.PriceListOptionalParameter", "PriceListOptionalParameters")
+                    b.HasOne("ProductManager.Application.Models.DBEntities.PriceListOptionalParameter", "PriceListOptionalParameters")
                         .WithMany("PriceListProducts")
                         .HasForeignKey("PriceListOptionalParametersOptionalParameterEntryID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -248,9 +248,9 @@ namespace ProductManager.Application.Migrations
                     b.Navigation("PriceListOptionalParameters");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.Product", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Product", b =>
                 {
-                    b.HasOne("ProductManager.Application.Models.Category", "Category")
+                    b.HasOne("ProductManager.Application.Models.DBEntities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -259,17 +259,17 @@ namespace ProductManager.Application.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.Category", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.OptionalParameter", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.OptionalParameter", b =>
                 {
                     b.Navigation("PriceListOptionalParameters");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.PriceListOptionalParameter", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PriceListOptionalParameter", b =>
                 {
                     b.Navigation("PriceListProducts");
                 });

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using ProductManager.Application.Models.DBEntities;
 using System.Collections.Generic;
 
@@ -8,21 +10,29 @@ public static class SeedData
 {
     public static void EnsurePopulated(IApplicationBuilder app)
     {
-        PredpriyatieDBContext context = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<PredpriyatieDBContext>();
         try
         {
+            PredpriyatieDBContext context = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<PredpriyatieDBContext>();
+            if (!context.Database.CanConnect())
+            {
+                throw new Exception("can not connect to database( may be phisycal file of db is not existing)");
+                //создать пустую базу данных
+                //context.Database.EnsureDeleted();
+                //context.Database.EnsureCreated();
+                //context.Database.Migrate();
+            }
             if (context.Database.GetPendingMigrations().Any())
             {
                 context.Database.Migrate();
             }
             if (!context.Products.Any())
             {
-                string[] CategoryNames = { "Нет категории","Мебель", "Фрукты", "test" };
+                string[] CategoryNames = ["Нет категории", "Мебель", "Фрукты", "test"];
                 if (!context.Categories.Any())
                 {//code for insert sample data to table Categories(categories of product) 
                     context.Categories.AddRange(new Category { CategoryName = CategoryNames[0] }, new Category { CategoryName = CategoryNames[1] }, new Category { CategoryName = CategoryNames[2] }, new Category { CategoryName = CategoryNames[3] });
                     context.SaveChanges();
-                }              
+                }
                 context.Products.AddRange(//fill Products Table with sample data
                     new Product { ProductName = "Стул", ProductDescription = "Обычный стул", ProductPrice = 1547.04m, CategoryID = context.Categories.Where(c => c.CategoryName == "Мебель").FirstOrDefault()?.CategoryID },
                     new Product { ProductName = "Яблоко", ProductDescription = "Красное, наливное", ProductPrice = 196.67m, CategoryID = context.Categories.Where(c => c.CategoryName == "Фрукты").FirstOrDefault()?.CategoryID },
