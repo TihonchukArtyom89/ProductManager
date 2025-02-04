@@ -1,17 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProductManager.Application.Models;
 using ProductManager.Application.Models.DBEntities;
 using ProductManager.Application.ViewModels;
 using System.Web;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProductManager.Application.Controllers;
 
 public class ProductController : Controller
 {
     private IProductRepository productRepository;
-    public ProductController(IProductRepository _productRepository)
+    private List<SelectListItem> categoriesDropDownList = new List<SelectListItem>();
+
+public ProductController(IProductRepository _productRepository)
     {
-        productRepository = _productRepository;
+        productRepository = _productRepository;        
     }
     public ViewResult ProductList(string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
@@ -22,6 +26,13 @@ public class ProductController : Controller
         ViewBag.PriceSortingText = sortOrder != SortOrder.PriceDesc ? "От дорогих к дешёвым" : "От дешёвых к дорогим";
         ViewBag.NameSortingText = sortOrder != SortOrder.NameDesc ? "От Я до А" : "От А до Я";
         Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
+        List<Category> categoryList = productRepository.Categories.ToList() ?? new List<Category> { new Category() { CategoryID = 1, CategoryName = "Нет в наличии" } };
+        foreach (Category c in categoryList)
+        {
+            categoriesDropDownList.Add(new SelectListItem(text: c.CategoryName, value: c.CategoryID.ToString()));
+        }
+        categoriesDropDownList.Where(e => e.Value == "1").FirstOrDefault()!.Selected = true;
+        ViewBag.Categories = categoriesDropDownList;
         IEnumerable<Product> products = productRepository.Products;
         string namePlaceholder = "Нет в наличии!";
         string descriptionPlaceholder = "Продуктов категории " + (CurrentCategory ?? new Category() { CategoryName = "Категория не указана" }).CategoryName + " не имеется!";
@@ -79,7 +90,7 @@ public class ProductController : Controller
             products.Append(
                 new Product()
                 {
-                    CategoryID = 0,
+                    CategoryID = 1,
                     ProductID = 0,
                     ProductName = namePlaceholder,
                     ProductDescription = descriptionPlaceholder,
@@ -104,7 +115,7 @@ public class ProductController : Controller
     //{
     //    Product product = productRepository.Products.Where(e=>e.ProductID == productId).FirstOrDefault() ?? new Product()
     //    {
-    //        CategoryID = 0,
+    //        CategoryID = 1,
     //        ProductID = 0,
     //        ProductName = "Нет в наличии!",
     //        ProductDescription = "Данного продукта не имеется!",
@@ -116,7 +127,7 @@ public class ProductController : Controller
     public IActionResult CreateProduct()
     {
         Product product = new Product();
-        product.CategoryID = 0;
+        ViewBag.
         return PartialView(viewName: "../Shared/Product/_ProductCreatePartialView", model: product);
     }
     [HttpPost]
@@ -128,9 +139,9 @@ public class ProductController : Controller
     [HttpGet]
     public IActionResult UpdateProduct(long id)
     {
-        Product product = productRepository.Products.Where(e=>e.ProductID == id).FirstOrDefault() ?? new Product()
+        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? new Product()
         {
-            CategoryID = 0,
+            CategoryID = 1,
             ProductID = 0,
             ProductName = "Продукт не найден",
             ProductDescription = "Продуктов с таким '" + id + "' нет!",

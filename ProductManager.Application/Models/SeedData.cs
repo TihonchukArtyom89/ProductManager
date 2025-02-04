@@ -13,13 +13,11 @@ public static class SeedData
         try
         {
             PredpriyatieDBContext context = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<PredpriyatieDBContext>();
-            if (!context.Database.CanConnect())
+            if (!context.Database.CanConnect())//check if app can connect to database
             {
-                throw new Exception("can not connect to database( may be phisycal file of db is not existing)");
-                //создать пустую базу данных
-                //context.Database.EnsureDeleted();
-                //context.Database.EnsureCreated();
-                //context.Database.Migrate();
+                //throw new Exception("can not connect to database( may be phisycal file of db is not existing)");
+                //create empty database from dbcontext - ??? 
+                //ensure methods and migrate not working
             }
             if (context.Database.GetPendingMigrations().Any())
             {

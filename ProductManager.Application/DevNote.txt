@@ -102,3 +102,5 @@ https://www.youtube.com/watch?v=gRBC50ddQzw <-???
 
 
 dotnet ef database drop --force --context PredpriyatieDBContext <-reset database
+
+https://code-maze.com/select-tag-helper-aspnetcore/ <-dropdown list

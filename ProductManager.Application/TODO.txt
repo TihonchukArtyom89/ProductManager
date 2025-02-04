@@ -14,9 +14,8 @@
 
 make at now
 
-- some clean on SeedData cs
-- add command of database resetting in DevNote txt
-- fix sqlexception of can`t openning database (rename copy of old db and drop with command)
+- add dropdownlist with filled categories to form of creating new product
+- replace html helper with tag helper for partial view (finally)
 
 make in future
 - make check in SeedData cs if existing database (if no create new db with some test data - software migration management)

@@ -10,20 +10,27 @@
                 <form asp-controller="Product" asp-action="CreateProduct" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="ProductName" class="control-label"></label>
-                        <input asp-for="ProductName" class="form-control" />
-                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                        <label asp-for="@Model.ProductName" class="control-label"></label>
+                        <input asp-for="@Model.ProductName" class="form-control" />
+                        <span asp-validation-for="@Model.ProductName" class="text-danger"></span>
                     </div>
                     @* здесь будет выпадающий список для категорий продукта *@
                     <div class="form-group">
-                        <label asp-for="ProductDescription" class="control-label"></label>
-                        <input asp-for="ProductDescription" class="form-control" />
-                        <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                        <label asp-for="CategoryID" class="control-label">Категория продукта</label>
+                        <select class="form-control" name="CategoyID" asp-items="ViewBag.Categories">
+                        </select>
+                        @* <input type="hidden" asp-for="CategoryID" class="form-control" /> *@
+                        <span asp-validation-for="CategoryID" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="ProductPrice" class="control-label"></label>
-                        <input asp-for="ProductPrice" class="form-control" />
-                        <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                        <label asp-for="@Model.ProductDescription" class="control-label"></label>
+                        <input asp-for="@Model.ProductDescription" class="form-control" />
+                        <span asp-validation-for="@Model.ProductDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.ProductPrice" class="control-label"></label>
+                        <input asp-for="@Model.ProductPrice" class="form-control" />
+                        <span asp-validation-for="@Model.ProductPrice" class="text-danger"></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>

@@ -1,6 +1,8 @@
 ﻿@using ProductManager.Application.Models.DBEntities
 @model ProductsListViewModel
+@{
 
+}
 <div id="categories" class="col-1">
     <vc:category-filter />
 </div>
@@ -9,7 +11,7 @@
         <h4 class="m-1 pb-2"> Cписок продуктов </h4>
         <form asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-productPage="1" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.SortOrder">
             <p>
-                <label>Поиск: <input type="text" name="searchString" value="@ViewBag.SearchString"/></label>
+                <label>Поиск: <input type="text" name="searchString" value="@ViewBag.SearchString" /></label>
                 <input type="submit" value="Искать" />
             </p>
         </form>
@@ -34,5 +36,4 @@
         </div>
     }
 </div>
-@* @Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-customer", AreaLabeledId = "modal-action-customer-label", Size = ModalSize.Medium }) *@
-@await Html.PartialAsync("../Shared/Product/_ProductCreatePartialView", new Product())
+<partial name="../Shared/Product/_ProductCreatePartialView" , model="new Product()" />

@@ -1,6 +1,7 @@
 ﻿@model ProductManager.Application.Models.DBEntities.Product
 
 <div class="card card-outline-primary m-1 p-1">
+
     <div class="bg-faded p-1">
         <h4>
             @Model.ProductName
@@ -9,12 +10,11 @@
                 <span class="badge rounded-pill bg-primary text-white" style="float:right">
                     <small>@Model.ProductPrice ₽</small>
                 </span>
-                                @* <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="@("#updateProduct_" + Model.ProductID + ")")" data-url="@Url.Action($"Product/UpdateProduct/{Model.ProductID}")"> *@
-
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="@("#updateProduct_" + Model.ProductID + ")")" asp-controller="Product" asp-action="UpdateProduct" asp-route-id="@Model.ProductID">
                     Редактировать @Model.ProductName
                 </button>
-                @await Html.PartialAsync("../Shared/Product/_ProductUpdatePartialView", Model)
+                @* @await Html.PartialAsync("../Shared/Product/_ProductUpdatePartialView", Model) *@
+                @* <partial name="../Shared/Product/_ProductUpdatePartialView", model="Model" /> *@
                 <button type="button" class="btn btn-succes" data-bs-toggle="modal" data-bs-target="" data-url="">
                     Подробнее о @Model.ProductName
                 </button>
