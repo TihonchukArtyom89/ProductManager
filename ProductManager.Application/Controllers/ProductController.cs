@@ -11,7 +11,6 @@ namespace ProductManager.Application.Controllers;
 public class ProductController : Controller
 {
     private IProductRepository productRepository;
-    private List<SelectListItem> categoriesDropDownList = new List<SelectListItem>();
 
 public ProductController(IProductRepository _productRepository)
     {
@@ -26,14 +25,8 @@ public ProductController(IProductRepository _productRepository)
         ViewBag.PriceSortingText = sortOrder != SortOrder.PriceDesc ? "От дорогих к дешёвым" : "От дешёвых к дорогим";
         ViewBag.NameSortingText = sortOrder != SortOrder.NameDesc ? "От Я до А" : "От А до Я";
         Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
-        List<Category> categoryList = productRepository.Categories.ToList() ?? new List<Category> { new Category() { CategoryID = 1, CategoryName = "Нет в наличии" } };
-        foreach (Category c in categoryList)
-        {
-            categoriesDropDownList.Add(new SelectListItem(text: c.CategoryName, value: c.CategoryID.ToString()));
-        }
-        categoriesDropDownList.Where(e => e.Value == "1").FirstOrDefault()!.Selected = true;
-        ViewBag.Categories = categoriesDropDownList;
-        IEnumerable<Product> products = productRepository.Products;
+        ViewBag.Categories = productRepository.Categories.ToList();
+        IEnumerable <Product> products = productRepository.Products;
         string namePlaceholder = "Нет в наличии!";
         string descriptionPlaceholder = "Продуктов категории " + (CurrentCategory ?? new Category() { CategoryName = "Категория не указана" }).CategoryName + " не имеется!";
         int totalItems = category == null ? productRepository.Products.Count() : productRepository.Products.Where(e => e.CategoryID == CurrentCategory!.CategoryID).Count();
@@ -127,32 +120,33 @@ public ProductController(IProductRepository _productRepository)
     public IActionResult CreateProduct()
     {
         Product product = new Product();
-        ViewBag.
         return PartialView(viewName: "../Shared/Product/_ProductCreatePartialView", model: product);
     }
     [HttpPost]
     public IActionResult CreateProduct(Product product)
     {
+        product.CategoryID = product.CategoryID == null ? 1 : product.CategoryID;
         productRepository.CreateProduct(product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product");
     }
-    [HttpGet]
-    public IActionResult UpdateProduct(long id)
-    {
-        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? new Product()
-        {
-            CategoryID = 1,
-            ProductID = 0,
-            ProductName = "Продукт не найден",
-            ProductDescription = "Продуктов с таким '" + id + "' нет!",
-            ProductPrice = 0.00M,
-        };
-        return PartialView(viewName: "../Shared/Product/_ProductUpdatePartialView", model: product);
-    }
-    [HttpPost]
-    public IActionResult UpdateProduct(Product product)
-    {
-        productRepository.UpdateProduct(product);
-        return RedirectToAction(actionName: "Productlist", controllerName: "Product");
-    }
+
+    //[HttpGet]
+    //public IActionResult UpdateProduct(long id)
+    //{
+    //    Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? new Product()
+    //    {
+    //        CategoryID = 1,
+    //        ProductID = 0,
+    //        ProductName = "Продукт не найден",
+    //        ProductDescription = "Продуктов с таким '" + id + "' нет!",
+    //        ProductPrice = 0.00M,
+    //    };
+    //    return PartialView(viewName: "../Shared/Product/_ProductUpdatePartialView", model: product);
+    //}
+    //[HttpPost]
+    //public IActionResult UpdateProduct(Product product)
+    //{
+    //    productRepository.UpdateProduct(product);
+    //    return RedirectToAction(actionName: "Productlist", controllerName: "Product");
+    //}
 }

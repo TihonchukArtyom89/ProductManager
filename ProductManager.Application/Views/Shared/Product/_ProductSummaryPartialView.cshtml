@@ -13,7 +13,6 @@
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="@("#updateProduct_" + Model.ProductID + ")")" asp-controller="Product" asp-action="UpdateProduct" asp-route-id="@Model.ProductID">
                     Редактировать @Model.ProductName
                 </button>
-                @* @await Html.PartialAsync("../Shared/Product/_ProductUpdatePartialView", Model) *@
                 @* <partial name="../Shared/Product/_ProductUpdatePartialView", model="Model" /> *@
                 <button type="button" class="btn btn-succes" data-bs-toggle="modal" data-bs-target="" data-url="">
                     Подробнее о @Model.ProductName

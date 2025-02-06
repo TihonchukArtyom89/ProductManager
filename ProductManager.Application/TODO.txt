@@ -12,18 +12,25 @@
 -make project more stylish with using frontend
 -add administration feature with blazor and to create, update and delete category of product in administration panel
 
-make at now
+make at now:
 
-- add dropdownlist with filled categories to form of creating new product
-- replace html helper with tag helper for partial view (finally)
+- make add product
+- rework adding category list to dropdown list(less code)
+- fix exception when when adding product 
+- add category field to product detail modal popup
+- add dropdownlist with categories to create product form
+- make product create with different categories
 
-make in future
+make in future:
+
+- add some checking of model state 
+- maybe rework filling dropdown list of product categories
+- add default values to different types of db entities
+- fix not showing buttons of actions in product card when price is 0
+- add field validation in modal popup of product create
 - make check in SeedData cs if existing database (if no create new db with some test data - software migration management)
 - fix close button on modal popup of create product
-- fix exception when when adding product (it throwing because of category setting missing)
 - fix ot not showing update product modal popup 
-- add category field to product detail modal popup
-- add dropdownlist with categories to create and update products form
 - make start application without db (maybe a check of existing database or some rereading book)
 - add modal popup with partial view and method of controller of show details of product
 - add modal popup of create new product

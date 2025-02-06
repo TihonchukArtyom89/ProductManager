@@ -36,12 +36,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcUGFnZVNpemVTZWxlY3RvclxEZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mort/source/repos/ProductManager/ProductManager.Application/Views/Shared/Product/ProductDetail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFByb2R1Y3RcUHJvZHVjdERldGFpbC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/mort/source/repos/ProductManager/ProductManager.Application/Views/Shared/Product/_ProductCreatePartialView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFByb2R1Y3RcX1Byb2R1Y3RDcmVhdGVQYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mort/source/repos/ProductManager/ProductManager.Application/Views/Shared/Product/_ProductDetailPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFByb2R1Y3RcX1Byb2R1Y3REZXRhaWxQYXJ0aWFsVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mort/source/repos/ProductManager/ProductManager.Application/Views/Shared/Product/_ProductSummaryPartialView.cshtml]

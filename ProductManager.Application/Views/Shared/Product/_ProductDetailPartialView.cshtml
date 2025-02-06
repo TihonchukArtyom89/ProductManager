@@ -1,11 +1,19 @@
-﻿@using ProductManager.Application.Models.DBEntities
-@model ProductManager.Application.Models.DBEntities.Product
+﻿@model ProductManager.Application.Models.DBEntities.Product
 
-<div class="modal fade" id="createProduct" aria-labelledby="createProductLabel" aria-hidden="true">
+@* <div class="modal-body">
+    <p>Ид продукта: @Model.ProductID</p>
+    <p>Название продукта: @Model.ProductName</p>
+    <p>Описание продукта: @Model.ProductDescription</p>
+    <p>Цена продукта: @Model.ProductPrice</p>
+</div>
+
+ *@
+
+<div class="modal fade" id="detailProduct_"+@Model.ProductID aria-labelledby="detailProductLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createProductLabel">Добавление нового продукта</h5>
+                <h5 class="modal-title" id="detailProductLabel">Подробнее о продукте</h5>
             </div>
             <div class="modal-body">
                 <form asp-controller="Product" asp-action="CreateProduct" method="post">
@@ -15,17 +23,12 @@
                         <input asp-for="@Model.ProductName" class="form-control" />
                         <span asp-validation-for="@Model.ProductName" class="text-danger"></span>
                     </div>
-                    @* здесь будет выпадающий список для категорий продукта *@
                     <div class="form-group">
-                        <label asp-for="@Model.CategoryID" class="control-label">Категория продукта</label>
-                        <select asp-for="@Model.CategoryID" class="form-control" name="CategoryID">
+                        <label asp-for="CategoryID" class="control-label">Категория продукта</label>
+                        <select class="form-control" name="CategoyID" asp-items="ViewBag.Categories">
                             <option value="1">Выберите категорию продукта</option>
-                            @foreach (Category category in ViewBag.Categories as IEnumerable<Category> ?? new List<Category>() { new Category() { CategoryID = 1, CategoryName = "Нет категории" } })
-                            {
-                                <option value="@category.CategoryID">@category.CategoryName</option>
-                            }
                         </select>
-                        <span asp-validation-for="@Model.CategoryID" class="text-danger"></span>
+                        <span asp-validation-for="CategoryID" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="@Model.ProductDescription" class="control-label"></label>
