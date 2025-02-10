@@ -18,10 +18,7 @@
         <a class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.PriceSortOrder"> @ViewBag.PriceSortingText </a>
         <a class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.NameSortOrder"> @ViewBag.NameSortingText </a>
         <a class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@SortOrder.Neutral"> По умолчанию </a>
-        @* <a class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="CreateProduct" > Добавить продукт </a> *@
-        @* <button class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="CreateProduct" id="addProduct" data-toggle="modal"> Добавить продукт </button> *@
-        @* <button class="m-1 pb-2 btn btn-info" data-bs-toggle="modal" data-bs-target="@("#createProduct")")" data-url="@Url.Action($"Product/CreateProduct")"> Добавить продукт </button> *@
-        <button class="m-1 pb-2 btn btn-info" data-bs-toggle="modal" data-bs-target="@("#createProduct")" )" asp-controller="Product" asp-action="CreateProduct"> Добавить продукт </button>
+        <button class="m-1 pb-2 btn btn-info" data-bs-toggle="modal" data-bs-target="@("#createProduct")")" asp-controller="Product" asp-action="CreateProduct"> Добавить продукт </button>
     </div>
     @foreach (Product p in Model?.Products ?? Enumerable.Empty<Product>())
     {

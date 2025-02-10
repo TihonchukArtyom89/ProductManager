@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kMw8lmDBTYQ=",
+  "dgSpecHash": "WAQm4Pje35s=",
   "success": true,
   "projectFilePath": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Tests\\ProductManager.Tests.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "C:\\Users\\mort\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\mort\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\mort\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
+    "C:\\Users\\mort\\.nuget\\packages\\jquery\\1.8.0\\jquery.1.8.0.nupkg.sha512",
+    "C:\\Users\\mort\\.nuget\\packages\\jquery.validation\\1.8.0.1\\jquery.validation.1.8.0.1.nupkg.sha512",
     "C:\\Users\\mort\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\mort\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
@@ -35,6 +37,7 @@
     "C:\\Users\\mort\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.24.0\\microsoft.identitymodel.protocols.6.24.0.nupkg.sha512",
     "C:\\Users\\mort\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.24.0\\microsoft.identitymodel.protocols.openidconnect.6.24.0.nupkg.sha512",
     "C:\\Users\\mort\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.24.0\\microsoft.identitymodel.tokens.6.24.0.nupkg.sha512",
+    "C:\\Users\\mort\\.nuget\\packages\\microsoft.jquery.unobtrusive.validation\\4.0.0\\microsoft.jquery.unobtrusive.validation.4.0.0.nupkg.sha512",
     "C:\\Users\\mort\\.nuget\\packages\\microsoft.net.test.sdk\\17.8.0\\microsoft.net.test.sdk.17.8.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

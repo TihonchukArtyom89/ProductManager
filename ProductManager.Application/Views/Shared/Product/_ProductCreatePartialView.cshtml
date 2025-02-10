@@ -15,15 +15,10 @@
                         <input asp-for="@Model.ProductName" class="form-control" />
                         <span asp-validation-for="@Model.ProductName" class="text-danger"></span>
                     </div>
-                    @* здесь будет выпадающий список для категорий продукта *@
                     <div class="form-group">
                         <label asp-for="@Model.CategoryID" class="control-label">Категория продукта</label>
-                        <select asp-for="@Model.CategoryID" class="form-control" name="CategoryID">
+                        <select asp-for="@Model.CategoryID" class="form-control" name="CategoryID" asp-items="ViewBag.Categories">
                             <option value="1">Выберите категорию продукта</option>
-                            @foreach (Category category in ViewBag.Categories as IEnumerable<Category> ?? new List<Category>() { new Category() { CategoryID = 1, CategoryName = "Нет категории" } })
-                            {
-                                <option value="@category.CategoryID">@category.CategoryName</option>
-                            }
                         </select>
                         <span asp-validation-for="@Model.CategoryID" class="text-danger"></span>
                     </div>
@@ -38,7 +33,7 @@
                         <span asp-validation-for="@Model.ProductPrice" class="text-danger"></span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                         <button type="submit" class="btn btn-primary">Добавить</button>
                     </div>
                 </form>

@@ -106,3 +106,6 @@ dotnet ef database drop --force --context PredpriyatieDBContext <-reset database
 https://code-maze.com/select-tag-helper-aspnetcore/ <-dropdown list
 
 https://github.com/shahedbd/DropdownTest/tree/main/DropdownTest2
+https://habr.com/ru/companies/ruvds/articles/350758/ <- frontend bootstrap
+https://netdevops.me/2019/creating-a-bootstrap-based-front-end-for-your-simple-rest-service/ <- frontend bootstrap
+https://www.freecodecamp.org/news/learn-bootstrap-4-in-30-minute-by-building-a-landing-page-website-guide-for-beginners-f64e03833f33/ <- frontend bootstrap

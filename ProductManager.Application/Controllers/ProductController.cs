@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProductManager.Application.Models;
 using ProductManager.Application.Models.DBEntities;
@@ -25,7 +26,7 @@ public ProductController(IProductRepository _productRepository)
         ViewBag.PriceSortingText = sortOrder != SortOrder.PriceDesc ? "От дорогих к дешёвым" : "От дешёвых к дорогим";
         ViewBag.NameSortingText = sortOrder != SortOrder.NameDesc ? "От Я до А" : "От А до Я";
         Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
-        ViewBag.Categories = productRepository.Categories.ToList();
+        ViewBag.Categories = new SelectList(productRepository.Categories,"CategoryID","CategoryName");
         IEnumerable <Product> products = productRepository.Products;
         string namePlaceholder = "Нет в наличии!";
         string descriptionPlaceholder = "Продуктов категории " + (CurrentCategory ?? new Category() { CategoryName = "Категория не указана" }).CategoryName + " не имеется!";
@@ -103,50 +104,15 @@ public ProductController(IProductRepository _productRepository)
         };
         return View(viewModel);
     }
-    //[HttpPost]
-    //public IActionResult ProductDetail(long productId)//
-    //{
-    //    Product product = productRepository.Products.Where(e=>e.ProductID == productId).FirstOrDefault() ?? new Product()
-    //    {
-    //        CategoryID = 1,
-    //        ProductID = 0,
-    //        ProductName = "Нет в наличии!",
-    //        ProductDescription = "Данного продукта не имеется!",
-    //        ProductPrice = 0.00M,
-    //    };
-    //    return PartialView("~/Views/Shared/Product/ProductDetail", product);
-    //}
     [HttpGet]
     public IActionResult CreateProduct()
     {
-        Product product = new Product();
-        return PartialView(viewName: "../Shared/Product/_ProductCreatePartialView", model: product);
+        return PartialView(viewName: "../Shared/Product/_ProductCreatePartialView", model: new Product());
     }
     [HttpPost]
     public IActionResult CreateProduct(Product product)
     {
-        product.CategoryID = product.CategoryID == null ? 1 : product.CategoryID;
         productRepository.CreateProduct(product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product");
     }
-
-    //[HttpGet]
-    //public IActionResult UpdateProduct(long id)
-    //{
-    //    Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? new Product()
-    //    {
-    //        CategoryID = 1,
-    //        ProductID = 0,
-    //        ProductName = "Продукт не найден",
-    //        ProductDescription = "Продуктов с таким '" + id + "' нет!",
-    //        ProductPrice = 0.00M,
-    //    };
-    //    return PartialView(viewName: "../Shared/Product/_ProductUpdatePartialView", model: product);
-    //}
-    //[HttpPost]
-    //public IActionResult UpdateProduct(Product product)
-    //{
-    //    productRepository.UpdateProduct(product);
-    //    return RedirectToAction(actionName: "Productlist", controllerName: "Product");
-    //}
 }
