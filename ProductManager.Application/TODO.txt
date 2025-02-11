@@ -14,22 +14,11 @@
 
 make at now:
 
-- make add product
-- rework adding category list to dropdown list(less code)
-- fix exception when when adding product (temporary solution)
-- add category field to product detail modal popup
-- add dropdownlist with categories to create product form
-- make product create with different categories
-- fix close button on modal popup of create product
-- rework filling dropdown list in modal popup for product create (less code)
-- reduce the size of code
-- remove unnecessary comments
-- install jquery-validate 
-- install jquery-validation-unobtrusive
-- add validation in modal popup of product create
+- save list of products after return to product list view after closing modal popup
 
 make in future:
 
+- sort order of parameters in link of product list action
 - add default values to different types of db entities
 - fix not showing buttons of actions in product card when price is 0
 - make check in SeedData cs if existing database (if no create new db with some test data - software migration management)

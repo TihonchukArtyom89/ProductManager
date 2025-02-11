@@ -1,21 +1,20 @@
-﻿using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProductManager.Application.Models;
 using ProductManager.Application.Models.DBEntities;
 using ProductManager.Application.ViewModels;
-using System.Web;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ProductManager.Application.Controllers;
 
 public class ProductController : Controller
 {
     private IProductRepository productRepository;
+    private object? routeValues;
 
-public ProductController(IProductRepository _productRepository)
+    public ProductController(IProductRepository _productRepository)
     {
-        productRepository = _productRepository;        
+        productRepository = _productRepository;
+        routeValues = new RouteValueDictionary();
     }
     public ViewResult ProductList(string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
@@ -26,8 +25,8 @@ public ProductController(IProductRepository _productRepository)
         ViewBag.PriceSortingText = sortOrder != SortOrder.PriceDesc ? "От дорогих к дешёвым" : "От дешёвых к дорогим";
         ViewBag.NameSortingText = sortOrder != SortOrder.NameDesc ? "От Я до А" : "От А до Я";
         Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
-        ViewBag.Categories = new SelectList(productRepository.Categories,"CategoryID","CategoryName");
-        IEnumerable <Product> products = productRepository.Products;
+        ViewBag.Categories = new SelectList(productRepository.Categories, "CategoryID", "CategoryName");
+        IEnumerable<Product> products = productRepository.Products;
         string namePlaceholder = "Нет в наличии!";
         string descriptionPlaceholder = "Продуктов категории " + (CurrentCategory ?? new Category() { CategoryName = "Категория не указана" }).CategoryName + " не имеется!";
         int totalItems = category == null ? productRepository.Products.Count() : productRepository.Products.Where(e => e.CategoryID == CurrentCategory!.CategoryID).Count();
@@ -102,6 +101,7 @@ public ProductController(IProductRepository _productRepository)
             },
             CurrentCategory = (CurrentCategory ?? new Category { CategoryName = null ?? "" }).CategoryName,
         };
+        ViewBag.CurrentCategory = viewModel.CurrentCategory;
         return View(viewModel);
     }
     [HttpGet]
@@ -110,9 +110,26 @@ public ProductController(IProductRepository _productRepository)
         return PartialView(viewName: "../Shared/Product/_ProductCreatePartialView", model: new Product());
     }
     [HttpPost]
-    public IActionResult CreateProduct(Product product)
+    public IActionResult CreateProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
+        if (sortOrder == SortOrder.NameAsc || sortOrder == SortOrder.NameDesc)
+        {
+            sortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
+        }
+        if (sortOrder == SortOrder.PriceAsc || sortOrder == SortOrder.PriceDesc)
+        {
+            sortOrder = sortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
+        }
         productRepository.CreateProduct(product);
-        return RedirectToAction(actionName: "Productlist", controllerName: "Product");
+        return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
+        {
+            controller = "Product",
+            action = "Productlist",
+            category = category,
+            searchString = searchString,
+            sortOrder = sortOrder,
+            productPage = productPage,
+            pageSize = pageSize
+        });
     }
 }
