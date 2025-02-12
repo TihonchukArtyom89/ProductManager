@@ -10,16 +10,18 @@
                 <span class="badge rounded-pill bg-primary text-white" style="float:right">
                     <small>@Model.ProductPrice ₽</small>
                 </span>
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="@("#updateProduct_" + Model.ProductID + ")")" asp-controller="Product" asp-action="UpdateProduct" asp-route-id="@Model.ProductID">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="@("#updateProduct_" + Model.ProductID)" asp-controller="Product" asp-action="UpdateProduct">
                     Редактировать @Model.ProductName
                 </button>
-                @* <partial name="../Shared/Product/_ProductUpdatePartialView", model="Model" /> *@
-                <button type="button" class="btn btn-succes" data-bs-toggle="modal" data-bs-target="" data-url="">
+                <partial name="../Shared/Product/_ProductUpdatePartialView", model="Model" />
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="@("#productDetails_" + Model.ProductID)" asp-controller="Product" asp-action="ProductDetails">
                     Подробнее о @Model.ProductName
                 </button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="" data-url="">
+                <partial name="../Shared/Product/_ProductDetailsPartialView" , model="Model" />
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="@("#deleteProduct_" + Model.ProductID)" asp-controller="Product" asp-action="DeleteProduct">
                     Удалить @Model.ProductName
                 </button>
+                <partial name="../Shared/Product/_ProductDeletePartialView", model="Model" />
             }
         </h4>
     </div>

@@ -1,0 +1,29 @@
+﻿@using ProductManager.Application.Models.DBEntities
+@model ProductManager.Application.Models.DBEntities.Product
+@{
+    SelectList selectList = ViewBag.Categories;
+    string productCategory = selectList.Where(e => (long)Convert.ToDouble(e.Value) == Model.CategoryID).FirstOrDefault();
+}
+<div class="modal fade" id="productDetails_@Model.ProductID" aria-labelledby="productDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productDetailsLabel">Подробнее о @Model.ProductName</h5>
+            </div>
+            <div class="modal-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Ид продукта:</dt>
+                    <dd class="col-sm-9">@Model.ProductID</dd>
+                    <dt class="col-sm-3">Название продукта:</dt>
+                    <dd class="col-sm-9">@Model.ProductName</dd>
+                    <dt class="col-sm-3">Описание продукта:</dt>
+                    <dd class="col-sm-9">@Model.ProductDescription</dd>
+                    <dt class="col-sm-3">Категория продукта:</dt>
+                    <dd class="col-sm-9">productCategory</dd>
+                    <dt class="col-sm-3">Цена продукта:</dt>
+                    <dd class="col-sm-9">@Model.ProductPrice</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

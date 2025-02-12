@@ -14,17 +14,28 @@
 
 make at now:
 
-- save list of products after return to product list view after closing modal popup
+- make actions of update product in product controller
+- make partial view for modal popup to update product
+- rework views to show modal popu of update product
+- add modal popup of edit existing product
+- fix not showing modal popup of product update
+- make actions of delete product in product controller
+- make partial view for modal popup to delete product
+- rework views to show modal popup of delete product
+- add modal popup of delete existing product
+- make action to show product details in product controller
 
 make in future:
 
+- fix showing exception when delete a product (try get rid a try catch block in product delete action for post queries)
+- fix not correcting enter data to rice field(can`t enter float values)
+- make difficult pagination with ... between first/last page and three pages with current in the middle
+- make new visual scheme of database
 - sort order of parameters in link of product list action
 - add default values to different types of db entities
 - fix not showing buttons of actions in product card when price is 0
 - make check in SeedData cs if existing database (if no create new db with some test data - software migration management)
 - make start application without db (maybe a check of existing database or some rereading book)
 - add modal popup with partial view and method of controller of show details of product
-- add modal popup of edit existing product
-- add modal popup of delete existing product
 - style partial view product summary with buttons of crud action
-- try to make unit testing of CRUD with modalpopups
+- try to make unit testing of CRUD with modal popups

@@ -1,0 +1,25 @@
+﻿@using ProductManager.Application.Models.DBEntities
+@model ProductManager.Application.Models.DBEntities.Product
+
+<div class="modal fade" id="deleteProduct_@Model.ProductID" aria-labelledby="deleteProductLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteProductLabel">Удаление @Model.ProductName</h5>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Product" asp-action="DeleteProduct" method="post" asp-route-category="@ViewBag.CurrentCategory" asp-route-searchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-productPage="@ViewBag.SelectedPage" asp-route-pageSize="@ViewBag.SelectedPageSize">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input type="hidden" asp-for="@Model.ProductID" />
+                        <p>Вы действительно хотите удалить @Model.ProductName ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary">Удалить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

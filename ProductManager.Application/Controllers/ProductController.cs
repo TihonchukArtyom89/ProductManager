@@ -104,14 +104,9 @@ public class ProductController : Controller
         ViewBag.CurrentCategory = viewModel.CurrentCategory;
         return View(viewModel);
     }
-    [HttpGet]
-    public IActionResult CreateProduct()
+    public SortOrder SaveSortOrderState(SortOrder sortOrder)
     {
-        return PartialView(viewName: "../Shared/Product/_ProductCreatePartialView", model: new Product());
-    }
-    [HttpPost]
-    public IActionResult CreateProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
-    {
+
         if (sortOrder == SortOrder.NameAsc || sortOrder == SortOrder.NameDesc)
         {
             sortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
@@ -120,6 +115,17 @@ public class ProductController : Controller
         {
             sortOrder = sortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
         }
+        return sortOrder;
+    }
+    [HttpGet]
+    public IActionResult CreateProduct()
+    {
+        return PartialView(viewName: "../Shared/Product/_ProductCreatePartialView", model: new Product());
+    }
+    [HttpPost]
+    public IActionResult CreateProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
+    {
+        sortOrder = SaveSortOrderState(sortOrder);
         productRepository.CreateProduct(product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
         {
@@ -131,5 +137,82 @@ public class ProductController : Controller
             productPage = productPage,
             pageSize = pageSize
         });
+    }
+    [HttpGet]
+    public IActionResult UpdateProduct(long id)
+    {
+        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? new Product()
+        {
+            CategoryID = 1,
+            ProductID = 0,
+            ProductName = "Нет в наличии!",
+            ProductDescription = "Продуктов данной категории не имеется!",
+            ProductPrice = 0.00M,
+        };
+        return PartialView(viewName: "../Shared/Product/_ProductUpdatePartialView", model: product);
+    }
+    [HttpPost]
+    public IActionResult UpdateProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
+    {
+        sortOrder = SaveSortOrderState(sortOrder);
+        productRepository.UpdateProduct(product);
+        return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
+        {
+            controller = "Product",
+            action = "Productlist",
+            category = category,
+            searchString = searchString,
+            sortOrder = sortOrder,
+            productPage = productPage,
+            pageSize = pageSize
+        });
+    }
+    [HttpGet]
+    public IActionResult DeleteProduct(long id)
+    {
+        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? new Product()
+        {
+            CategoryID = 1,
+            ProductID = 0,
+            ProductName = "Нет в наличии!",
+            ProductDescription = "Продуктов данной категории не имеется!",
+            ProductPrice = 0.00M,
+        };
+        return PartialView(viewName: "../Shared/Product/_ProductDeletePartialView", model: product);
+    }
+    [HttpPost]
+    public IActionResult DeleteProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
+    {
+        sortOrder = SaveSortOrderState(sortOrder);
+        try
+        {
+            productRepository.DeleteProduct(product);
+        }
+        catch (Exception ex)//get exception 
+        {
+        }
+        return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
+        {
+            controller = "Product",
+            action = "Productlist",
+            category = category,
+            searchString = searchString,
+            sortOrder = sortOrder,
+            productPage = productPage,
+            pageSize = pageSize
+        });
+    }
+    [HttpGet]
+    public IActionResult ProductDetails(long id)
+    {
+        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? new Product()
+        {
+            CategoryID = 1,
+            ProductID = 0,
+            ProductName = "Нет в наличии!",
+            ProductDescription = "Продуктов данной категории не имеется!",
+            ProductPrice = 0.00M,
+        };
+        return PartialView(viewName: "../Shared/Product/_ProductDetailsPartialView", model: product);
     }
 }
