@@ -184,13 +184,7 @@ public class ProductController : Controller
     public IActionResult DeleteProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
         sortOrder = SaveSortOrderState(sortOrder);
-        try
-        {
-            productRepository.DeleteProduct(product);
-        }
-        catch (Exception ex)//get exception 
-        {
-        }
+        productRepository.DeleteProduct(product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
         {
             controller = "Product",

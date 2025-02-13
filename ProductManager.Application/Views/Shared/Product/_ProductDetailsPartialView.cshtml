@@ -1,8 +1,14 @@
 ﻿@using ProductManager.Application.Models.DBEntities
 @model ProductManager.Application.Models.DBEntities.Product
 @{
-    SelectList selectList = ViewBag.Categories;
-    string productCategory = selectList.Where(e => (long)Convert.ToDouble(e.Value) == Model.CategoryID).FirstOrDefault();
+    string productCategory = "";
+    foreach(SelectListItem selectListItem in ViewBag.Categories)
+    {
+        if(selectListItem.Value == Model.CategoryID.ToString())
+        {
+            productCategory = selectListItem.Text;
+        }
+    }
 }
 <div class="modal fade" id="productDetails_@Model.ProductID" aria-labelledby="productDetailsLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -11,18 +17,21 @@
                 <h5 class="modal-title" id="productDetailsLabel">Подробнее о @Model.ProductName</h5>
             </div>
             <div class="modal-body">
-                <dl class="row">
-                    <dt class="col-sm-3">Ид продукта:</dt>
-                    <dd class="col-sm-9">@Model.ProductID</dd>
-                    <dt class="col-sm-3">Название продукта:</dt>
-                    <dd class="col-sm-9">@Model.ProductName</dd>
-                    <dt class="col-sm-3">Описание продукта:</dt>
-                    <dd class="col-sm-9">@Model.ProductDescription</dd>
-                    <dt class="col-sm-3">Категория продукта:</dt>
-                    <dd class="col-sm-9">productCategory</dd>
-                    <dt class="col-sm-3">Цена продукта:</dt>
-                    <dd class="col-sm-9">@Model.ProductPrice</dd>
+                <dl class="row col-sm-21">
+                    <dt class="col-sm-10">Ид продукта:</dt>
+                    <dd class="col-sm-11">@Model.ProductID</dd>
+                    <dt class="col-sm-10">Название продукта:</dt>
+                    <dd class="col-sm-11">@Model.ProductName</dd>
+                    <dt class="col-sm-10">Описание продукта:</dt>
+                    <dd class="col-sm-11">@Model.ProductDescription</dd>
+                    <dt class="col-sm-10">Категория продукта:</dt>
+                    <dd class="col-sm-11">@productCategory</dd>
+                    <dt class="col-sm-10">Цена продукта:</dt>
+                    <dd class="col-sm-11">@Model.ProductPrice</dd>
                 </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
             </div>
         </div>
     </div>

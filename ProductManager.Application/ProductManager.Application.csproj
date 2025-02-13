@@ -17,4 +17,7 @@
 	<ItemGroup>
 		<Using Include="System.Console" Static="true" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Database Visual Scheme\" />
+	</ItemGroup>
 </Project>
