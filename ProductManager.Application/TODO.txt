@@ -14,18 +14,16 @@
 
 make at now:
 
-- make action of product details in product controller
-- make partial view for modal popup to product details
-- rework views to show modal popu of product details
-- add modal popup to show product details
-- fix showing exception when delete a product  
-- make new visual scheme of database
+- delete classes from dbentity except product and category(they work fine)
+- recreate initial migration
 
 make in future:
 
+- rework dbentities from example of new visual scheme of database
+- rework visual scheme of database by adding tables with quantity type(by the piece, by weight, by volume)
+- change comment from товар on продукт
 - fix not correcting enter data to price field(can`t enter float values)
 - make difficult pagination with ... between first/last page and three pages with current in the middle
-- rework dbentities from example of new visual scheme of database
 - sort order of parameters in link of product list action
 - add default values to different types of db entities
 - fix not showing buttons of actions in product card when price is 0

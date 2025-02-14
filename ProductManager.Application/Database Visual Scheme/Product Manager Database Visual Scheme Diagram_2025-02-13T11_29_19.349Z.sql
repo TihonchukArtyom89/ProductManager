@@ -23,7 +23,7 @@ CREATE TABLE [Products] (
 	-- Ид категории, данного продукта.
 	[CategoryID] BIGINT NOT NULL,
 	-- Цена продукта.
-	[ProductPrice] MONEY NOT NULL DEFAULT 0,00,
+	[ProductPrice] MONEY NOT NULL DEFAULT 0.00,
 	PRIMARY KEY([ProductID])
 );
 GO
@@ -41,7 +41,7 @@ CREATE TABLE [PriceListProductPurchases] (
 	-- Количество продукта, которое было куплено.
 	[ProductQuantity] INTEGER NOT NULL,
 	-- Цена, за которую был приобретён продукт на момент оформления прайслиста.
-	[ProductPrice] MONEY NOT NULL DEFAULT 0,00,
+	[ProductPrice] MONEY NOT NULL DEFAULT 0.00,
 	PRIMARY KEY([PurchaseID])
 );
 GO
