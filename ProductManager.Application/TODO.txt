@@ -14,15 +14,20 @@
 
 make at now:
 
-- delete classes from dbentity except product and category(they work fine)
-- recreate initial migration
+- change comment from товар on продукт
+- add purchase class to dbentities in Model folder
+- add pricelist class to dbentities in Model folder
+- add optional parameters for some pricelist class to dbentities in Model folder
+- add optional parameters class to dbentities in Model folder
+- fix warn when creating migration
 
 make in future:
 
-- rework dbentities from example of new visual scheme of database
+- fix bug with empty categories
+- rework dbentities from example of new visual scheme of database(test on main PC)
 - rework visual scheme of database by adding tables with quantity type(by the piece, by weight, by volume)
-- change comment from товар on продукт
-- fix not correcting enter data to price field(can`t enter float values)
+- reread test task document
+- fix not correcting enter data to price field(can`t enter float values in create/update product forms)
 - make difficult pagination with ... between first/last page and three pages with current in the middle
 - sort order of parameters in link of product list action
 - add default values to different types of db entities

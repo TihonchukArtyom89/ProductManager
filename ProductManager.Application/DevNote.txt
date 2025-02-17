@@ -102,7 +102,7 @@ https://www.youtube.com/watch?v=gRBC50ddQzw <-???
 
 
 dotnet ef database drop --force --context PredpriyatieDBContext <-reset database
-
+dotnet ef migrations add Initial <- add initial migration
 https://code-maze.com/select-tag-helper-aspnetcore/ <-dropdown list
 
 https://github.com/shahedbd/DropdownTest/tree/main/DropdownTest2
