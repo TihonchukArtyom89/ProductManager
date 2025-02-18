@@ -14,16 +14,12 @@
 
 make at now:
 
-- change comment from товар on продукт
-- add purchase class to dbentities in Model folder
-- add pricelist class to dbentities in Model folder
-- add optional parameters for some pricelist class to dbentities in Model folder
-- add optional parameters class to dbentities in Model folder
-- fix warn when creating migration
+- rework seed data class
+- partically fix bug with empty categories(partically, was adding category field with value of category type in old dbentities was an id)
 
 make in future:
 
-- fix bug with empty categories
+- remove category field from seeding data of product table
 - rework dbentities from example of new visual scheme of database(test on main PC)
 - rework visual scheme of database by adding tables with quantity type(by the piece, by weight, by volume)
 - reread test task document
