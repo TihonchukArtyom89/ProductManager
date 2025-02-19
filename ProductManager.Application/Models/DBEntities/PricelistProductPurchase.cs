@@ -19,6 +19,6 @@ public class PricelistProductPurchase
     [Range(0.01, double.MaxValue, ErrorMessage = "Enter a positive price")]
     [Column(TypeName = "decimal(8,2)")]
     public decimal ProductPrice { get; set; }//цена по которой был куплен продукт(именно весь продукта, а не единично)
-    public Product Product { get; set; } = new Product();//навигационное св-во на таблицу продуктов(на главную сущность)
-    public Pricelist Pricelist { get; set; } = new Pricelist();//навигационное св-во на таблицу прайслистов покупок продуктов(на главную сущность)
+    public Product? Product { get; set; }//навигационное св-во на таблицу продуктов(на главную сущность)
+    public Pricelist? Pricelist { get; set; }//навигационное св-во на таблицу прайслистов покупок продуктов(на главную сущность)
 }

@@ -13,5 +13,5 @@ public class Category
     [DisplayName("Категория продукта")]
     [Required(ErrorMessage = "Category of product is required.")]
     public string CategoryName { get; set; } = string.Empty;//название категории продукта
-    public List<Product> Products { get; set; } = new();//навигационное св-во на таблицу продуктов(на зависимую сущность)
+    public List<Product>? Products { get; set; }//навигационное св-во на таблицу продуктов(на зависимую сущность)
 }

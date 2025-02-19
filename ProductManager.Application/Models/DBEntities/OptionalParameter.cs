@@ -15,5 +15,5 @@ public class OptionalParameter
     [DisplayName("Название опционального параметра")]
     [Required(ErrorMessage = "Name of optional parameter is required.")]
     public string OptionalParameterName { get; set; } = string.Empty; //Название опционального параметра
-    public PricelistOptionalParameter PricelistOptionalParameter { get; set; } = new PricelistOptionalParameter();//навигационное св-во на таблицу опциональных параметров конкретного прайслиста(на главную сущность)
+    public PricelistOptionalParameter? PricelistOptionalParameter { get; set; }//навигационное св-во на таблицу опциональных параметров конкретного прайслиста(на главную сущность)
 }

@@ -12,6 +12,6 @@ public class Pricelist
     [DisplayName("Название прайслиста")]
     public string PricelistName { get; set; } = string.Empty; //Название прайслиста покупок продуктов
     public DateTime PriceListDateCreation { get; set; }//Дата и время создания прайслиста покупок продуктов
-    public List<PricelistProductPurchase> PricelistProductPurchases { get; set; } = new();//навигационное св-во на таблицу покупок продуктов(на зависимую сущность)
-    public List<PricelistOptionalParameter> PricelistOptionalParameters { get; set; } = new();//навигационное св-во на таблицу опциональных параметров прайслиста(на зависимую сущность)
+    public List<PricelistProductPurchase>? PricelistProductPurchases { get; set; }//навигационное св-во на таблицу покупок продуктов(на зависимую сущность)
+    public List<PricelistOptionalParameter>? PricelistOptionalParameters { get; set; }//навигационное св-во на таблицу опциональных параметров прайслиста(на зависимую сущность)
 }

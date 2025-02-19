@@ -14,19 +14,17 @@
 
 make at now:
 
-- rework seed data class
-- partically fix bug with empty categories(partically, was adding category field with value of category type in old dbentities was an id)
+- remove category field from seeding data of product table(remove =new(); from dbentity classes)
+- rework dbentities from example of new visual scheme of database
+- fix not showing buttons of actions in product card when price is 0
 
 make in future:
 
-- remove category field from seeding data of product table
-- rework dbentities from example of new visual scheme of database(test on main PC)
 - rework visual scheme of database by adding tables with quantity type(by the piece, by weight, by volume)
 - reread test task document
-- fix not correcting enter data to price field(can`t enter float values in create/update product forms)
+- fix not correcting enter data to price field(can`t enter float values in create/update product forms, validation error)
 - make difficult pagination with ... between first/last page and three pages with current in the middle
 - sort order of parameters in link of product list action
 - add default values to different types of db entities
-- fix not showing buttons of actions in product card when price is 0
 - make check in SeedData cs if existing database (if no create new db with some test data - software migration management)
 - try to make unit testing of CRUD with modal popups

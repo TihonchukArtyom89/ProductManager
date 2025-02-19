@@ -113,3 +113,5 @@ https://www.freecodecamp.org/news/learn-bootstrap-4-in-30-minute-by-building-a-l
 https://drawdb.vercel.app/editor <- visual scheme database diagram editor(get data from export from sql file in Database Visual Scheme folder in application folder)
 
 https://code-maze.com/efcore-relationships/ <- ef core relationships
+https://stackoverflow.com/questions/30449026/the-field-must-be-a-number <- validation error in price field
+https://www.yogihosting.com/aspnet-core-model-validation/#asp-validation-summary
