@@ -27,8 +27,7 @@ public class ProductController : Controller
         Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
         ViewBag.Categories = new SelectList(productRepository.Categories, "CategoryID", "CategoryName");
         IEnumerable<Product> products = productRepository.Products;
-        string namePlaceholder = "Нет в наличии!";
-        string descriptionPlaceholder = "Продуктов категории " + (CurrentCategory ?? new Category() { CategoryName = "Категория не указана" }).CategoryName + " не имеется!";
+        Product SystemProduct = SystemValues.GetProductNull(CurrentCategory ?? SystemValues.GetCategoryUncategorized());
         int totalItems = category == null ? productRepository.Products.Count() : productRepository.Products.Where(e => e.CategoryID == CurrentCategory!.CategoryID).Count();
         if (CurrentCategory == null && category != null)//check if category not right transferred to product controller 
         {
@@ -38,8 +37,7 @@ public class ProductController : Controller
         if (!String.IsNullOrEmpty(searchString))
         {
             ViewBag.SearchString = searchString;
-            namePlaceholder = "Не найдено!";
-            descriptionPlaceholder = "Продуктов с запросом '" + ViewBag.SearchString + "' нет!";
+            SystemProduct = SystemValues.GetProductNotFound(ViewBag.SearchString);
             products = products.Where(e => e.ProductName.ToLower().Contains(searchString.ToLower()) || e.ProductDescription.ToLower().Contains(searchString.ToLower()));
             totalItems = category == null ? products.Count() : products.Where(e => e.CategoryID == CurrentCategory!.CategoryID).Count();
         }
@@ -79,16 +77,7 @@ public class ProductController : Controller
         products = products.Skip((productPage - 1) * pageSize).Take(pageSize);
         ViewBag.ProductCount = products.Count();
         ViewBag.SelectedPage = productPage;
-        products = products.Count() != 0 ? products :
-            products.Append(
-                new Product()
-                {
-                    CategoryID = 1,
-                    ProductID = 0,
-                    ProductName = namePlaceholder,
-                    ProductDescription = descriptionPlaceholder,
-                    ProductPrice = 0.00M,
-                });
+        products = products.Count() != 0 ? products : products.Append(SystemProduct);
         ProductsListViewModel viewModel = new ProductsListViewModel
         {
             Products = products,
@@ -133,22 +122,15 @@ public class ProductController : Controller
             action = "Productlist",
             category = category,
             searchString = searchString,
-            sortOrder = sortOrder,
+            pageSize = pageSize,
             productPage = productPage,
-            pageSize = pageSize
+            sortOrder = sortOrder
         });
     }
     [HttpGet]
     public IActionResult UpdateProduct(long id)
     {
-        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? new Product()
-        {
-            CategoryID = 1,
-            ProductID = 0,
-            ProductName = "Нет в наличии!",
-            ProductDescription = "Продуктов данной категории не имеется!",
-            ProductPrice = 0.00M,
-        };
+        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? SystemValues.GetProductNull();
         return PartialView(viewName: "../Shared/Product/_ProductUpdatePartialView", model: product);
     }
     [HttpPost]
@@ -162,22 +144,15 @@ public class ProductController : Controller
             action = "Productlist",
             category = category,
             searchString = searchString,
-            sortOrder = sortOrder,
+            pageSize = pageSize,
             productPage = productPage,
-            pageSize = pageSize
+            sortOrder = sortOrder
         });
     }
     [HttpGet]
     public IActionResult DeleteProduct(long id)
     {
-        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? new Product()
-        {
-            CategoryID = 1,
-            ProductID = 0,
-            ProductName = "Нет в наличии!",
-            ProductDescription = "Продуктов данной категории не имеется!",
-            ProductPrice = 0.00M,
-        };
+        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? SystemValues.GetProductNull();
         return PartialView(viewName: "../Shared/Product/_ProductDeletePartialView", model: product);
     }
     [HttpPost]
@@ -191,22 +166,15 @@ public class ProductController : Controller
             action = "Productlist",
             category = category,
             searchString = searchString,
-            sortOrder = sortOrder,
+            pageSize = pageSize,
             productPage = productPage,
-            pageSize = pageSize
+            sortOrder = sortOrder
         });
     }
     [HttpGet]
     public IActionResult ProductDetails(long id)
     {
-        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? new Product()
-        {
-            CategoryID = 1,
-            ProductID = 0,
-            ProductName = "Нет в наличии!",
-            ProductDescription = "Продуктов данной категории не имеется!",
-            ProductPrice = 0.00M,
-        };
+        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? SystemValues.GetProductNull();
         return PartialView(viewName: "../Shared/Product/_ProductDetailsPartialView", model: product);
     }
 }

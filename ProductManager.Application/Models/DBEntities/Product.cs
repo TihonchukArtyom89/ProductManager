@@ -21,8 +21,9 @@ public class Product
     [DisplayName("Цена продукта")]
     [Required(ErrorMessage = "Price of product is required.")]
     [Range(0.01, double.MaxValue, ErrorMessage = "Enter a positive price")]
-    [Column(TypeName = "decimal(8,2)")]
+    [DataType(DataType.Currency)]
     [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+    [Column(TypeName = "decimal(8,2)")]
     public decimal ProductPrice { get; set; }//цена продукта
     public List<PricelistProductPurchase>? PricelistProductPurchases { get; set; }//навигационное св-во на таблицу покупок(на зависимую сущность)
 }

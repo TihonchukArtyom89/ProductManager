@@ -12,7 +12,7 @@ using ProductManager.Application.Models;
 namespace ProductManager.Application.Migrations
 {
     [DbContext(typeof(PredpriyatieDBContext))]
-    [Migration("20250219122621_Initial")]
+    [Migration("20250220121226_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

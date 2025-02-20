@@ -115,3 +115,9 @@ https://drawdb.vercel.app/editor <- visual scheme database diagram editor(get da
 https://code-maze.com/efcore-relationships/ <- ef core relationships
 https://stackoverflow.com/questions/30449026/the-field-must-be-a-number <- validation error in price field
 https://www.yogihosting.com/aspnet-core-model-validation/#asp-validation-summary
+https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420
+
+string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1
+
+size order page
+size page order

@@ -7,15 +7,15 @@
 <div class="col-11">
     <div class="d-inline-block d-flex align-items-center">
         <h4 class="m-1 pb-2"> Cписок продуктов </h4>
-        <form asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-productPage="1" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.SortOrder">
+        <form asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-productPage="1">
             <p>
                 <label>Поиск: <input type="text" name="searchString" value="@ViewBag.SearchString" /></label>
                 <input type="submit" value="Искать" />
             </p>
         </form>
-        <a class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.PriceSortOrder"> @ViewBag.PriceSortingText </a>
-        <a class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.NameSortOrder"> @ViewBag.NameSortingText </a>
-        <a class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@SortOrder.Neutral"> По умолчанию </a>
+        <a class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-searchString="@ViewBag.SearchString" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.PriceSortOrder" asp-route-productPage="@ViewBag.SelectedPage"> @ViewBag.PriceSortingText </a>
+        <a class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-searchString="@ViewBag.SearchString" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.NameSortOrder" asp-route-productPage="@ViewBag.SelectedPage"> @ViewBag.NameSortingText </a>
+        <a class="m-1 pb-2 btn btn-info" asp-controller="Product" asp-action="ProductList" asp-route-category="@Model?.CurrentCategory" asp-route-searchString="@ViewBag.SearchString" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@SortOrder.Neutral" asp-route-productPage="@ViewBag.SelectedPage"> По умолчанию </a>
         <button class="m-1 pb-2 btn btn-info" data-bs-toggle="modal" data-bs-target="@("#createProduct")")" asp-controller="Product" asp-action="CreateProduct"> Добавить продукт </button>
     </div>
     @foreach (Product p in Model?.Products ?? Enumerable.Empty<Product>())
@@ -27,7 +27,8 @@
         <vc:page-size-selector list-view-model="@Model" />
         <div page-model="@Model?.PageViewModel" page-action="ProductList" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark"
              page-class-selected="btn-primary" page-class-arrow="btn-secondary" page-url-category="@Model?.CurrentCategory!"
-             page-url-pageSize="@Model?.PageViewModel.PageSize ?? 1" class="btn-group pull-right m-1" page-url-searchString="@ViewBag.SearchString" page-sort-order="@ViewBag.SortOrder">
+             page-url-searchString="@ViewBag.SearchString" page-sort-order="@ViewBag.SortOrder" page-url-pageSize="@Model?.PageViewModel.PageSize ?? 1"
+             class="btn-group pull-right m-1">
         </div>
     }
 </div>
