@@ -20,10 +20,13 @@ public class Product
     public Category? Category { get; set; }//навигационное св-во на таблицу категорий(на главную сущность)
     [DisplayName("Цена продукта")]
     [Required(ErrorMessage = "Price of product is required.")]
-    [Range(0.01, double.MaxValue, ErrorMessage = "Enter a positive price")]
     [DataType(DataType.Currency)]
-    [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
     [Column(TypeName = "decimal(8,2)")]
     public decimal ProductPrice { get; set; }//цена продукта
     public List<PricelistProductPurchase>? PricelistProductPurchases { get; set; }//навигационное св-во на таблицу покупок(на зависимую сущность)
+    [DisplayName("Цена продукта")]
+    [Required(ErrorMessage = "Price of product is required.")]
+    [NotMappedAttribute]
+    [RegularExpression(@"\d{1,6}(\.|\,)\d{1,2}", ErrorMessage = "Invalid product price format.")]
+    public string ProductPriceString { get; set; } = string.Empty;//строковое представление цены продукта
 }

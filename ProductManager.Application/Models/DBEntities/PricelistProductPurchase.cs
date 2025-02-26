@@ -13,7 +13,7 @@ public class PricelistProductPurchase
     public long ProductID { get; set; }//ИД продукта, который был куплен// внешний ключ на таблицу продуктов
     [DisplayName("Количество продуктов в покупке")]
     [Required(ErrorMessage = "Quantity of product is required")]
-    public float ProductQuantity { get; set; }//количество продуктов(не целочисленная так как продукт может быть измеряться по весу - может вводится черз форму)
+    public float ProductQuantityNumber { get; set; }//количество продуктов(не целочисленная так как продукт может быть измеряться по весу - может вводится черз форму)
     [DisplayName("Цена продукта")]
     [Required(ErrorMessage = "Price of product is required.")]
     [Range(0.01, double.MaxValue, ErrorMessage = "Enter a positive price")]

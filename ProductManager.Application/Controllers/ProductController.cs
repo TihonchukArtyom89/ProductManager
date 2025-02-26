@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ProductManager.Application.Models;
 using ProductManager.Application.Models.DBEntities;
 using ProductManager.Application.ViewModels;
+using System.Globalization;
 
 namespace ProductManager.Application.Controllers;
 
@@ -112,9 +113,11 @@ public class ProductController : Controller
         return PartialView(viewName: "../Shared/Product/_ProductCreatePartialView", model: new Product());
     }
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult CreateProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
         sortOrder = SaveSortOrderState(sortOrder);
+        SetProductPrice(product);
         productRepository.CreateProduct(product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
         {
@@ -137,6 +140,7 @@ public class ProductController : Controller
     public IActionResult UpdateProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
         sortOrder = SaveSortOrderState(sortOrder);
+        SetProductPrice(product);
         productRepository.UpdateProduct(product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
         {
@@ -176,5 +180,13 @@ public class ProductController : Controller
     {
         Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? SystemValues.GetProductNull();
         return PartialView(viewName: "../Shared/Product/_ProductDetailsPartialView", model: product);
+    }
+    public void SetProductPrice(Product product)
+    {
+        product.ProductPriceString = product.ProductPriceString.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
+        if (decimal.TryParse(product.ProductPriceString, NumberStyles.Float, CultureInfo.InvariantCulture, out decimal parsedPrice))
+        {
+            product.ProductPrice = parsedPrice;
+        }
     }
 }

@@ -14,16 +14,20 @@
 
 make at now:
 
-- sort order of parameters in link of product list action
-- add default values to different types of db entities
-- rework product controller with using class of system dbentity values
-- fix empty db after launch application
-- reread test task document(on first sight visual scheme is correct, may be some adding on quantity part)
+- partically fix the enter value with dot(add new string not mapped field in model of product and bind to input in model popup)
+- partically fix the enter value with comma(replace in controller)
+- check enter data to price field with some test data
+- check migration with new structure of product dbentity 
+- make enter price in update work fine
+- make set product price in one function
+- fix not correcting enter data to price field(can`t enter float values in create/update product forms, validation error)
 
 make in future:
 
+- add view model to create and update product partial views
 - rework visual scheme of database by adding tables with quantity type(by the piece, by weight, by volume)
-- fix not correcting enter data to price field(can`t enter float values in create/update product forms, validation error)
 - make difficult pagination with ... between first/last page and three pages with current in the middle
 - make check in SeedData cs if existing database (if no create new db with some test data - software migration management)
 - try to make unit testing of CRUD with modal popups
+- add currency type dbentities
+- make seed date by default values to some of syste tables(category,currency type, quantity type e.t.c)
