@@ -24,9 +24,5 @@ public class Product
     [Column(TypeName = "decimal(8,2)")]
     public decimal ProductPrice { get; set; }//цена продукта
     public List<PricelistProductPurchase>? PricelistProductPurchases { get; set; }//навигационное св-во на таблицу покупок(на зависимую сущность)
-    [DisplayName("Цена продукта")]
-    [Required(ErrorMessage = "Price of product is required.")]
-    [NotMappedAttribute]
-    [RegularExpression(@"\d{1,6}(\.|\,)\d{1,2}", ErrorMessage = "Invalid product price format.")]
-    public string ProductPriceString { get; set; } = string.Empty;//строковое представление цены продукта
+    public Product() { CategoryID = SystemValues.GetCategoryUncategorized().CategoryID; }
 }

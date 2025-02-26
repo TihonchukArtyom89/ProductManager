@@ -12,7 +12,7 @@ using ProductManager.Application.Models;
 namespace ProductManager.Application.Migrations
 {
     [DbContext(typeof(PredpriyatieDBContext))]
-    [Migration("20250225063433_Initial")]
+    [Migration("20250226173222_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -130,7 +130,10 @@ namespace ProductManager.Application.Migrations
                     b.Property<decimal>("ProductPrice")
                         .HasColumnType("decimal(8,2)");
 
-                    b.Property<float>("ProductQuantity")
+                    b.Property<long?>("ProductQuantityID")
+                        .HasColumnType("bigint");
+
+                    b.Property<float>("ProductQuantityNumber")
                         .HasColumnType("real");
 
                     b.HasKey("PurchaseID");
@@ -138,6 +141,8 @@ namespace ProductManager.Application.Migrations
                     b.HasIndex("PricelistID");
 
                     b.HasIndex("ProductID");
+
+                    b.HasIndex("ProductQuantityID");
 
                     b.ToTable("PricelistProductPurchases");
                 });
@@ -170,6 +175,45 @@ namespace ProductManager.Application.Migrations
                     b.HasIndex("CategoryID");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.ProductQuantity", b =>
+                {
+                    b.Property<long>("ProductQuantityID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ProductQuantityID"));
+
+                    b.Property<string>("ProductQuantityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ProductQuantityTypeID")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("ProductQuantityID");
+
+                    b.HasIndex("ProductQuantityTypeID");
+
+                    b.ToTable("ProductQuantities");
+                });
+
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.ProductQuantityType", b =>
+                {
+                    b.Property<long>("ProductQuantityTypeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ProductQuantityTypeID"));
+
+                    b.Property<string>("ProductQuantityTypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductQuantityTypeID");
+
+                    b.ToTable("ProductQuantityTypes");
                 });
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.OptionalParameter", b =>
@@ -206,9 +250,15 @@ namespace ProductManager.Application.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProductManager.Application.Models.DBEntities.ProductQuantity", "ProductQuantity")
+                        .WithMany("PricelistProductPurchases")
+                        .HasForeignKey("ProductQuantityID");
+
                     b.Navigation("Pricelist");
 
                     b.Navigation("Product");
+
+                    b.Navigation("ProductQuantity");
                 });
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Product", b =>
@@ -220,6 +270,17 @@ namespace ProductManager.Application.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.ProductQuantity", b =>
+                {
+                    b.HasOne("ProductManager.Application.Models.DBEntities.ProductQuantityType", "ProductQuantityType")
+                        .WithMany("ProductQuantities")
+                        .HasForeignKey("ProductQuantityTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductQuantityType");
                 });
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Category", b =>
@@ -242,6 +303,16 @@ namespace ProductManager.Application.Migrations
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Product", b =>
                 {
                     b.Navigation("PricelistProductPurchases");
+                });
+
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.ProductQuantity", b =>
+                {
+                    b.Navigation("PricelistProductPurchases");
+                });
+
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.ProductQuantityType", b =>
+                {
+                    b.Navigation("ProductQuantities");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,12 +10,10 @@ namespace ProductManager.Application.Controllers;
 public class ProductController : Controller
 {
     private IProductRepository productRepository;
-    private object? routeValues;
 
     public ProductController(IProductRepository _productRepository)
     {
         productRepository = _productRepository;
-        routeValues = new RouteValueDictionary();
     }
     public ViewResult ProductList(string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
@@ -25,7 +23,7 @@ public class ProductController : Controller
         ViewBag.NameSortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
         ViewBag.PriceSortingText = sortOrder != SortOrder.PriceDesc ? "От дорогих к дешёвым" : "От дешёвых к дорогим";
         ViewBag.NameSortingText = sortOrder != SortOrder.NameDesc ? "От Я до А" : "От А до Я";
-        Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
+        Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault() ;
         ViewBag.Categories = new SelectList(productRepository.Categories, "CategoryID", "CategoryName");
         IEnumerable<Product> products = productRepository.Products;
         Product SystemProduct = SystemValues.GetProductNull(CurrentCategory ?? SystemValues.GetCategoryUncategorized());
@@ -114,11 +112,11 @@ public class ProductController : Controller
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult CreateProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
+    public IActionResult CreateProduct(ProductViewModel productViewModel, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
         sortOrder = SaveSortOrderState(sortOrder);
-        SetProductPrice(product);
-        productRepository.CreateProduct(product);
+        SetProductPrice(productViewModel);
+        productRepository.CreateProduct(productViewModel.Product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
         {
             controller = "Product",
@@ -137,11 +135,11 @@ public class ProductController : Controller
         return PartialView(viewName: "../Shared/Product/_ProductUpdatePartialView", model: product);
     }
     [HttpPost]
-    public IActionResult UpdateProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
+    public IActionResult UpdateProduct(ProductViewModel productViewModel, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
         sortOrder = SaveSortOrderState(sortOrder);
-        SetProductPrice(product);
-        productRepository.UpdateProduct(product);
+        SetProductPrice(productViewModel);
+        productRepository.UpdateProduct(productViewModel.Product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
         {
             controller = "Product",
@@ -181,12 +179,12 @@ public class ProductController : Controller
         Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? SystemValues.GetProductNull();
         return PartialView(viewName: "../Shared/Product/_ProductDetailsPartialView", model: product);
     }
-    public void SetProductPrice(Product product)
+    public void SetProductPrice(ProductViewModel productViewModel)
     {
-        product.ProductPriceString = product.ProductPriceString.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
-        if (decimal.TryParse(product.ProductPriceString, NumberStyles.Float, CultureInfo.InvariantCulture, out decimal parsedPrice))
+        productViewModel.ProductPriceString = productViewModel.ProductPriceString.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
+        if (decimal.TryParse(productViewModel.ProductPriceString, NumberStyles.Float, CultureInfo.InvariantCulture, out decimal parsedPrice))
         {
-            product.ProductPrice = parsedPrice;
+            productViewModel.Product.ProductPrice = parsedPrice;
         }
     }
 }

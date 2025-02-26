@@ -9,7 +9,7 @@ public class SystemValues
         return new Product()
         {
             ProductID = 0,
-            CategoryID = 0,
+            CategoryID = 1,
             ProductName = "Не найдено!",
             ProductDescription = "Продуктов с запросом '" + searchQuery + "' нет!"
         };
@@ -19,7 +19,7 @@ public class SystemValues
         return new Product()
         {
             ProductID = 0,
-            CategoryID = 0,
+            CategoryID = 1,
             ProductName = "Нет в наличии!",
             ProductDescription = category == null ? "Продуктов данной категории не имеется!" : "Продуктов в категории " + category.CategoryName + " не имеется!"
         };

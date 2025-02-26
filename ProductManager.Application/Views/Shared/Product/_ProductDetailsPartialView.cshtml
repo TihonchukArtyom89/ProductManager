@@ -1,33 +1,24 @@
 ﻿@using ProductManager.Application.Models.DBEntities
-@model ProductManager.Application.Models.DBEntities.Product
-@{
-    string productCategory = "";
-    foreach(SelectListItem selectListItem in ViewBag.Categories)
-    {
-        if(selectListItem.Value == Model.CategoryID.ToString())
-        {
-            productCategory = selectListItem.Text;
-        }
-    }
-}
-<div class="modal fade" id="productDetails_@Model.ProductID" aria-labelledby="productDetailsLabel" aria-hidden="true">
+@model ProductManager.Application.ViewModels.ProductViewModel
+
+<div class="modal fade" id="productDetails_@Model.Product.ProductID" aria-labelledby="productDetailsLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="productDetailsLabel">Подробнее о @Model.ProductName</h5>
+                <h5 class="modal-title" id="productDetailsLabel">Подробнее о @Model.Product.ProductName</h5>
             </div>
             <div class="modal-body">
                 <dl class="row col-sm-21">
                     <dt class="col-sm-10">Ид продукта:</dt>
-                    <dd class="col-sm-11">@Model.ProductID</dd>
+                    <dd class="col-sm-11">@Model.Product.ProductID</dd>
                     <dt class="col-sm-10">Название продукта:</dt>
-                    <dd class="col-sm-11">@Model.ProductName</dd>
+                    <dd class="col-sm-11">@Model.Product.ProductName</dd>
                     <dt class="col-sm-10">Описание продукта:</dt>
-                    <dd class="col-sm-11">@Model.ProductDescription</dd>
+                    <dd class="col-sm-11">@Model.Product.ProductDescription</dd>
                     <dt class="col-sm-10">Категория продукта:</dt>
-                    <dd class="col-sm-11">@productCategory</dd>
+                    <dd class="col-sm-11">@Model.ProductCategoryString</dd>
                     <dt class="col-sm-10">Цена продукта:</dt>
-                    <dd class="col-sm-11">@Model.ProductPrice</dd>
+                    <dd class="col-sm-11">@Model.Product.ProductPrice</dd>
                 </dl>
             </div>
             <div class="modal-footer">

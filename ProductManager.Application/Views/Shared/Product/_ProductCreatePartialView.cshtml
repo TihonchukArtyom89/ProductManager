@@ -1,6 +1,5 @@
 ﻿@using ProductManager.Application.Models.DBEntities
-@using System.Globalization
-@model ProductManager.Application.Models.DBEntities.Product
+@model ProductManager.Application.ViewModels.ProductViewModel
 
 <div class="modal fade" id="createProduct" aria-labelledby="createProductLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -12,21 +11,21 @@
                 <form asp-controller="Product" asp-action="CreateProduct" method="post" asp-route-category="@ViewBag.CurrentCategory" asp-route-searchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-productPage="@ViewBag.SelectedPage" asp-route-pageSize="@ViewBag.SelectedPageSize">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="@Model.ProductName" class="control-label"></label>
-                        <input asp-for="@Model.ProductName" class="form-control" />
-                        <span asp-validation-for="@Model.ProductName" class="text-danger"></span>
+                        <label asp-for="@Model.Product.ProductName" class="control-label"></label>
+                        <input asp-for="@Model.Product.ProductName" class="form-control" />
+                        <span asp-validation-for="@Model.Product.ProductName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="@Model.CategoryID" class="control-label">Категория продукта</label>
-                        <select asp-for="@Model.CategoryID" class="form-control" name="CategoryID" asp-items="ViewBag.Categories">
+                        <label asp-for="@Model.Product.CategoryID" class="control-label">Категория продукта</label>
+                        <select asp-for="@Model.Product.CategoryID" class="form-control" name="CategoryID" asp-items="ViewBag.Categories">
                             <option value="1">Выберите категорию продукта</option>
                         </select>
-                        <span asp-validation-for="@Model.CategoryID" class="text-danger"></span>
+                        <span asp-validation-for="@Model.Product.CategoryID" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="@Model.ProductDescription" class="control-label"></label>
-                        <input asp-for="@Model.ProductDescription" class="form-control" />
-                        <span asp-validation-for="@Model.ProductDescription" class="text-danger"></span>
+                        <label asp-for="@Model.Product.ProductDescription" class="control-label"></label>
+                        <input asp-for="@Model.Product.ProductDescription" class="form-control" />
+                        <span asp-validation-for="@Model.Product.ProductDescription" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="@Model.ProductPriceString" class="control-label"></label>

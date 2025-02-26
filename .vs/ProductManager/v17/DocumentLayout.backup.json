@@ -7,36 +7,56 @@
       "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\todo.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\models\\dbentities\\productquantity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\models\\dbentities\\productquantity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\viewmodels\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\viewmodels\\productviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\models\\dbentities\\productquantitytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\models\\dbentities\\productquantitytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\models\\dbentities\\pricelistproductpurchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\models\\dbentities\\pricelistproductpurchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\models\\dbentities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\models\\dbentities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\views\\shared\\product\\_productdetailspartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\views\\shared\\product\\_productdetailspartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\views\\shared\\product\\_productcreatepartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\views\\shared\\product\\_productcreatepartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\views\\shared\\product\\_productupdatepartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\views\\shared\\product\\_productupdatepartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\views\\shared\\product\\_productcreatepartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\views\\shared\\product\\_productcreatepartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\views\\shared\\product\\_productsummarypartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\views\\shared\\product\\_productsummarypartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\models\\dbentities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\models\\dbentities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\views\\product\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\views\\product\\productlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\devnote.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\devnote.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\models\\dbentities\\pricelistproductpurchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\models\\dbentities\\pricelistproductpurchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\models\\dbentities\\productquantitytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\models\\dbentities\\productquantitytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\models\\systemvalues.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\models\\systemvalues.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|c:\\users\\mort\\source\\repos\\productmanager\\productmanager.application\\models\\dbentities\\productquantity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF45D92B-854D-4319-A816-A39470196AB8}|ProductManager.Application\\ProductManager.Application.csproj|solutionrelative:productmanager.application\\models\\dbentities\\productquantity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,103 +66,98 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProductQuantityType.cs",
-              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\ProductQuantityType.cs",
-              "RelativeDocumentMoniker": "ProductManager.Application\\Models\\DBEntities\\ProductQuantityType.cs",
-              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\ProductQuantityType.cs",
-              "RelativeToolTip": "ProductManager.Application\\Models\\DBEntities\\ProductQuantityType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T09:20:27.76Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProductQuantity.cs",
-              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\ProductQuantity.cs",
-              "RelativeDocumentMoniker": "ProductManager.Application\\Models\\DBEntities\\ProductQuantity.cs",
-              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\ProductQuantity.cs",
-              "RelativeToolTip": "ProductManager.Application\\Models\\DBEntities\\ProductQuantity.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Title": "ProductViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\ViewModels\\ProductViewModel.cs",
+              "RelativeDocumentMoniker": "ProductManager.Application\\ViewModels\\ProductViewModel.cs",
+              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\ViewModels\\ProductViewModel.cs",
+              "RelativeToolTip": "ProductManager.Application\\ViewModels\\ProductViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T09:07:52.314Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PricelistProductPurchase.cs",
-              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\PricelistProductPurchase.cs",
-              "RelativeDocumentMoniker": "ProductManager.Application\\Models\\DBEntities\\PricelistProductPurchase.cs",
-              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\PricelistProductPurchase.cs",
-              "RelativeToolTip": "ProductManager.Application\\Models\\DBEntities\\PricelistProductPurchase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T09:06:18.504Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "_ProductUpdatePartialView.cshtml",
-              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Shared\\Product\\_ProductUpdatePartialView.cshtml",
-              "RelativeDocumentMoniker": "ProductManager.Application\\Views\\Shared\\Product\\_ProductUpdatePartialView.cshtml",
-              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Shared\\Product\\_ProductUpdatePartialView.cshtml",
-              "RelativeToolTip": "ProductManager.Application\\Views\\Shared\\Product\\_ProductUpdatePartialView.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAACpAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-25T06:38:02.762Z"
+              "WhenOpened": "2025-02-26T10:18:46.623Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "DevNote.txt",
-              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\DevNote.txt",
-              "RelativeDocumentMoniker": "ProductManager.Application\\DevNote.txt",
-              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\DevNote.txt",
-              "RelativeToolTip": "ProductManager.Application\\DevNote.txt",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAAAGgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-02-25T06:32:26.804Z"
+              "Title": "ProductList.cshtml",
+              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Product\\ProductList.cshtml",
+              "RelativeDocumentMoniker": "ProductManager.Application\\Views\\Product\\ProductList.cshtml",
+              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Product\\ProductList.cshtml",
+              "RelativeToolTip": "ProductManager.Application\\Views\\Product\\ProductList.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-26T09:38:16.995Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
+              "Title": "_ProductDetailsPartialView.cshtml",
+              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Shared\\Product\\_ProductDetailsPartialView.cshtml",
+              "RelativeDocumentMoniker": "ProductManager.Application\\Views\\Shared\\Product\\_ProductDetailsPartialView.cshtml",
+              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Shared\\Product\\_ProductDetailsPartialView.cshtml",
+              "RelativeToolTip": "ProductManager.Application\\Views\\Shared\\Product\\_ProductDetailsPartialView.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-26T10:42:54.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "_ProductCreatePartialView.cshtml",
               "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Shared\\Product\\_ProductCreatePartialView.cshtml",
               "RelativeDocumentMoniker": "ProductManager.Application\\Views\\Shared\\Product\\_ProductCreatePartialView.cshtml",
               "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Shared\\Product\\_ProductCreatePartialView.cshtml",
               "RelativeToolTip": "ProductManager.Application\\Views\\Shared\\Product\\_ProductCreatePartialView.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAACEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-25T04:56:33.054Z"
+              "WhenOpened": "2025-02-25T04:56:33.054Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "ProductController.cs",
               "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "ProductManager.Application\\Controllers\\ProductController.cs",
               "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Controllers\\ProductController.cs",
               "RelativeToolTip": "ProductManager.Application\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAKQAAAAAAAAAAAAYwLsAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAowFsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T04:39:41.732Z"
+              "WhenOpened": "2025-02-25T04:39:41.732Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\Product.cs",
               "RelativeDocumentMoniker": "ProductManager.Application\\Models\\DBEntities\\Product.cs",
               "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\Product.cs",
               "RelativeToolTip": "ProductManager.Application\\Models\\DBEntities\\Product.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAABpAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAACRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T04:32:29.061Z"
+              "WhenOpened": "2025-02-25T04:32:29.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ProductUpdatePartialView.cshtml",
+              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Shared\\Product\\_ProductUpdatePartialView.cshtml",
+              "RelativeDocumentMoniker": "ProductManager.Application\\Views\\Shared\\Product\\_ProductUpdatePartialView.cshtml",
+              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Shared\\Product\\_ProductUpdatePartialView.cshtml",
+              "RelativeToolTip": "ProductManager.Application\\Views\\Shared\\Product\\_ProductUpdatePartialView.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAACEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-25T06:38:02.762Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -152,9 +167,87 @@
               "RelativeDocumentMoniker": "ProductManager.Application\\TODO.txt",
               "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\TODO.txt",
               "RelativeToolTip": "ProductManager.Application\\TODO.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAABmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2025-02-20T15:30:05.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_ProductSummaryPartialView.cshtml",
+              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Shared\\Product\\_ProductSummaryPartialView.cshtml",
+              "RelativeDocumentMoniker": "ProductManager.Application\\Views\\Shared\\Product\\_ProductSummaryPartialView.cshtml",
+              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Views\\Shared\\Product\\_ProductSummaryPartialView.cshtml",
+              "RelativeToolTip": "ProductManager.Application\\Views\\Shared\\Product\\_ProductSummaryPartialView.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAACEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-26T09:42:33.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DevNote.txt",
+              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\DevNote.txt",
+              "RelativeDocumentMoniker": "ProductManager.Application\\DevNote.txt",
+              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\DevNote.txt",
+              "RelativeToolTip": "ProductManager.Application\\DevNote.txt",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAGgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-02-25T06:32:26.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PricelistProductPurchase.cs",
+              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\PricelistProductPurchase.cs",
+              "RelativeDocumentMoniker": "ProductManager.Application\\Models\\DBEntities\\PricelistProductPurchase.cs",
+              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\PricelistProductPurchase.cs",
+              "RelativeToolTip": "ProductManager.Application\\Models\\DBEntities\\PricelistProductPurchase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAB7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T09:06:18.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ProductQuantityType.cs",
+              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\ProductQuantityType.cs",
+              "RelativeDocumentMoniker": "ProductManager.Application\\Models\\DBEntities\\ProductQuantityType.cs",
+              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\ProductQuantityType.cs",
+              "RelativeToolTip": "ProductManager.Application\\Models\\DBEntities\\ProductQuantityType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T09:20:27.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "SystemValues.cs",
+              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\SystemValues.cs",
+              "RelativeDocumentMoniker": "ProductManager.Application\\Models\\SystemValues.cs",
+              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\SystemValues.cs",
+              "RelativeToolTip": "ProductManager.Application\\Models\\SystemValues.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAYwBIAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T10:28:25.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProductQuantity.cs",
+              "DocumentMoniker": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\ProductQuantity.cs",
+              "RelativeDocumentMoniker": "ProductManager.Application\\Models\\DBEntities\\ProductQuantity.cs",
+              "ToolTip": "C:\\Users\\mort\\source\\repos\\ProductManager\\ProductManager.Application\\Models\\DBEntities\\ProductQuantity.cs",
+              "RelativeToolTip": "ProductManager.Application\\Models\\DBEntities\\ProductQuantity.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAwAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T09:07:52.314Z",
               "EditorCaption": ""
             }
           ]

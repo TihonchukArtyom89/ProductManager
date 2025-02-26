@@ -8,9 +8,11 @@ public class ProductQuantity
 {
 
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public long ProductQuantityId { get; set; }//ид разновидности количества продукта//уникальный, первичный ключ
+    public long ProductQuantityID { get; set; }//ид разновидности количества продукта//уникальный, первичный ключ
     [DisplayName("Количество продуктов в покупке")]
     [Required(ErrorMessage = "Quantity name of product is required")]
     public string ProductQuantityName { get; set; } = string.Empty;//название разновидности покупки     
     public long ProductQuantityTypeID { get; set; }//ид типа разновидности// внешний ключ на таблицу типов разновидностей количеств продуктов
+    public List<PricelistProductPurchase>? PricelistProductPurchases { get; set; }//навигационное св-во на таблицу покупок(на зависимую сущность)
+    public ProductQuantityType? ProductQuantityType { get; set; }//навигационное св-во на таблицу типов разновидностей количеств продукта(на главную сущность)
 }

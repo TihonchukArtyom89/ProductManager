@@ -21,4 +21,5 @@ public class PricelistProductPurchase
     public decimal ProductPrice { get; set; }//цена по которой был куплен продукт(именно весь продукта, а не единично)
     public Product? Product { get; set; }//навигационное св-во на таблицу продуктов(на главную сущность)
     public Pricelist? Pricelist { get; set; }//навигационное св-во на таблицу прайслистов покупок продуктов(на главную сущность)
+    public ProductQuantity? ProductQuantity { get; set; }//навигационное св-во на таблицу разновидностей количеств продукта(на главную сущность)
 }

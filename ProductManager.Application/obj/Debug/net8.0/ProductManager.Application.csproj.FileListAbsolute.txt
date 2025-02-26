@@ -271,7 +271,3 @@ C:\Users\mort\source\repos\ProductManager\ProductManager.Application\obj\Debug\n
 C:\Users\mort\source\repos\ProductManager\ProductManager.Application\obj\Debug\net8.0\ProductManager.Application.pdb
 C:\Users\mort\source\repos\ProductManager\ProductManager.Application\obj\Debug\net8.0\ProductManager.Application.genruntimeconfig.cache
 C:\Users\mort\source\repos\ProductManager\ProductManager.Application\obj\Debug\net8.0\ref\ProductManager.Application.dll
-C:\Users\mort\source\repos\ProductManager\ProductManager.Application\bin\Debug\net8.0\ProductManager.Application.staticwebassets.endpoints.json
-C:\Users\mort\source\repos\ProductManager\ProductManager.Application\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\mort\source\repos\ProductManager\ProductManager.Application\obj\Debug\net8.0\staticwebassets\msbuild.ProductManager.Application.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\mort\source\repos\ProductManager\ProductManager.Application\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
