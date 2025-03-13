@@ -32,7 +32,8 @@ namespace ProductManager.Application.Migrations
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("CategoryID");
 
@@ -49,11 +50,13 @@ namespace ProductManager.Application.Migrations
 
                     b.Property<string>("OptionalParameterName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("OptionalParameterType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<long?>("PricelistOptionalParameterOptionalParameterEntryID")
                         .HasColumnType("bigint");
@@ -78,7 +81,8 @@ namespace ProductManager.Application.Migrations
 
                     b.Property<string>("PricelistName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("PricelistId");
 
@@ -98,7 +102,8 @@ namespace ProductManager.Application.Migrations
 
                     b.Property<string>("OptionalParameterValue")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<long>("PricelistID")
                         .HasColumnType("bigint");
@@ -158,11 +163,13 @@ namespace ProductManager.Application.Migrations
 
                     b.Property<string>("ProductDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("ProductPrice")
                         .HasColumnType("decimal(8,2)");
@@ -184,7 +191,8 @@ namespace ProductManager.Application.Migrations
 
                     b.Property<string>("ProductQuantityName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<long>("ProductQuantityTypeID")
                         .HasColumnType("bigint");
@@ -206,7 +214,8 @@ namespace ProductManager.Application.Migrations
 
                     b.Property<string>("ProductQuantityTypeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("ProductQuantityTypeID");
 

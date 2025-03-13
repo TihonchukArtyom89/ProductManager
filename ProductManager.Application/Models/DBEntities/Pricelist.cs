@@ -10,6 +10,7 @@ public class Pricelist
     public long PricelistId { get; set; } //ИД прайслиста покупок продуктов//уникальный, первичный ключ
     [Required(ErrorMessage = "Name of pricelist is required")]
     [DisplayName("Название прайслиста")]
+    [StringLength(50)]
     public string PricelistName { get; set; } = string.Empty; //Название прайслиста покупок продуктов
     public DateTime PriceListDateCreation { get; set; }//Дата и время создания прайслиста покупок продуктов
     public List<PricelistProductPurchase>? PricelistProductPurchases { get; set; }//навигационное св-во на таблицу покупок продуктов(на зависимую сущность)

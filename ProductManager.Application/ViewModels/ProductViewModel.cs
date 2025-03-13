@@ -25,14 +25,14 @@ public class ProductViewModel
     {
         Product = product;
         ProductCategoryString = SystemValues.GetCategoryUncategorized().CategoryName;
-        foreach (SelectListItem c in categories)
-        {
-            if (c.Value == product.CategoryID.ToString())
-            {
-                ProductCategoryString = c.Text; 
-                break;
-            }
-        }
+        //foreach (SelectListItem c in categories)
+        //{
+        //    if (c.Value == product.CategoryID.ToString())
+        //    {
+        //        ProductCategoryString = c.Text; 
+        //        break;
+        //    }
+        //}
         ProductPriceString = product.ProductPrice.ToString(CultureInfo.InvariantCulture).Replace('.', ',');
     }
 }

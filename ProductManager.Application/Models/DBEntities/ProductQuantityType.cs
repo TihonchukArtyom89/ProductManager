@@ -1,4 +1,5 @@
 ﻿
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace ProductManager.Application.Models.DBEntities;
@@ -7,8 +8,10 @@ namespace ProductManager.Application.Models.DBEntities;
 public class ProductQuantityType
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public long ProductQuantityTypeID { get; set; }//ид типа разновидности количества продукта//уникальный, первичный ключ    [DisplayName("Количество продуктов в покупке")]
+    public long ProductQuantityTypeID { get; set; }//ид типа разновидности количества продукта//уникальный, первичный ключ
+    [DisplayName("Количество продуктов в покупке")]
     [Required(ErrorMessage = "Quantity name of product is required")]
+    [StringLength(20)]
     public string ProductQuantityTypeName { get; set; } = string.Empty;//название типа разновидности покупки   
     public List<ProductQuantity>? ProductQuantities { get; set; }//навигационное св-во на таблицу разновидностей количеств продукта(на зависимую сущность)
 }

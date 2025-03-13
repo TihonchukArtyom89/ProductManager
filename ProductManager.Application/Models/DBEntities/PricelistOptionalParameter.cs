@@ -12,6 +12,7 @@ public class PricelistOptionalParameter
     public long OptionalParameterID { get; set; }
     [DisplayName("Значение опционального параметра")]
     [Required(ErrorMessage = "Value of optional parameter is required.")]
+    [StringLength(50)]
     public string OptionalParameterValue { get; set; } = string.Empty;
     public long PricelistID { get; set; }//ИД прайслиста для данного опционального параметра  
     public Pricelist? Pricelist { get; set; }//навигационное св-во на таблицу прайслистов(на главную сущность)

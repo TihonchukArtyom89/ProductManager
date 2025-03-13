@@ -17,7 +17,7 @@ namespace ProductManager.Application.Migrations
                 {
                     CategoryID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CategoryName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,7 +30,7 @@ namespace ProductManager.Application.Migrations
                 {
                     PricelistId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PricelistName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PricelistName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PriceListDateCreation = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -44,7 +44,7 @@ namespace ProductManager.Application.Migrations
                 {
                     ProductQuantityTypeID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductQuantityTypeName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ProductQuantityTypeName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,8 +57,8 @@ namespace ProductManager.Application.Migrations
                 {
                     ProductID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     CategoryID = table.Column<long>(type: "bigint", nullable: false),
                     ProductPrice = table.Column<decimal>(type: "decimal(8,2)", nullable: false)
                 },
@@ -80,7 +80,7 @@ namespace ProductManager.Application.Migrations
                     OptionalParameterEntryID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OptionalParameterID = table.Column<long>(type: "bigint", nullable: false),
-                    OptionalParameterValue = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OptionalParameterValue = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PricelistID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
@@ -100,7 +100,7 @@ namespace ProductManager.Application.Migrations
                 {
                     ProductQuantityID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductQuantityName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductQuantityName = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
                     ProductQuantityTypeID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
@@ -120,8 +120,8 @@ namespace ProductManager.Application.Migrations
                 {
                     OptionalParameterID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OptionalParameterType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OptionalParameterName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OptionalParameterType = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    OptionalParameterName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PricelistOptionalParameterOptionalParameterEntryID = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>

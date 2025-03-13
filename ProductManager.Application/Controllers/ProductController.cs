@@ -115,7 +115,7 @@ public class ProductController : Controller
     public IActionResult CreateProduct(ProductViewModel productViewModel, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
         sortOrder = SaveSortOrderState(sortOrder);
-        SetProductPrice(productViewModel);
+        SetProductData(productViewModel);
         productRepository.CreateProduct(productViewModel.Product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
         {
@@ -138,7 +138,7 @@ public class ProductController : Controller
     public IActionResult UpdateProduct(ProductViewModel productViewModel, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
         sortOrder = SaveSortOrderState(sortOrder);
-        SetProductPrice(productViewModel);
+        SetProductData(productViewModel);
         productRepository.UpdateProduct(productViewModel.Product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
         {
@@ -179,12 +179,17 @@ public class ProductController : Controller
         Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? SystemValues.GetProductNull();
         return PartialView(viewName: "../Shared/Product/_ProductDetailsPartialView", model: product);
     }
-    public void SetProductPrice(ProductViewModel productViewModel)
+    public void SetProductData(ProductViewModel productViewModel)
     {
         productViewModel.ProductPriceString = productViewModel.ProductPriceString.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
         if (decimal.TryParse(productViewModel.ProductPriceString, NumberStyles.Float, CultureInfo.InvariantCulture, out decimal parsedPrice))
         {
             productViewModel.Product.ProductPrice = parsedPrice;
         }
+        if (long.TryParse(productViewModel.ProductCategoryString, NumberStyles.Float, CultureInfo.InvariantCulture, out long parsedCategoryID))
+        {
+            productViewModel.Product.CategoryID = parsedCategoryID;
+        }
+        //productViewModel.Product.CategoryID = productViewModel.ProductCategoryString;
     }
 }
