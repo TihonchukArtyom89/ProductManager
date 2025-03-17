@@ -20,6 +20,18 @@
                         <label asp-for="@Model.ProductCategoryString" class="control-label">Категория продукта</label>
                         <select asp-for="@Model.ProductCategoryString" class="form-control" name="ProductCategoryString" asp-items="ViewBag.Categories">
                             <option value="1">Выберите категорию продукта</option>
+                            @foreach (SelectListItem categoryListItem in ViewBag.Categories)
+                            {
+                                if(Model.Product.CategoryID.ToString() == categoryListItem.Value)
+                                {
+
+                                    <option value="@categoryListItem.Value" selected>@categoryListItem.Text</option>
+                                }
+                                else
+                                {
+                                    <option value="@categoryListItem.Value">@categoryListItem.Text</option>
+                                }
+                            }
                         </select>
                         <span asp-validation-for="@Model.Product.CategoryID" class="text-danger"></span>
                     </div>

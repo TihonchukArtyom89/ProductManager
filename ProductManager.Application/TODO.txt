@@ -14,20 +14,20 @@
 
 make at now:
 
-- add string length attributes to model class of db entities
-- add currency type dbentity class
-- make set data(category) from modal popup when create/update product
+- fix wrong display of product category when open product detail popup
+- rework product view model
+- make set category to dropdown category list when update product after open modal popup
 
 make in future:
-- make set category to dropdown category list when update product after open modal popup
 - make difficult pagination with ... between first/last page and three pages with current in the middle
 - make check in SeedData cs if existing database (if no create new db with some test data - software migration management)
 - try to make unit testing of CRUD with modal popups
-- add currency type dbentities
 - make seed date by default values to some of system tables(category,currency type, quantity type e.t.c)
 - replace error of message(validation) on english to russian language
 - think about rework application with using fluent api
-- add select currency to create/update product modal popup
-- enter an integer number as price
+- enter an integer number as price (regular expression)
 - remove getcategoryuncategorized
-- rework product view model
+- pause work on currency (maybe delete currency? because it complicated to store prices with other currencies in 1 table )
+- rework currency relationships(connect to pricelist - make 1 currency on pricelist)
+- add select currency to create/update pricelist modal popup
+- add currency type dbentities
