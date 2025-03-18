@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="@Model.ProductCategoryString" class="control-label">Категория продукта</label>
-                        <select asp-for="@Model.ProductCategoryString" class="form-control" name="ProductCategoryString" asp-items="ViewBag.Categories">
+                        <select asp-for="@Model.ProductCategoryString" class="form-control" name="ProductCategoryString">
                             <option value="1">Выберите категорию продукта</option>
                             @foreach (SelectListItem categoryListItem in ViewBag.Categories)
                             {

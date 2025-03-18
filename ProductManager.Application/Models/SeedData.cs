@@ -28,7 +28,7 @@ public static class SeedData
                 if (!context.Categories.Any())
                 {//code for insert sample data to table Categories(categories of product) 
                     context.Categories.AddRange(//fill Categories Table with sample data
-                        new Category { CategoryName = SystemValues.GetCategoryUncategorized().CategoryName },
+                        new Category { CategoryName = new Category().CategoryName },
                         new Category { CategoryName = "Мебель" },
                         new Category { CategoryName = "Фрукты" },
                         new Category { CategoryName = "test" });

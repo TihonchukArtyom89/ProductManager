@@ -26,7 +26,7 @@ public class ProductController : Controller
         Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
         ViewBag.Categories = new SelectList(productRepository.Categories, "CategoryID", "CategoryName");
         IEnumerable<Product> products = productRepository.Products;
-        Product SystemProduct = SystemValues.GetProductNull(CurrentCategory ?? SystemValues.GetCategoryUncategorized());
+        Product SystemProduct = SystemValues.GetProductNull(CurrentCategory ?? new Category());
         int totalItems = category == null ? productRepository.Products.Count() : productRepository.Products.Where(e => e.CategoryID == CurrentCategory!.CategoryID).Count();
         if (CurrentCategory == null && category != null)//check if category not right transferred to product controller 
         {

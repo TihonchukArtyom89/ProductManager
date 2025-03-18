@@ -17,11 +17,6 @@ public class Category
     public List<Product>? Products { get; set; }//навигационное св-во на таблицу продуктов(на зависимую сущность)
     public Category()
     {
-        //CategoryID = 1;
         CategoryName = "Нет категории";
     }
-    //public Category(string name)
-    //{
-    //    CategoryName = name;
-    //}
 }

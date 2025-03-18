@@ -24,12 +24,4 @@ public class SystemValues
             ProductDescription = category == null ? "Продуктов данной категории не имеется!" : "Продуктов в категории " + category.CategoryName + " не имеется!"
         };
     }
-    public static Category GetCategoryUncategorized()
-    {
-        return new Category()
-        {
-            CategoryID = 1,
-            CategoryName = "Нет категории"
-        };
-    }
 }
