@@ -52,8 +52,12 @@ public class PageLinkTagHelper : TagHelper
                 pageButton = PageLinkBuilder(PageModel.CurrenPage == 1 ? 1 : PageModel.CurrenPage - 1, urlHelper, " <-  ", PageClass, PageClassArrow);
                 pagination.InnerHtml.AppendHtml(pageButton);
             }
-            for (int i = 1; i <= PageModel.TotalPages; i++)
-            {
+            int numberOfPageBeforeCurrentPage = PageModel.CurrenPage != 1 ? (PageModel.CurrenPage - 1) : 1;
+            numberOfPageBeforeCurrentPage = PageModel.CurrenPage != PageModel.TotalPages ? numberOfPageBeforeCurrentPage : (PageModel.CurrenPage - 2);
+            int numberOfPageAfterCurrentPage = PageModel.CurrenPage != PageModel.TotalPages ? (PageModel.CurrenPage + 1) : PageModel.TotalPages;
+            numberOfPageAfterCurrentPage = PageModel.CurrenPage != 1 ? numberOfPageAfterCurrentPage : (PageModel.CurrenPage + 2);
+            for (int i = numberOfPageBeforeCurrentPage; i <= numberOfPageAfterCurrentPage; i++)
+            {//cycle for display three pages
                 if (PageClassEnabled)
                 {
                     css1 = PageClass;
@@ -62,7 +66,7 @@ public class PageLinkTagHelper : TagHelper
                 pageButton = PageLinkBuilder(i, urlHelper, i.ToString(), css1, css2);
                 pagination.InnerHtml.AppendHtml(pageButton);
             }
-            if(PageModel.CurrenPage < PageModel.TotalPages)
+            if (PageModel.CurrenPage < PageModel.TotalPages)
             {
                 pageButton = PageLinkBuilder(PageModel.CurrenPage == PageModel.TotalPages ? PageModel.TotalPages : PageModel.CurrenPage + 1, urlHelper, " -> ", PageClass, PageClassArrow);
                 pagination.InnerHtml.AppendHtml(pageButton);

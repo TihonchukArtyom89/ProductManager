@@ -14,14 +14,14 @@
 
 make at now:
 
-- remove getcategoryuncategorized
-- clean code
-- make enter an integer number as price (regular expression with logical or)
+- make pagination independent from number pages
 
-make in future:
-- make difficult pagination with ... between first/last page and three pages with current in the middle
+make in near future:
+
 - replace error of message(validation) on english to russian language
 - try to make unit testing of CRUD with modal popups
+
+make in distant future(after making pricelist pagege and features):
 
 - make check in SeedData cs if existing database (if no create new db with some test data - software migration management)
 - make seed date by default values to some of system tables(category,currency type, quantity type e.t.c)
