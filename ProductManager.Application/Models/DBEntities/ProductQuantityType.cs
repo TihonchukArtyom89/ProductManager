@@ -10,7 +10,7 @@ public class ProductQuantityType
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long ProductQuantityTypeID { get; set; }//ид типа разновидности количества продукта//уникальный, первичный ключ
     [DisplayName("Количество продуктов в покупке")]
-    [Required(ErrorMessage = "Quantity name of product is required")]
+    [Required(ErrorMessage = "Введите название единицы количества продукта.")]
     [StringLength(20)]
     public string ProductQuantityTypeName { get; set; } = string.Empty;//название типа разновидности покупки   
     public List<ProductQuantity>? ProductQuantities { get; set; }//навигационное св-во на таблицу разновидностей количеств продукта(на зависимую сущность)

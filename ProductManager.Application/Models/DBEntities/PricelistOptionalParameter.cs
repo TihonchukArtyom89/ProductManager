@@ -11,7 +11,7 @@ public class PricelistOptionalParameter
     public long OptionalParameterEntryID { get; set; }//ИД опционального параметра для конкретного прайслиста//уникальный,первичный ключ
     public long OptionalParameterID { get; set; }
     [DisplayName("Значение опционального параметра")]
-    [Required(ErrorMessage = "Value of optional parameter is required.")]
+    [Required(ErrorMessage = "Введите значение опцинального параметра")]
     [StringLength(50)]
     public string OptionalParameterValue { get; set; } = string.Empty;
     public long PricelistID { get; set; }//ИД прайслиста для данного опционального параметра  

@@ -14,19 +14,19 @@
 
 make at now:
 
-- make pagination independent from number pages
+- replace error of message(validation) on english to russian language
+- delete currency entity from model
 
 make in near future:
 
-- replace error of message(validation) on english to russian language
 - try to make unit testing of CRUD with modal popups
 
-make in distant future(after making pricelist pagege and features):
+make in distant future(after making pricelist page and features):
 
 - make check in SeedData cs if existing database (if no create new db with some test data - software migration management)
-- make seed date by default values to some of system tables(category,currency type, quantity type e.t.c)
+- make seed date by default values to some of system tables(category, quantity type e.t.c)
 - think about rework application with using fluent api
-- pause work on currency (maybe delete currency? because it complicated to store prices with other currencies in 1 table )
-- rework currency relationships(connect to pricelist - make 1 currency on pricelist)
-- add select currency to create/update pricelist modal popup
-- add currency type dbentities
+
+make in distant future(after making add administration feature with blazor):
+
+- make imposible to create product without category for users

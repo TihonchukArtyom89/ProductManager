@@ -8,7 +8,7 @@ namespace ProductManager.Application.Models.DBEntities;
 public class Pricelist
 {
     public long PricelistId { get; set; } //ИД прайслиста покупок продуктов//уникальный, первичный ключ
-    [Required(ErrorMessage = "Name of pricelist is required")]
+    [Required(ErrorMessage = "Введите название прайслиста.")]
     [DisplayName("Название прайслиста")]
     [StringLength(50)]
     public string PricelistName { get; set; } = string.Empty; //Название прайслиста покупок продуктов
