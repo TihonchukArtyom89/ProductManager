@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProductManager.Application.Models.DBEntities;
 using ProductManager.Application.ViewModels;
+using System.Globalization;
 
 namespace ProductManager.Tests;
 
@@ -387,5 +389,117 @@ public class ProductControllerTests
         Assert.Equal("Pr1", resultSearch2.Products.FirstOrDefault()!.ProductName);
         Assert.Equal("Pr3", resultSearch3.Products.FirstOrDefault()!.ProductName);
         Assert.Equal("Pr1", resultSearch3.Products.Skip(1).FirstOrDefault()!.ProductName);
+    }
+    [Fact]
+    public void Can_Create_New_Product()
+    {
+        //Arrange
+        Category[] categories = new Category[]
+        {
+            new Category{CategoryID = 1, CategoryName = "C1" },
+            new Category{CategoryID = 2, CategoryName = "C2" },
+            new Category{CategoryID = 3, CategoryName = "C3" }
+        };
+        Product product = new() { ProductID = 8, ProductName = "P8", CategoryID = 3, ProductPrice = 8.00M };
+        Mock<IProductRepository> mockRepository = new Mock<IProductRepository>();
+        mockRepository.Setup(mr => mr.Products).Returns((new Product[]
+        {
+            new Product{ProductID = 1, ProductName = "P1", CategoryID = categories[0].CategoryID, ProductPrice=1.00M},
+            new Product{ProductID = 2, ProductName = "P2", CategoryID = categories[1].CategoryID, ProductPrice=2.00M},
+            new Product{ProductID = 3, ProductName = "P3", CategoryID = categories[0].CategoryID, ProductPrice=3.00M},
+            new Product{ProductID = 4, ProductName = "P4", CategoryID = categories[1].CategoryID, ProductPrice=4.00M},
+            new Product{ProductID = 5, ProductName = "P5", CategoryID = categories[2].CategoryID, ProductPrice=5.00M},
+            new Product{ProductID = 6, ProductName = "P6", CategoryID = categories[0].CategoryID, ProductPrice=6.00M},
+            new Product{ProductID = 7, ProductName = "P7", CategoryID = categories[1].CategoryID, ProductPrice=7.00M}
+        }).AsQueryable<Product>());
+        mockRepository.Setup(mr => mr.Categories).Returns((categories).AsQueryable<Category>());
+        SelectList categoriesList = new SelectList(categories, "CategoryID", "CategoryName");
+        categoriesList.Where(e=>e.Value == categories[2].CategoryID.ToString()).FirstOrDefault()!.Selected = true;
+        ProductViewModel productViewModel = new ProductViewModel(product,categoriesList);
+        ProductController productController = new(mockRepository.Object);
+        //Act
+        PartialViewResult actionGet = Assert.IsType<PartialViewResult>(productController.CreateProduct());
+        IActionResult? actionPost = productController.CreateProduct(productViewModel, categories[2].CategoryID.ToString(), null);
+        //Assert
+        Assert.Equal("../Shared/Product/_ProductCreatePartialView", actionGet.ViewName);
+        Assert.IsType<Product>(actionGet.Model);
+        Assert.IsType<RedirectToActionResult>(actionPost);
+        Assert.Equal("Productlist", (actionPost as RedirectToActionResult)?.ActionName);
+    }
+    [Fact]
+    public void Can_Read_Product_Details()
+    {
+        //Arrange
+        Category[] categories = new Category[]
+        {
+            new Category{CategoryID = 1, CategoryName = "C1" },
+            new Category{CategoryID = 2, CategoryName = "C2" },
+            new Category{CategoryID = 3, CategoryName = "C3" }
+        };
+        Mock<IProductRepository> mockRepository = new Mock<IProductRepository>();
+        mockRepository.Setup(mr => mr.Products).Returns((new Product[]
+        {
+            new Product{ProductID = 1, ProductName = "P1", CategoryID = categories[0].CategoryID, ProductPrice=1.00M},
+            new Product{ProductID = 2, ProductName = "P2", CategoryID = categories[1].CategoryID, ProductPrice=2.00M},
+            new Product{ProductID = 3, ProductName = "P3", CategoryID = categories[0].CategoryID, ProductPrice=3.00M},
+            new Product{ProductID = 4, ProductName = "P4", CategoryID = categories[1].CategoryID, ProductPrice=4.00M},
+            new Product{ProductID = 5, ProductName = "P5", CategoryID = categories[2].CategoryID, ProductPrice=5.00M},
+            new Product{ProductID = 6, ProductName = "P6", CategoryID = categories[0].CategoryID, ProductPrice=6.00M},
+            new Product{ProductID = 7, ProductName = "P7", CategoryID = categories[1].CategoryID, ProductPrice=7.00M}
+        }).AsQueryable<Product>());
+        mockRepository.Setup(mr => mr.Categories).Returns((categories).AsQueryable<Category>());
+        ProductController productController = new(mockRepository.Object);
+        //Act
+        PartialViewResult actionGet = Assert.IsType<PartialViewResult>(productController.ProductDetails(5));
+        //Assert
+        Assert.Equal("../Shared/Product/_ProductDetailsPartialView", actionGet.ViewName);
+        Assert.IsType<Product>(actionGet.Model);
+        Assert.Equal(3, (actionGet.Model as Product)?.CategoryID);
+        Assert.Equal("P5", (actionGet.Model as Product)?.ProductName);
+        Assert.Equal(5.00M, (actionGet.Model as Product)?.ProductPrice);
+    }
+    [Fact]
+    public void Can_Update_New_Product()
+    {
+        //Arrange
+        Category[] categories = new Category[]
+        {
+            new Category{CategoryID = 1, CategoryName = "C1" },
+            new Category{CategoryID = 2, CategoryName = "C2" },
+            new Category{CategoryID = 3, CategoryName = "C3" }
+        };
+        Product[] products = new Product[]
+        {
+            new Product{ProductID = 1, ProductName = "P1", CategoryID = categories[0].CategoryID, ProductPrice=1.00M},
+            new Product{ProductID = 2, ProductName = "P2", CategoryID = categories[1].CategoryID, ProductPrice=2.00M},
+            new Product{ProductID = 3, ProductName = "P3", CategoryID = categories[0].CategoryID, ProductPrice=3.00M},
+            new Product{ProductID = 4, ProductName = "P4", CategoryID = categories[1].CategoryID, ProductPrice=4.00M},
+            new Product{ProductID = 5, ProductName = "P5", CategoryID = categories[2].CategoryID, ProductPrice=5.00M},
+            new Product{ProductID = 6, ProductName = "P6", CategoryID = categories[0].CategoryID, ProductPrice=6.00M},
+            new Product{ProductID = 7, ProductName = "P7", CategoryID = categories[1].CategoryID, ProductPrice=7.00M}
+        };
+        Mock<IProductRepository> mockRepository = new Mock<IProductRepository>();
+        mockRepository.Setup(mr => mr.Products).Returns((products).AsQueryable<Product>());
+        mockRepository.Setup(mr => mr.Categories).Returns((categories).AsQueryable<Category>());
+        SelectList categoriesList = new SelectList(categories, "CategoryID", "CategoryName");
+        categoriesList.Where(e => e.Value == categories[2].CategoryID.ToString()).FirstOrDefault()!.Selected = true;
+        ProductViewModel productViewModel = new ProductViewModel(products[3], categoriesList);
+        ProductController productController = new(mockRepository.Object);
+        products[3]= new Product()
+        {
+            ProductName = "_P4",
+            ProductPrice = 44.00M
+        };
+        //Act
+        PartialViewResult actionGet = Assert.IsType<PartialViewResult>(productController.UpdateProduct(products[3].ProductID ?? 0));
+        IActionResult? actionPost = productController.CreateProduct(productViewModel, categories[2].CategoryID.ToString(), null);
+        //Assert
+        Assert.Equal("../Shared/Product/_ProductUpdatePartialView", actionGet.ViewName);
+        Assert.IsType<Product>(actionGet.Model);
+        Assert.Equal(3, (actionGet.Model as Product)?.CategoryID);
+        Assert.Equal("_P4", (actionGet.Model as Product)?.ProductName);
+        Assert.Equal(44.00M, (actionGet.Model as Product)?.ProductPrice);
+        Assert.IsType<RedirectToActionResult>(actionPost);
+        Assert.Equal("Productlist", (actionPost as RedirectToActionResult)?.ActionName);
     }
 }

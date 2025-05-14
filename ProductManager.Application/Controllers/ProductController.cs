@@ -190,6 +190,5 @@ public class ProductController : Controller
         {
             productViewModel.Product.CategoryID = parsedCategoryID;
         }
-        //productViewModel.Product.CategoryID = productViewModel.ProductCategoryString;
     }
 }

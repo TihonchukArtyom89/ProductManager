@@ -121,3 +121,7 @@ string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral,
 
 size order page
 size page order
+ 
+crud unit test
+https://www.c-sharpcorner.com/article/crud-operations-unit-testing-in-asp-net-core-web-api-with-xunit/?ysclid=mam6axezsv314719474
+https://stackoverflow.com/questions/3215224/when-how-to-unit-test-crud-applications

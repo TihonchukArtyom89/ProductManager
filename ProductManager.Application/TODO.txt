@@ -10,15 +10,19 @@
 -try to make in list of pricelists some features with items of list without page reloading 
 -add some features from technical specification (get from doc file)
 -make project more stylish with using frontend
+-add role of guest, where you can read product details and use filtering and searching features
+-add role of user, where you can create, update and delete product
 -add administration feature with blazor and to create, update and delete category of product in administration panel
 
 make at now:
 
-- replace error of message(validation) on english to russian language
-- delete currency entity from model
+- make unit test of create product
+- make unit test of read product details
+- clean code
 
 make in near future:
 
+- fix unit of update product
 - try to make unit testing of CRUD with modal popups
 
 make in distant future(after making pricelist page and features):
