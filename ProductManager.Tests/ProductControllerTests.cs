@@ -414,8 +414,8 @@ public class ProductControllerTests
         }).AsQueryable<Product>());
         mockRepository.Setup(mr => mr.Categories).Returns((categories).AsQueryable<Category>());
         SelectList categoriesList = new SelectList(categories, "CategoryID", "CategoryName");
-        categoriesList.Where(e=>e.Value == categories[2].CategoryID.ToString()).FirstOrDefault()!.Selected = true;
-        ProductViewModel productViewModel = new ProductViewModel(product,categoriesList);
+        categoriesList.Where(e => e.Value == categories[2].CategoryID.ToString()).FirstOrDefault()!.Selected = true;
+        ProductViewModel productViewModel = new ProductViewModel(product, categoriesList);
         ProductController productController = new(mockRepository.Object);
         //Act
         PartialViewResult actionGet = Assert.IsType<PartialViewResult>(productController.CreateProduct());
@@ -459,7 +459,7 @@ public class ProductControllerTests
         Assert.Equal(5.00M, (actionGet.Model as Product)?.ProductPrice);
     }
     [Fact]
-    public void Can_Update_New_Product()
+    public void Can_Update_Existing_Product()
     {
         //Arrange
         Category[] categories = new Category[]
@@ -483,22 +483,59 @@ public class ProductControllerTests
         mockRepository.Setup(mr => mr.Categories).Returns((categories).AsQueryable<Category>());
         SelectList categoriesList = new SelectList(categories, "CategoryID", "CategoryName");
         categoriesList.Where(e => e.Value == categories[2].CategoryID.ToString()).FirstOrDefault()!.Selected = true;
-        ProductViewModel productViewModel = new ProductViewModel(products[3], categoriesList);
         ProductController productController = new(mockRepository.Object);
-        products[3]= new Product()
-        {
-            ProductName = "_P4",
-            ProductPrice = 44.00M
-        };
+        products[3].ProductName = "_P4";
+        products[3].ProductPrice = 44.00M;
+        ProductViewModel productViewModel = new ProductViewModel(products[3], categoriesList);
         //Act
         PartialViewResult actionGet = Assert.IsType<PartialViewResult>(productController.UpdateProduct(products[3].ProductID ?? 0));
-        IActionResult? actionPost = productController.CreateProduct(productViewModel, categories[2].CategoryID.ToString(), null);
+        IActionResult? actionPost = productController.UpdateProduct(productViewModel, categories[2].CategoryID.ToString(), null);
         //Assert
         Assert.Equal("../Shared/Product/_ProductUpdatePartialView", actionGet.ViewName);
         Assert.IsType<Product>(actionGet.Model);
-        Assert.Equal(3, (actionGet.Model as Product)?.CategoryID);
-        Assert.Equal("_P4", (actionGet.Model as Product)?.ProductName);
-        Assert.Equal(44.00M, (actionGet.Model as Product)?.ProductPrice);
+        Assert.Equal(4, mockRepository.Object.Products.ToArray()[3].ProductID);
+        Assert.Equal("_P4", mockRepository.Object.Products.ToArray()[3].ProductName);
+        Assert.Equal(44.00M, mockRepository.Object.Products.ToArray()[3].ProductPrice);
+        Assert.IsType<RedirectToActionResult>(actionPost);
+        Assert.Equal("Productlist", (actionPost as RedirectToActionResult)?.ActionName);
+    }
+    [Fact]
+    public void Can_Delete_Existing_Product()
+    {
+        //Arrange
+        Category[] categories = new Category[]
+        {
+            new Category{CategoryID = 1, CategoryName = "C1" },
+            new Category{CategoryID = 2, CategoryName = "C2" },
+            new Category{CategoryID = 3, CategoryName = "C3" }
+        };
+
+        Product[] products = new Product[]
+        {
+            new Product{ProductID = 1, ProductName = "P1", CategoryID = categories[0].CategoryID, ProductPrice=1.00M},
+            new Product{ProductID = 2, ProductName = "P2", CategoryID = categories[1].CategoryID, ProductPrice=2.00M},
+            new Product{ProductID = 3, ProductName = "P3", CategoryID = categories[0].CategoryID, ProductPrice=3.00M},
+            new Product{ProductID = 4, ProductName = "P4", CategoryID = categories[1].CategoryID, ProductPrice=4.00M},
+            new Product{ProductID = 5, ProductName = "P5", CategoryID = categories[2].CategoryID, ProductPrice=5.00M},
+            new Product{ProductID = 6, ProductName = "P6", CategoryID = categories[0].CategoryID, ProductPrice=6.00M},
+            new Product{ProductID = 7, ProductName = "P7", CategoryID = categories[1].CategoryID, ProductPrice=7.00M}
+        };
+        Mock<IProductRepository> mockRepository = new Mock<IProductRepository>();
+        mockRepository.Setup(mr => mr.Products).Returns((products).AsQueryable<Product>());
+        mockRepository.Setup(mr => mr.Categories).Returns((categories).AsQueryable<Category>());
+        SelectList categoriesList = new SelectList(categories, "CategoryID", "CategoryName");
+        categoriesList.Where(e => e.Value == categories[2].CategoryID.ToString()).FirstOrDefault()!.Selected = true;
+        ProductViewModel productViewModel = new ProductViewModel(products[3], categoriesList);
+        ProductController productController = new(mockRepository.Object);
+        //Act
+        PartialViewResult actionGet = Assert.IsType<PartialViewResult>(productController.DeleteProduct(2));
+        IActionResult? actionPost = productController.DeleteProduct(mockRepository.Object.Products.ToArray()[1], categories[1].CategoryID.ToString(), null);
+        //Assert
+        Assert.Equal("../Shared/Product/_ProductDeletePartialView", actionGet.ViewName);
+        Assert.IsType<Product>(actionGet.Model);
+        //Assert.Equal(null, mockRepository.Object.Products.ToArray()[1].ProductID);
+        //Assert.Equal("Нет в наличии", mockRepository.Object.Products.ToArray()[1].ProductName);
+        //Assert.Equal(2.00M, mockRepository.Object.Products.ToArray()[1].ProductPrice);
         Assert.IsType<RedirectToActionResult>(actionPost);
         Assert.Equal("Productlist", (actionPost as RedirectToActionResult)?.ActionName);
     }

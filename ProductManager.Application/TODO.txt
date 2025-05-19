@@ -16,14 +16,13 @@
 
 make at now:
 
-- make unit test of create product
-- make unit test of read product details
-- clean code
+- get right values of mockup data from unit testing
+- make unit testing of product update
 
 make in near future:
 
-- fix unit of update product
 - try to make unit testing of CRUD with modal popups
+- fix pagination when number of products is less than number of pages(show negative numbers of page and zero like a number of page)
 
 make in distant future(after making pricelist page and features):
 
