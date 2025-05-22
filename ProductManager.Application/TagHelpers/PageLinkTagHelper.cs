@@ -47,29 +47,39 @@ public class PageLinkTagHelper : TagHelper
             string css1 = "", css2 = "";
             TagBuilder pagination = new TagBuilder("div");
             TagBuilder pageButton = new TagBuilder("a");
-            if(PageModel.CurrenPage > 1)
+            if(PageModel.CurrentPage > 1)
             {
-                pageButton = PageLinkBuilder(PageModel.CurrenPage == 1 ? 1 : PageModel.CurrenPage - 1, urlHelper, " <-  ", PageClass, PageClassArrow);
+                pageButton = PageLinkBuilder(PageModel.CurrentPage == 1 ? 1 : PageModel.CurrentPage - 1, urlHelper, " <-  ", PageClass, PageClassArrow);
                 pagination.InnerHtml.AppendHtml(pageButton);
             }
-            int numberOfPageBeforeCurrentPage = PageModel.CurrenPage != 1 ? (PageModel.CurrenPage - 1) : 1;
-            numberOfPageBeforeCurrentPage = PageModel.CurrenPage != PageModel.TotalPages ? numberOfPageBeforeCurrentPage : (PageModel.CurrenPage - 2);
-            int numberOfPageAfterCurrentPage = PageModel.CurrenPage != PageModel.TotalPages ? (PageModel.CurrenPage + 1) : PageModel.TotalPages;
-            numberOfPageAfterCurrentPage = PageModel.CurrenPage != 1 ? numberOfPageAfterCurrentPage : (PageModel.CurrenPage + 2);
-            for (int i = numberOfPageBeforeCurrentPage; i <= numberOfPageAfterCurrentPage; i++)
-            {//cycle for display three pages
-                if (PageClassEnabled)
-                {
-                    css1 = PageClass;
-                    css2 = i == PageModel.CurrenPage ? PageClassSelected : PageClassNormal;
+            if (PageModel.TotalPages == 1)
+            {
+                pageButton = PageLinkBuilder(1, urlHelper, "1", PageClass, PageClassSelected);
+                pagination.InnerHtml.AppendHtml(pageButton);
+            }
+            else
+            {
+                int numberOfPageBeforeCurrentPage = PageModel.CurrentPage != 1 ? (PageModel.CurrentPage - 1) : 1;
+                numberOfPageBeforeCurrentPage = PageModel.CurrentPage != PageModel.TotalPages ? numberOfPageBeforeCurrentPage : (PageModel.CurrentPage - 2);
+                numberOfPageBeforeCurrentPage = numberOfPageBeforeCurrentPage == 0 ? 1 : numberOfPageBeforeCurrentPage;
+                int numberOfPageAfterCurrentPage = PageModel.CurrentPage != PageModel.TotalPages ? (PageModel.CurrentPage + 1) : PageModel.TotalPages;
+                numberOfPageAfterCurrentPage = PageModel.CurrentPage != 1 ? numberOfPageAfterCurrentPage : (PageModel.CurrentPage + 2);
+                numberOfPageAfterCurrentPage = numberOfPageAfterCurrentPage > PageModel.TotalPages ? PageModel.TotalPages : numberOfPageAfterCurrentPage;
+                for (int i = numberOfPageBeforeCurrentPage; i <= numberOfPageAfterCurrentPage; i++)
+                {//cycle for display three pages
+                    if (PageClassEnabled)
+                    {
+                        css1 = PageClass;
+                        css2 = i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal;
+                    }
+                    pageButton = PageLinkBuilder(i, urlHelper, i.ToString(), css1, css2);
+                    pagination.InnerHtml.AppendHtml(pageButton);
                 }
-                pageButton = PageLinkBuilder(i, urlHelper, i.ToString(), css1, css2);
-                pagination.InnerHtml.AppendHtml(pageButton);
-            }
-            if (PageModel.CurrenPage < PageModel.TotalPages)
-            {
-                pageButton = PageLinkBuilder(PageModel.CurrenPage == PageModel.TotalPages ? PageModel.TotalPages : PageModel.CurrenPage + 1, urlHelper, " -> ", PageClass, PageClassArrow);
-                pagination.InnerHtml.AppendHtml(pageButton);
+                if (PageModel.CurrentPage < PageModel.TotalPages)
+                {
+                    pageButton = PageLinkBuilder(PageModel.CurrentPage == PageModel.TotalPages ? PageModel.TotalPages : PageModel.CurrentPage + 1, urlHelper, " -> ", PageClass, PageClassArrow);
+                    pagination.InnerHtml.AppendHtml(pageButton);
+                }
             }
             output.Content.AppendHtml(pagination.InnerHtml);
         }

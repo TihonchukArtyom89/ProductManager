@@ -26,8 +26,4 @@ public class EFProductRepository : IProductRepository
         context.Remove(p);
         context.SaveChanges();
     }
-    public void SaveProduct(Product p)
-    {
-        context.SaveChanges();
-    }
 }

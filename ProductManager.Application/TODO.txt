@@ -5,7 +5,7 @@
 +make pagination for product list view
 +create category selector for product list view
 +add a few features to product list (pagination, page size selecting, category filtering, sorting on name, price, default, searching)
--add buttons with crud actions displaying on modal popup on product list view
++add buttons with crud actions displaying on modal popup on product list view
 -make another list of pricelists of products (controller, view & buttons etc.) 
 -try to make in list of pricelists some features with items of list without page reloading 
 -add some features from technical specification (get from doc file)
@@ -16,13 +16,23 @@
 
 make at now:
 
-- get right values of mockup data from unit testing
-- make unit testing of product update
+- fix wrong work of pagination 
+- fix wrong naming
+- make unit test delete product with modal popup 
+- expand db context class for using remaining db entities
+- remove unused code of saving product in class realising repository pattern
+- make interface for repository pattern for pricelist entities
+- make realisation class of interface for repository pattern for pricelist entities
 
 make in near future:
 
-- try to make unit testing of CRUD with modal popups
-- fix pagination when number of products is less than number of pages(show negative numbers of page and zero like a number of page)
+- make repository pattern for remaining entities
+- add default values to tables of pricelists,pricelistpurchases, pricelistoptionalparameters
+- make controller and for pricelist
+- make view of pricelist with items of list without page reloading
+- make buttons with crud actions displaying on modal popup on pricelist view
+- make unit tests for pricelist controller, view
+- make another list of pricelists of products (controller, view & buttons etc.)
 
 make in distant future(after making pricelist page and features):
 

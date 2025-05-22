@@ -82,7 +82,7 @@ public class ProductController : Controller
             Products = products,
             PageViewModel = new PageViewModel
             {
-                CurrenPage = ViewBag.SelectedPage,
+                CurrentPage = ViewBag.SelectedPage,
                 PageSize = pageSize,
                 TotalItems = totalItems,
                 Pseudonym = "Products"

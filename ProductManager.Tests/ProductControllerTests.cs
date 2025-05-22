@@ -70,7 +70,7 @@ public class ProductControllerTests
         ProductsListViewModel productsListViewModel = productController.ProductList(category: null, searchString: null, sortOrder: SortOrder.PriceDesc, productPage: 2, pageSize: 3)?.ViewData.Model as ProductsListViewModel ?? new();
         //Assert
         PageViewModel pageViewModel = productsListViewModel.PageViewModel;
-        Assert.Equal(2, pageViewModel.CurrenPage);
+        Assert.Equal(2, pageViewModel.CurrentPage);
         Assert.Equal(2, pageViewModel.TotalPages);
         Assert.Equal(3, pageViewModel.PageSize);
         Assert.Equal(5, pageViewModel.TotalItems);
@@ -533,9 +533,6 @@ public class ProductControllerTests
         //Assert
         Assert.Equal("../Shared/Product/_ProductDeletePartialView", actionGet.ViewName);
         Assert.IsType<Product>(actionGet.Model);
-        //Assert.Equal(null, mockRepository.Object.Products.ToArray()[1].ProductID);
-        //Assert.Equal("Нет в наличии", mockRepository.Object.Products.ToArray()[1].ProductName);
-        //Assert.Equal(2.00M, mockRepository.Object.Products.ToArray()[1].ProductPrice);
         Assert.IsType<RedirectToActionResult>(actionPost);
         Assert.Equal("Productlist", (actionPost as RedirectToActionResult)?.ActionName);
     }
