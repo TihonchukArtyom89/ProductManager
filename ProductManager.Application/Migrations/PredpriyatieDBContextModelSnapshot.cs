@@ -79,6 +79,9 @@ namespace ProductManager.Application.Migrations
                     b.Property<DateTime>("PriceListDateCreation")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("PriceListDateModification")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("PricelistName")
                         .IsRequired()
                         .HasMaxLength(50)

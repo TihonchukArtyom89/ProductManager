@@ -31,7 +31,8 @@ namespace ProductManager.Application.Migrations
                     PricelistId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PricelistName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PriceListDateCreation = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PriceListDateCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PriceListDateModification = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

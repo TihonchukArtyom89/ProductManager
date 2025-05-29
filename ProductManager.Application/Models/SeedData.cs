@@ -23,6 +23,22 @@ public static class SeedData
             {
                 context.Database.Migrate();
             }
+            if (!context.ProductQuantityTypes.Any())
+            {//code for insert sample data to table ProductQuantityTypes
+                context.ProductQuantityTypes.AddRange(//fill ProductQuantityTypes Table with sample data
+                    new ProductQuantityType { ProductQuantityTypeName = "Поштучно." },
+                    new ProductQuantityType { ProductQuantityTypeName = "По весу." },
+                    new ProductQuantityType { ProductQuantityTypeName = "По объёму." });
+                context.SaveChanges();
+                if (!context.ProductQuantities.Any())
+                {//code for insert sample data to table ProductQuantity
+                    context.ProductQuantities.AddRange(//fill ProductQuantity Table with sample data
+                        new ProductQuantity { ProductQuantityTypeID = 1, ProductQuantityName = "шт." },
+                        new ProductQuantity { ProductQuantityTypeID = 2, ProductQuantityName = "кг." },
+                        new ProductQuantity { ProductQuantityTypeID = 3, ProductQuantityName = "л." });
+                    context.SaveChanges();
+                }
+            }
             if (!context.Products.Any())
             {
                 if (!context.Categories.Any())
@@ -38,7 +54,7 @@ public static class SeedData
                 Category category_2 = context.Categories.Where(c => c.CategoryName == "Фрукты").FirstOrDefault()!;//add value for null categories
                 context.Products.AddRange(//fill Products Table with sample data
                     new Product { ProductName = "Стул", ProductDescription = "Обычный стул", ProductPrice = 1547.04m, CategoryID = category_1.CategoryID },
-                    new Product { ProductName = "Яблоко", ProductDescription = "Красное, наливное", ProductPrice = 196.67m, CategoryID = category_2.CategoryID},
+                    new Product { ProductName = "Яблоко", ProductDescription = "Красное, наливное", ProductPrice = 196.67m, CategoryID = category_2.CategoryID },
                     new Product { ProductName = "Слива", ProductDescription = "Спелая,садовая", ProductPrice = 378.00m, CategoryID = category_2.CategoryID },
                     new Product { ProductName = "Стол № 1", ProductDescription = "Для обеда в саду", ProductPrice = 3098.39m, CategoryID = category_1.CategoryID },
                     new Product { ProductName = "Груша", ProductDescription = "Можно скушать", ProductPrice = 247.07m, CategoryID = category_2.CategoryID },
@@ -47,6 +63,14 @@ public static class SeedData
                     new Product { ProductName = "Маракуйя", ProductDescription = "Фрукт страсти", ProductPrice = 2399.07m, CategoryID = category_2.CategoryID }
                     );
                 context.SaveChanges();
+                if (!context.Pricelists.Any())
+                {
+                    context.Pricelists.AddRange(//fill Pricelists Table with sample data
+                        new Pricelist { PricelistName = "Январьский прайслист", PriceListDateCreation = new DateTime(2025, 1, 23, 12, 34, 55), PriceListDateModification = new DateTime(2025, 2, 28, 17, 56, 12) },
+                        new Pricelist { PricelistName = "Февральский прайслист", PriceListDateCreation = new DateTime(2025, 1, 26, 9, 45, 5), PriceListDateModification = new DateTime(2025, 5, 12, 10, 13, 17) }
+                        );
+                    context.SaveChanges();
+                }
             }
         }
         catch (Exception ex)

@@ -12,7 +12,7 @@ using ProductManager.Application.Models;
 namespace ProductManager.Application.Migrations
 {
     [DbContext(typeof(PredpriyatieDBContext))]
-    [Migration("20250318071412_Initial")]
+    [Migration("20250528114609_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -80,6 +80,9 @@ namespace ProductManager.Application.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PricelistId"));
 
                     b.Property<DateTime>("PriceListDateCreation")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("PriceListDateModification")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PricelistName")

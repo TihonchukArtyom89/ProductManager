@@ -24,4 +24,24 @@ public class SystemValues
             ProductDescription = category == null ? "Продуктов данной категории не имеется!" : "Продуктов в категории " + category.CategoryName + " не имеется!"
         };
     }
+    public static Pricelist GetPricelistNull()
+    {
+        return new Pricelist()
+        {
+            PricelistId = 0,
+            PricelistName = "Нет прайс-листов!",
+            PriceListDateCreation = DateTime.Now,
+            PriceListDateModification = DateTime.Now,
+        };
+    }
+    public static Pricelist GetPricelistNotFound(string searchQuery)
+    {
+        return new Pricelist()
+        {
+            PricelistId = 0,
+            PricelistName = "Не найдено!",
+            PriceListDateCreation = DateTime.Now,
+            PriceListDateModification = DateTime.Now,
+        };
+    }
 }

@@ -84,10 +84,11 @@ public class ProductController : Controller
             {
                 CurrentPage = ViewBag.SelectedPage,
                 PageSize = pageSize,
-                TotalItems = totalItems,
-                Pseudonym = "Products"
+                TotalItems = totalItems
             },
             CurrentCategory = (CurrentCategory ?? new Category { CategoryName = null ?? "" }).CategoryName,
+            ControllerName = "Product",
+            ActionName = "ProductList",
         };
         ViewBag.CurrentCategory = viewModel.CurrentCategory;
         return View(viewModel);

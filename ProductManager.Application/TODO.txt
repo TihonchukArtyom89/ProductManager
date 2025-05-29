@@ -16,19 +16,30 @@
 
 make at now:
 
-- fix wrong work of pagination 
-- fix wrong naming
-- make unit test delete product with modal popup 
-- expand db context class for using remaining db entities
-- remove unused code of saving product in class realising repository pattern
-- make interface for repository pattern for pricelist entities
-- make realisation class of interface for repository pattern for pricelist entities
+- add default values to tables of product quantity db entities
+- make pricelist view model class
+- add new button for go to pricelist view
+- add new field for date of modification to pricelist model
+- make action of controller for pricelist view
+- add default values to pricelist table
+- make table with list of pricelists
+- fix troubles with db
+- fix not showing list of pricelists
+- fix work of selecting page size in list of pricelists view
+- make search feature for list of pricelists view
+- make sorting feature(name and neutral) for list of pricelists view
+- remove pseudonym fields from pageview model
+- make sorting feature(on date creation and modification) for list of pricelists view
 
 make in near future:
 
-- make repository pattern for remaining entities
-- add default values to tables of pricelists,pricelistpurchases, pricelistoptionalparameters
-- make controller and for pricelist
+- add using actionname and controllername properties of view models classes
+- make work pagination for list of pricelists view
+- make add new pricelist feature for list of pricelists view
+- make link from name of pricelist in list of pricelist to page of some pricelist
+- make one array of page sizes
+- make product quantity part of product list controller,model, view
+- add default values to tables of pricelists db entities
 - make view of pricelist with items of list without page reloading
 - make buttons with crud actions displaying on modal popup on pricelist view
 - make unit tests for pricelist controller, view

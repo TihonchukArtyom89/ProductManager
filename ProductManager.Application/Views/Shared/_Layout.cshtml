@@ -15,7 +15,7 @@
         <span class="navbar-brand ml-2">Управление продуктами предприятия</span>
         <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Главная</a>
         <a asp-action="ProductList" asp-controller="Product" class="btn btn-primary">Продукты</a>
-        @* <a class="btn btn-primary">Прайс-листы(Будет реализовано позже)</a> *@
+        <a asp-action="PriceList" asp-controller="Pricelist" class="btn btn-primary">Прайслисты</a>
     </div>
     <div class="row m-1 p-1">
         @RenderBody()

@@ -1,6 +1,6 @@
 ﻿@model BaseListViewModel
 
-<form method="post" id=@("form"+@Model.PageViewModel.Pseudonym+"PageSizeSelector") asp-controller="Product" asp-action="ProductList" asp-route-category="@ViewBag.SelectedCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
+<form method="post" id=@("form"+@Model.ActionName+"PageSizeSelector") asp-controller=@Model.ControllerName asp-action=@Model.ActionName asp-route-category="@ViewBag.SelectedCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
     <div class="d-grip gap-2">
         <b class="m-1">Выберите размер страницы</b>
         <select id="pageSizeSelector" name="pageSize">

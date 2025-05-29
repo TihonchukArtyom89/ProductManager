@@ -3,9 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.Data.SqlClient;
 using ProductManager.Application.ViewModels;
-using ProductManager.Application.Models;
 using SortOrder = ProductManager.Application.Models.SortOrder;
 
 namespace ProductManager.Application.Infrastructure;
