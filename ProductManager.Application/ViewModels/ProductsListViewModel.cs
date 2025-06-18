@@ -6,8 +6,8 @@ public class ProductsListViewModel : BaseListViewModel
 {
     public ProductsListViewModel()
     {
-        PageViewModel = new() {};
-        PageSizes = new int[] { 1, 2, 3, 5, 10 };
+        PageViewModel = new BaseListViewModel().PageViewModel;
+        PageSizes = new BaseListViewModel().PageSizes;
     }
     public IEnumerable<Product> Products { get; set; } = Enumerable.Empty<Product>();
     public string? CurrentCategory { get; set; }

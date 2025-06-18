@@ -16,34 +16,34 @@
 
 make at now:
 
-- add default values to tables of product quantity db entities
-- make pricelist view model class
-- add new button for go to pricelist view
-- add new field for date of modification to pricelist model
-- make action of controller for pricelist view
-- add default values to pricelist table
-- make table with list of pricelists
-- fix troubles with db
-- fix not showing list of pricelists
-- fix work of selecting page size in list of pricelists view
-- make search feature for list of pricelists view
-- make sorting feature(name and neutral) for list of pricelists view
-- remove pseudonym fields from pageview model
-- make sorting feature(on date creation and modification) for list of pricelists view
+- add using actionname and controllername properties of view models classes
+- make pagination for list of pricelists view
+- make one array of page sizes
+- make roadmap of selected pricelist in pricelist controller in comments
+- fix button on top navigation line to pricelist list view
+- fix pagination for pricelist list view
+- rename PriceList to PricelistList
+- make result if pricelist is empty in pricelist list view
+- make result of search if pricelist is empty in pricelist list view
 
 make in near future:
 
-- add using actionname and controllername properties of view models classes
-- make work pagination for list of pricelists view
-- make add new pricelist feature for list of pricelists view
+- make action for page of selected pricelist in pricelist controller
+- make viewmodel for page of selected pricelist
+- rework visual diagram of database (optional parameter -> for product of some pricelist and product quantity -> for products and watch all visual scheme for bugs)
+- add default values of product to pricelists
+- fix unit tests for productlist controller, view
+- make page(not model popup) for pricelist with list of products
+- make CRUD for pricelist feature 
+- save some data values when creating pricelist (price, type of quantity, number of products in purchase)
+- when editing pricelist you can (1, 2, 3, 6 -> devnote)
 - make link from name of pricelist in list of pricelist to page of some pricelist
-- make one array of page sizes
 - make product quantity part of product list controller,model, view
-- add default values to tables of pricelists db entities
-- make view of pricelist with items of list without page reloading
+- make view of pricelist with items of list without page reloading(reread technical task)
 - make buttons with crud actions displaying on modal popup on pricelist view
 - make unit tests for pricelist controller, view
 - make another list of pricelists of products (controller, view & buttons etc.)
+- make XML - documentation for project in two languages (English and Russian)
 
 make in distant future(after making pricelist page and features):
 

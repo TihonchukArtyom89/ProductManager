@@ -12,7 +12,7 @@ public class PricelistController : Controller
     {
         pricelistRepository = _pricelistRepository;
     }
-    public IActionResult PriceList(string? searchString, SortOrder sortOrder = SortOrder.Neutral, int pricelistPage = 1, int pageSize = 1)
+    public IActionResult PricelistList(string? searchString, SortOrder sortOrder = SortOrder.Neutral, int pricelistPage = 1, int pageSize = 1)
     {
         ViewBag.SelectedPageSize = pageSize;
         ViewBag.DateCreationSortOrder = sortOrder == SortOrder.DateCreationDesc ? SortOrder.DateCreationAsc : SortOrder.DateCreationDesc;
@@ -84,8 +84,8 @@ public class PricelistController : Controller
                 PageSize = pageSize,
                 TotalItems = totalItems
             },
-            ControllerName = "Pricelist",
-            ActionName = "PriceList"
+            ControllerName = ControllerContext.ActionDescriptor.ControllerName ?? "",
+            ActionName = ControllerContext.ActionDescriptor.ActionName ?? "",
         };
         return View(viewModel);
     }
@@ -105,5 +105,13 @@ public class PricelistController : Controller
             sortOrder = sortOrder == SortOrder.DateModificationDesc ? SortOrder.DateModificationAsc : SortOrder.DateModificationDesc;
         }
         return sortOrder;
+    }
+    public IActionResult PricelistPage()
+    {
+        //действие для отображения страницы прайслиста с продуктами и дополнительными параметрами в нём
+        //в передаваемом параметре будет передаваться ИД прайслиста, который нужно отобразить(наверное на данном этапе это всё)
+        //сделать модель представления для страницы прайслиста, которая будет содержать в себе список продуктов и список опциональных параметров
+        //изменить количество отображаемых продуктов на странице прайслиста с 1,2,5,10 на 5,10,20,50,100
+        return View();
     }
 }

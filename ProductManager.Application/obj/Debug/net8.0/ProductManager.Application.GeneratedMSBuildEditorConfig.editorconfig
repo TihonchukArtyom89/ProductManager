@@ -24,8 +24,12 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mort/source/repos/ProductManager/ProductManager.Application/Views/Pricelist/PriceList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpY2VsaXN0XFByaWNlTGlzdC5jc2h0bWw=
+[C:/Users/mort/source/repos/ProductManager/ProductManager.Application/Views/Pricelist/PricelistList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpY2VsaXN0XFByaWNlbGlzdExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mort/source/repos/ProductManager/ProductManager.Application/Views/Pricelist/PricelistPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpY2VsaXN0XFByaWNlbGlzdFBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mort/source/repos/ProductManager/ProductManager.Application/Views/Product/ProductList.cshtml]

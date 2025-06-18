@@ -23,7 +23,7 @@ public class ProductController : Controller
         ViewBag.NameSortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
         ViewBag.PriceSortingText = sortOrder != SortOrder.PriceDesc ? "От дорогих к дешёвым" : "От дешёвых к дорогим";
         ViewBag.NameSortingText = sortOrder != SortOrder.NameDesc ? "От Я до А" : "От А до Я";
-        Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
+        Category ? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
         ViewBag.Categories = new SelectList(productRepository.Categories, "CategoryID", "CategoryName");
         IEnumerable<Product> products = productRepository.Products;
         Product SystemProduct = SystemValues.GetProductNull(CurrentCategory ?? new Category());
@@ -87,8 +87,8 @@ public class ProductController : Controller
                 TotalItems = totalItems
             },
             CurrentCategory = (CurrentCategory ?? new Category { CategoryName = null ?? "" }).CategoryName,
-            ControllerName = "Product",
-            ActionName = "ProductList",
+            ControllerName = ControllerContext.ActionDescriptor.ControllerName ?? "",
+            ActionName = ControllerContext.ActionDescriptor.ActionName ?? "",
         };
         ViewBag.CurrentCategory = viewModel.CurrentCategory;
         return View(viewModel);

@@ -66,8 +66,48 @@ public static class SeedData
                 if (!context.Pricelists.Any())
                 {
                     context.Pricelists.AddRange(//fill Pricelists Table with sample data
-                        new Pricelist { PricelistName = "Январьский прайслист", PriceListDateCreation = new DateTime(2025, 1, 23, 12, 34, 55), PriceListDateModification = new DateTime(2025, 2, 28, 17, 56, 12) },
-                        new Pricelist { PricelistName = "Февральский прайслист", PriceListDateCreation = new DateTime(2025, 1, 26, 9, 45, 5), PriceListDateModification = new DateTime(2025, 5, 12, 10, 13, 17) }
+                        new Pricelist { 
+                            PricelistName = "Январьский прайслист",
+                            PriceListDateCreation = new DateTime(2025, 1, 23, 12, 34, 55),
+                            PriceListDateModification = new DateTime(2025, 2, 28, 17, 56, 12),
+                            PricelistProductPurchases = new List<PricelistProductPurchase>
+                            {
+                                new PricelistProductPurchase { 
+                                    ProductID = 1,
+                                    //ProductQuantityID = 1,
+                                    ProductPrice = 1547.04m 
+                                },
+                                new PricelistProductPurchase { 
+                                    ProductID = 2,
+                                    //ProductQuantityID = 2,
+                                    ProductPrice = 196.67m 
+                                },
+                                new PricelistProductPurchase { 
+                                    ProductID = 3,
+                                    //ProductQuantityID = 2, 
+                                    ProductPrice = 378.00m 
+                                }
+                            }
+                        },
+                        new Pricelist 
+                        { 
+                            PricelistName = "Февральский прайслист",
+                            PriceListDateCreation = new DateTime(2025, 1, 26, 9, 45, 5),
+                            PriceListDateModification = new DateTime(2025, 5, 12, 10, 13, 17),
+                            PricelistProductPurchases = new List<PricelistProductPurchase>
+                            {
+                                new PricelistProductPurchase { 
+                                    ProductID = 5,
+                                    //ProductQuantityID = 2,
+                                    ProductPrice = 247.07m 
+                                },
+                                new PricelistProductPurchase { 
+                                    ProductID = 6,
+                                    //ProductQuantityID = 1,
+                                    ProductPrice = 15999.98m 
+                                }
+                            }
+                        }
                         );
                     context.SaveChanges();
                 }

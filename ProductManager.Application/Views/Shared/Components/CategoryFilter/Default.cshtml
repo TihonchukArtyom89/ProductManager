@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<string>
+
 @{
     if(ViewBag.SortOrder != null)
     {
@@ -12,6 +13,7 @@
         }
     }
 }
+
 <div class="d-grid gap-2">
     <a class="btn btn-outline-secondary" asp-action="ProductList" asp-controller="Product" asp-route-category="" asp-route-searchString="@ViewBag.SearchString" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-productPage="@(ViewBag.ProductCount == 0 ? 1 : ViewBag.SelectedPage)">Все продукты</a>
     @foreach (string category in Model ?? Enumerable.Empty<string>())

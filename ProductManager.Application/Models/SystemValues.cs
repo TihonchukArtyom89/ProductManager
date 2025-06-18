@@ -28,20 +28,20 @@ public class SystemValues
     {
         return new Pricelist()
         {
-            PricelistId = 0,
+            PricelistId = null,
             PricelistName = "Нет прайс-листов!",
-            PriceListDateCreation = DateTime.Now,
-            PriceListDateModification = DateTime.Now,
+            PriceListDateCreation = null,
+            PriceListDateModification = null,
         };
     }
     public static Pricelist GetPricelistNotFound(string searchQuery)
     {
         return new Pricelist()
         {
-            PricelistId = 0,
-            PricelistName = "Не найдено!",
-            PriceListDateCreation = DateTime.Now,
-            PriceListDateModification = DateTime.Now,
+            PricelistId = null,
+            PricelistName = "Не найдено таких прайслистов: " + searchQuery + " !",
+            PriceListDateCreation = null,
+            PriceListDateModification = null,
         };
     }
 }
