@@ -28,4 +28,5 @@ public class Product
     public decimal ProductPrice { get; set; }//цена продукта
     public List<PricelistProductPurchase>? PricelistProductPurchases { get; set; }//навигационное св-во на таблицу покупок(на зависимую сущность)
     public Product() { CategoryID = new Category().CategoryID; }
+    public ProductQuantity? ProductQuantity { get; set; }//навигационное св-во на таблицу разновидностей количеств продукта(на главную сущность)
 }

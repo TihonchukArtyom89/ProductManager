@@ -12,11 +12,11 @@
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="@("#updateProduct_" + Model.ProductID)" asp-controller="Product" asp-action="UpdateProduct">
                     Редактировать @Model.ProductName
                 </button>
-                <partial name="../Shared/Product/_ProductUpdatePartialView" , model="new ProductViewModel(Model, ViewBag.Categories)" />
+                <partial name="../Shared/Product/_ProductUpdatePartialView" , model="new ProductPageViewModel(Model, ViewBag.Categories)" />
                 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="@("#productDetails_" + Model.ProductID)" asp-controller="Product" asp-action="ProductDetails">
                     Подробнее о @Model.ProductName
                 </button>
-                <partial name="../Shared/Product/_ProductDetailsPartialView" , model="new ProductViewModel(Model, ViewBag.Categories)" />
+                <partial name="../Shared/Product/_ProductDetailsPartialView" , model="new ProductPageViewModel(Model, ViewBag.Categories)" />
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="@("#deleteProduct_" + Model.ProductID)" asp-controller="Product" asp-action="DeleteProduct">
                     Удалить @Model.ProductName
                 </button>

@@ -13,7 +13,7 @@ public class PricelistProductPurchase
     public long ProductID { get; set; }//ИД продукта, который был куплен// внешний ключ на таблицу продуктов
     [DisplayName("Количество продуктов в покупке")]
     [Required(ErrorMessage = "Введите количество продуктов в прайслисте.")]
-    public float ProductQuantityNumber { get; set; }//количество продуктов(не целочисленная так как продукт может быть измеряться по весу - может вводится черз форму)
+    public float ProductQuantityNumber { get; set; }//количество продуктов, которое было приобретено в данной покупке (не целочисленная так как продукт может быть измеряться по весу - может вводится черз форму)
     [DisplayName("Цена продукта")]
     [Required(ErrorMessage = "Укажите цену купленного продукта.")]
     [Range(0.01, double.MaxValue, ErrorMessage = "Цена должна быть больше ноля.")]
@@ -22,4 +22,5 @@ public class PricelistProductPurchase
     public Product? Product { get; set; }//навигационное св-во на таблицу продуктов(на главную сущность)
     public Pricelist? Pricelist { get; set; }//навигационное св-во на таблицу прайслистов покупок продуктов(на главную сущность)
     public ProductQuantity? ProductQuantity { get; set; }//навигационное св-во на таблицу разновидностей количеств продукта(на главную сущность)
+    public List<PricelistOptionalParameter>? PricelistOptionalParameters { get; set; }//навигационное св-во на таблицу опциональных параметров покупки в прайслисте (на зависимую сущность)
 }

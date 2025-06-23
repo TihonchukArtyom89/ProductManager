@@ -1,9 +1,9 @@
 ﻿using ProductManager.Application.Models.DBEntities;
 namespace ProductManager.Application.ViewModels;
 
-public class PriceListViewModel : BaseListViewModel
+public class PricelistListViewModel : BaseListViewModel
 {
-    public PriceListViewModel()
+    public PricelistListViewModel()
     {
         PageViewModel = new BaseListViewModel().PageViewModel;
         PageSizes = new BaseListViewModel().PageSizes;

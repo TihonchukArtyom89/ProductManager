@@ -113,7 +113,7 @@ public class ProductController : Controller
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult CreateProduct(ProductViewModel productViewModel, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
+    public IActionResult CreateProduct(ProductPageViewModel productViewModel, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
         sortOrder = SaveSortOrderState(sortOrder);
         SetProductData(productViewModel);
@@ -136,7 +136,7 @@ public class ProductController : Controller
         return PartialView(viewName: "../Shared/Product/_ProductUpdatePartialView", model: product);
     }
     [HttpPost]
-    public IActionResult UpdateProduct(ProductViewModel productViewModel, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
+    public IActionResult UpdateProduct(ProductPageViewModel productViewModel, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
         sortOrder = SaveSortOrderState(sortOrder);
         SetProductData(productViewModel);
@@ -180,7 +180,7 @@ public class ProductController : Controller
         Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? SystemValues.GetProductNull();
         return PartialView(viewName: "../Shared/Product/_ProductDetailsPartialView", model: product);
     }
-    public void SetProductData(ProductViewModel productViewModel)
+    public void SetProductData(ProductPageViewModel productViewModel)
     {
         productViewModel.ProductPriceString = productViewModel.ProductPriceString.ToString(CultureInfo.InvariantCulture).Replace(',', '.');
         if (decimal.TryParse(productViewModel.ProductPriceString, NumberStyles.Float, CultureInfo.InvariantCulture, out decimal parsedPrice))

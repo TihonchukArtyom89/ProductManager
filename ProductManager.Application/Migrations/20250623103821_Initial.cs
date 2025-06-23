@@ -25,14 +25,28 @@ namespace ProductManager.Application.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OptionalParameters",
+                columns: table => new
+                {
+                    OptionalParameterID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OptionalParameterType = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    OptionalParameterName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OptionalParameters", x => x.OptionalParameterID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Pricelists",
                 columns: table => new
                 {
                     PricelistId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PricelistName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PriceListDateCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PriceListDateModification = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PriceListDateCreation = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PriceListDateModification = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,49 +64,6 @@ namespace ProductManager.Application.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductQuantityTypes", x => x.ProductQuantityTypeID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    ProductID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ProductDescription = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    CategoryID = table.Column<long>(type: "bigint", nullable: false),
-                    ProductPrice = table.Column<decimal>(type: "decimal(8,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.ProductID);
-                    table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryID",
-                        column: x => x.CategoryID,
-                        principalTable: "Categories",
-                        principalColumn: "CategoryID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PricelistOptionalParameters",
-                columns: table => new
-                {
-                    OptionalParameterEntryID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OptionalParameterID = table.Column<long>(type: "bigint", nullable: false),
-                    OptionalParameterValue = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PricelistID = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PricelistOptionalParameters", x => x.OptionalParameterEntryID);
-                    table.ForeignKey(
-                        name: "FK_PricelistOptionalParameters_Pricelists_PricelistID",
-                        column: x => x.PricelistID,
-                        principalTable: "Pricelists",
-                        principalColumn: "PricelistId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -116,23 +87,31 @@ namespace ProductManager.Application.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OptionalParameters",
+                name: "Products",
                 columns: table => new
                 {
-                    OptionalParameterID = table.Column<long>(type: "bigint", nullable: false)
+                    ProductID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OptionalParameterType = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    OptionalParameterName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PricelistOptionalParameterOptionalParameterEntryID = table.Column<long>(type: "bigint", nullable: true)
+                    ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    CategoryID = table.Column<long>(type: "bigint", nullable: false),
+                    ProductPrice = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    ProductQuantityID = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OptionalParameters", x => x.OptionalParameterID);
+                    table.PrimaryKey("PK_Products", x => x.ProductID);
                     table.ForeignKey(
-                        name: "FK_OptionalParameters_PricelistOptionalParameters_PricelistOptionalParameterOptionalParameterEntryID",
-                        column: x => x.PricelistOptionalParameterOptionalParameterEntryID,
-                        principalTable: "PricelistOptionalParameters",
-                        principalColumn: "OptionalParameterEntryID");
+                        name: "FK_Products_Categories_CategoryID",
+                        column: x => x.CategoryID,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductQuantities_ProductQuantityID",
+                        column: x => x.ProductQuantityID,
+                        principalTable: "ProductQuantities",
+                        principalColumn: "ProductQuantityID");
                 });
 
             migrationBuilder.CreateTable(
@@ -169,15 +148,53 @@ namespace ProductManager.Application.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_OptionalParameters_PricelistOptionalParameterOptionalParameterEntryID",
-                table: "OptionalParameters",
-                column: "PricelistOptionalParameterOptionalParameterEntryID");
+            migrationBuilder.CreateTable(
+                name: "PricelistOptionalParameters",
+                columns: table => new
+                {
+                    OptionalParameterEntryID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OptionalParameterID = table.Column<long>(type: "bigint", nullable: false),
+                    OptionalParameterValue = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PricelistPurchaseID = table.Column<long>(type: "bigint", nullable: false),
+                    PricelistId = table.Column<long>(type: "bigint", nullable: true),
+                    PricelistProductPurchasePurchaseID = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PricelistOptionalParameters", x => x.OptionalParameterEntryID);
+                    table.ForeignKey(
+                        name: "FK_PricelistOptionalParameters_OptionalParameters_OptionalParameterID",
+                        column: x => x.OptionalParameterID,
+                        principalTable: "OptionalParameters",
+                        principalColumn: "OptionalParameterID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PricelistOptionalParameters_PricelistProductPurchases_PricelistProductPurchasePurchaseID",
+                        column: x => x.PricelistProductPurchasePurchaseID,
+                        principalTable: "PricelistProductPurchases",
+                        principalColumn: "PurchaseID");
+                    table.ForeignKey(
+                        name: "FK_PricelistOptionalParameters_Pricelists_PricelistId",
+                        column: x => x.PricelistId,
+                        principalTable: "Pricelists",
+                        principalColumn: "PricelistId");
+                });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PricelistOptionalParameters_PricelistID",
+                name: "IX_PricelistOptionalParameters_OptionalParameterID",
                 table: "PricelistOptionalParameters",
-                column: "PricelistID");
+                column: "OptionalParameterID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PricelistOptionalParameters_PricelistId",
+                table: "PricelistOptionalParameters",
+                column: "PricelistId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PricelistOptionalParameters_PricelistProductPurchasePurchaseID",
+                table: "PricelistOptionalParameters",
+                column: "PricelistProductPurchasePurchaseID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PricelistProductPurchases_PricelistID",
@@ -203,11 +220,19 @@ namespace ProductManager.Application.Migrations
                 name: "IX_Products_CategoryID",
                 table: "Products",
                 column: "CategoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ProductQuantityID",
+                table: "Products",
+                column: "ProductQuantityID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "PricelistOptionalParameters");
+
             migrationBuilder.DropTable(
                 name: "OptionalParameters");
 
@@ -215,22 +240,19 @@ namespace ProductManager.Application.Migrations
                 name: "PricelistProductPurchases");
 
             migrationBuilder.DropTable(
-                name: "PricelistOptionalParameters");
-
-            migrationBuilder.DropTable(
-                name: "ProductQuantities");
+                name: "Pricelists");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Pricelists");
+                name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "ProductQuantities");
 
             migrationBuilder.DropTable(
                 name: "ProductQuantityTypes");
-
-            migrationBuilder.DropTable(
-                name: "Categories");
         }
     }
 }

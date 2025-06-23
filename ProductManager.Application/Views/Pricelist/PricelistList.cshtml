@@ -3,7 +3,7 @@
 сделать кнопку вызова модального окна для добавления нового прайслиста
 на каждую позицию прайслиста добавить кнопку вызова модального окна для редактирования, удаления данного прайслиста и просмотра дополнительных деталей о нём    *@
 @using ProductManager.Application.Models.DBEntities
-@model PriceListViewModel
+@model PricelistListViewModel
 
 <div class="col-11">
     <div class="d-inline-block d-flex align-items-center">
@@ -39,7 +39,16 @@
             {
                 <tr>
                     <td>@pricelist.PricelistId</td>
-                    <td>@pricelist.PricelistName</td>
+                    @if (@pricelist.PricelistId != null)
+                    {
+                        <td>
+                            <a asp-controller="@Model?.ControllerName" asp-action="PricelistPage" asp-route-pricelistId="@pricelist.PricelistId">@pricelist.PricelistName</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>@pricelist.PricelistName</td>
+                    }
                     <td>@pricelist.PriceListDateCreation</td>
                     <td>@pricelist.PriceListDateModification</td>
                 </tr>

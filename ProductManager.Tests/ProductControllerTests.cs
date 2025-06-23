@@ -415,7 +415,7 @@ public class ProductControllerTests
         mockRepository.Setup(mr => mr.Categories).Returns((categories).AsQueryable<Category>());
         SelectList categoriesList = new SelectList(categories, "CategoryID", "CategoryName");
         categoriesList.Where(e => e.Value == categories[2].CategoryID.ToString()).FirstOrDefault()!.Selected = true;
-        ProductViewModel productViewModel = new ProductViewModel(product, categoriesList);
+        ProductPageViewModel productViewModel = new ProductPageViewModel(product, categoriesList);
         ProductController productController = new(mockRepository.Object);
         //Act
         PartialViewResult actionGet = Assert.IsType<PartialViewResult>(productController.CreateProduct());
@@ -486,7 +486,7 @@ public class ProductControllerTests
         ProductController productController = new(mockRepository.Object);
         products[3].ProductName = "_P4";
         products[3].ProductPrice = 44.00M;
-        ProductViewModel productViewModel = new ProductViewModel(products[3], categoriesList);
+        ProductPageViewModel productViewModel = new ProductPageViewModel(products[3], categoriesList);
         //Act
         PartialViewResult actionGet = Assert.IsType<PartialViewResult>(productController.UpdateProduct(products[3].ProductID ?? 0));
         IActionResult? actionPost = productController.UpdateProduct(productViewModel, categories[2].CategoryID.ToString(), null);
@@ -525,7 +525,7 @@ public class ProductControllerTests
         mockRepository.Setup(mr => mr.Categories).Returns((categories).AsQueryable<Category>());
         SelectList categoriesList = new SelectList(categories, "CategoryID", "CategoryName");
         categoriesList.Where(e => e.Value == categories[2].CategoryID.ToString()).FirstOrDefault()!.Selected = true;
-        ProductViewModel productViewModel = new ProductViewModel(products[3], categoriesList);
+        ProductPageViewModel productViewModel = new ProductPageViewModel(products[3], categoriesList);
         ProductController productController = new(mockRepository.Object);
         //Act
         PartialViewResult actionGet = Assert.IsType<PartialViewResult>(productController.DeleteProduct(2));

@@ -75,7 +75,7 @@ public class PricelistController : Controller
         ViewBag.PricelistCount = pricelists.Count();
         ViewBag.SelectedPage = pricelistPage;
         pricelists = pricelists.Count() != 0 ? pricelists : pricelists.Append(SystemPricelist);
-        PriceListViewModel viewModel = new PriceListViewModel
+        PricelistListViewModel viewModel = new PricelistListViewModel
         {
             PriceLists = pricelists,
             PageViewModel = new PageViewModel
@@ -106,12 +106,18 @@ public class PricelistController : Controller
         }
         return sortOrder;
     }
-    public IActionResult PricelistPage()
+    public IActionResult PricelistPage(long? pricelistId = 0)
     {
         //действие для отображения страницы прайслиста с продуктами и дополнительными параметрами в нём
         //в передаваемом параметре будет передаваться ИД прайслиста, который нужно отобразить(наверное на данном этапе это всё)
         //сделать модель представления для страницы прайслиста, которая будет содержать в себе список продуктов и список опциональных параметров
         //изменить количество отображаемых продуктов на странице прайслиста с 1,2,5,10 на 5,10,20,50,100
-        return View();
+        Pricelist pricelist = pricelistRepository.Pricelists.Where(e=>e.PricelistId == pricelistId).FirstOrDefault() ?? SystemValues.GetPricelistNull();//получение прайлиста по ид
+        PricelistPageViewModel viewModel = new PricelistPageViewModel
+        {
+            Pricelist = pricelist
+        };
+        //сюда добавить формирование списка продуктов и опциональных параметров для данного прайслиста
+        return View(viewModel);
     }
 }

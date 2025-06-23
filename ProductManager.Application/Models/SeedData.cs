@@ -47,11 +47,13 @@ public static class SeedData
                         new Category { CategoryName = new Category().CategoryName },
                         new Category { CategoryName = "Мебель" },
                         new Category { CategoryName = "Фрукты" },
+                        new Category { CategoryName = "Напитки" },
                         new Category { CategoryName = "test" });
                     context.SaveChanges();
                 }
                 Category category_1 = context.Categories.Where(c => c.CategoryName == "Мебель").FirstOrDefault()!;//add value for null categories
                 Category category_2 = context.Categories.Where(c => c.CategoryName == "Фрукты").FirstOrDefault()!;//add value for null categories
+                Category category_3 = context.Categories.Where(c => c.CategoryName == "Напитки").FirstOrDefault()!;//add value for null categories
                 context.Products.AddRange(//fill Products Table with sample data
                     new Product { ProductName = "Стул", ProductDescription = "Обычный стул", ProductPrice = 1547.04m, CategoryID = category_1.CategoryID },
                     new Product { ProductName = "Яблоко", ProductDescription = "Красное, наливное", ProductPrice = 196.67m, CategoryID = category_2.CategoryID },
@@ -60,7 +62,10 @@ public static class SeedData
                     new Product { ProductName = "Груша", ProductDescription = "Можно скушать", ProductPrice = 247.07m, CategoryID = category_2.CategoryID },
                     new Product { ProductName = "Стол  № 2", ProductDescription = "Компьтерный стол", ProductPrice = 15999.98m, CategoryID = category_1.CategoryID },
                     new Product { ProductName = "Табуретка", ProductDescription = "Стильная, модная", ProductPrice = 6999.98m, CategoryID = category_1.CategoryID },
-                    new Product { ProductName = "Маракуйя", ProductDescription = "Фрукт страсти", ProductPrice = 2399.07m, CategoryID = category_2.CategoryID }
+                    new Product { ProductName = "Маракуйя", ProductDescription = "Фрукт страсти", ProductPrice = 2399.07m, CategoryID = category_2.CategoryID },
+                    new Product { ProductName = "Молоко", ProductDescription = "Коровье, деревенское, парное", ProductPrice = 799.77m, CategoryID = category_3.CategoryID },
+                    new Product { ProductName = "Вино", ProductDescription = "Виноградное, домашнее", ProductPrice = 1298.65m, CategoryID = category_3.CategoryID },
+                    new Product { ProductName = "Вода", ProductDescription = "Артезианская, ключевая", ProductPrice = 98.65m, CategoryID = category_3.CategoryID }
                     );
                 context.SaveChanges();
                 if (!context.Pricelists.Any())

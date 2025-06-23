@@ -1,4 +1,5 @@
-﻿@model ProductManager.Application.Models.DBEntities.Pricelist  
+﻿@using ProductManager.Application.Models.DBEntities
+@model ProductManager.Application.ViewModels.PricelistPageViewModel
 @* вверх будем пихать модель представления отдельного прайслиста - сделать при создании действия контроллера для отдельного прайслиста*@
 
 @* сделать вывод базовых данных прайслиста(ид прайслиста, название прайслиста, даты изменения прайслиста,создания прайслиста) *@
@@ -8,3 +9,4 @@
 @* сделать кнопки для редактирования и удаления прайслиста *@
 @* сделать таблицу передвигаемой побокам
 сделать пагинацию  *@
+<div>View of selected pricelist  @Model.Pricelist!.PricelistName </div>

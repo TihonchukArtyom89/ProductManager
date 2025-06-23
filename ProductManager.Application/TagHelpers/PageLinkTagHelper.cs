@@ -87,7 +87,7 @@ public class PageLinkTagHelper : TagHelper
         TagBuilder pageLink = new TagBuilder("a");
         PageUrlValues["sortOrder"] = PageSortOrder;
         string pageAction = PageAction ?? string.Empty;
-        if (pageAction.Contains("ProductlistList"))
+        if (pageAction.Contains("ProductList"))
         {
             PageUrlValues["productPage"] = pageNumber;
         }

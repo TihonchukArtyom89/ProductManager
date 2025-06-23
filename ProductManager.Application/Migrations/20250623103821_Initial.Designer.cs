@@ -12,7 +12,7 @@ using ProductManager.Application.Models;
 namespace ProductManager.Application.Migrations
 {
     [DbContext(typeof(PredpriyatieDBContext))]
-    [Migration("20250528114609_Initial")]
+    [Migration("20250623103821_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -61,28 +61,23 @@ namespace ProductManager.Application.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<long?>("PricelistOptionalParameterOptionalParameterEntryID")
-                        .HasColumnType("bigint");
-
                     b.HasKey("OptionalParameterID");
-
-                    b.HasIndex("PricelistOptionalParameterOptionalParameterEntryID");
 
                     b.ToTable("OptionalParameters");
                 });
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Pricelist", b =>
                 {
-                    b.Property<long>("PricelistId")
+                    b.Property<long?>("PricelistId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PricelistId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("PricelistId"));
 
-                    b.Property<DateTime>("PriceListDateCreation")
+                    b.Property<DateTime?>("PriceListDateCreation")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("PriceListDateModification")
+                    b.Property<DateTime?>("PriceListDateModification")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PricelistName")
@@ -111,12 +106,22 @@ namespace ProductManager.Application.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<long>("PricelistID")
+                    b.Property<long?>("PricelistId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("PricelistProductPurchasePurchaseID")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PricelistPurchaseID")
                         .HasColumnType("bigint");
 
                     b.HasKey("OptionalParameterEntryID");
 
-                    b.HasIndex("PricelistID");
+                    b.HasIndex("OptionalParameterID");
+
+                    b.HasIndex("PricelistId");
+
+                    b.HasIndex("PricelistProductPurchasePurchaseID");
 
                     b.ToTable("PricelistOptionalParameters");
                 });
@@ -180,9 +185,14 @@ namespace ProductManager.Application.Migrations
                     b.Property<decimal>("ProductPrice")
                         .HasColumnType("decimal(8,2)");
 
+                    b.Property<long?>("ProductQuantityID")
+                        .HasColumnType("bigint");
+
                     b.HasKey("ProductID");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("ProductQuantityID");
 
                     b.ToTable("Products");
                 });
@@ -228,24 +238,27 @@ namespace ProductManager.Application.Migrations
                     b.ToTable("ProductQuantityTypes");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.OptionalParameter", b =>
-                {
-                    b.HasOne("ProductManager.Application.Models.DBEntities.PricelistOptionalParameter", "PricelistOptionalParameter")
-                        .WithMany("OptionalParameters")
-                        .HasForeignKey("PricelistOptionalParameterOptionalParameterEntryID");
-
-                    b.Navigation("PricelistOptionalParameter");
-                });
-
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PricelistOptionalParameter", b =>
                 {
-                    b.HasOne("ProductManager.Application.Models.DBEntities.Pricelist", "Pricelist")
+                    b.HasOne("ProductManager.Application.Models.DBEntities.OptionalParameter", "OptionalParameter")
                         .WithMany("PricelistOptionalParameters")
-                        .HasForeignKey("PricelistID")
+                        .HasForeignKey("OptionalParameterID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProductManager.Application.Models.DBEntities.Pricelist", "Pricelist")
+                        .WithMany("PricelistOptionalParameters")
+                        .HasForeignKey("PricelistId");
+
+                    b.HasOne("ProductManager.Application.Models.DBEntities.PricelistProductPurchase", "PricelistProductPurchase")
+                        .WithMany("PricelistOptionalParameters")
+                        .HasForeignKey("PricelistProductPurchasePurchaseID");
+
+                    b.Navigation("OptionalParameter");
+
                     b.Navigation("Pricelist");
+
+                    b.Navigation("PricelistProductPurchase");
                 });
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PricelistProductPurchase", b =>
@@ -281,7 +294,13 @@ namespace ProductManager.Application.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProductManager.Application.Models.DBEntities.ProductQuantity", "ProductQuantity")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductQuantityID");
+
                     b.Navigation("Category");
+
+                    b.Navigation("ProductQuantity");
                 });
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.ProductQuantity", b =>
@@ -300,6 +319,11 @@ namespace ProductManager.Application.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.OptionalParameter", b =>
+                {
+                    b.Navigation("PricelistOptionalParameters");
+                });
+
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Pricelist", b =>
                 {
                     b.Navigation("PricelistOptionalParameters");
@@ -307,9 +331,9 @@ namespace ProductManager.Application.Migrations
                     b.Navigation("PricelistProductPurchases");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PricelistOptionalParameter", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PricelistProductPurchase", b =>
                 {
-                    b.Navigation("OptionalParameters");
+                    b.Navigation("PricelistOptionalParameters");
                 });
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Product", b =>
@@ -320,6 +344,8 @@ namespace ProductManager.Application.Migrations
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.ProductQuantity", b =>
                 {
                     b.Navigation("PricelistProductPurchases");
+
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.ProductQuantityType", b =>

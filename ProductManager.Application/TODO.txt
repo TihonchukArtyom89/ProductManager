@@ -16,31 +16,23 @@
 
 make at now:
 
-- add using actionname and controllername properties of view models classes
-- make pagination for list of pricelists view
-- make one array of page sizes
-- make roadmap of selected pricelist in pricelist controller in comments
-- fix button on top navigation line to pricelist list view
-- fix pagination for pricelist list view
-- rename PriceList to PricelistList
-- make result if pricelist is empty in pricelist list view
-- make result of search if pricelist is empty in pricelist list view
+
 
 make in near future:
 
-- make action for page of selected pricelist in pricelist controller
-- make viewmodel for page of selected pricelist
-- rework visual diagram of database (optional parameter -> for product of some pricelist and product quantity -> for products and watch all visual scheme for bugs)
+- fix troubles by go to backward
+- draw db diagram with using web service (by using site -> https://app.database-design.ru/)
+- rework visual diagram of database (make from beginnig in web service to create db online and watch visual scheme)
+- rework CRUD of product (add some features to using product quantity)
 - add default values of product to pricelists
-- fix unit tests for productlist controller, view
-- make page(not model popup) for pricelist with list of products
+- make action for page of selected pricelist in pricelist controller
+- make page(not model popup) for pricelist with list of products(with some link on name of pricelist, without page reloading)
+- make buttons with crud actions displaying on modal popup on pricelist view
 - make CRUD for pricelist feature 
 - save some data values when creating pricelist (price, type of quantity, number of products in purchase)
 - when editing pricelist you can (1, 2, 3, 6 -> devnote)
-- make link from name of pricelist in list of pricelist to page of some pricelist
-- make product quantity part of product list controller,model, view
-- make view of pricelist with items of list without page reloading(reread technical task)
-- make buttons with crud actions displaying on modal popup on pricelist view
+- make dbentity for type of optional parameter and relations between tables of db(make after making crud of pricelists - make add optional parameters with different types)
+- fix unit tests for productlist controller, view
 - make unit tests for pricelist controller, view
 - make another list of pricelists of products (controller, view & buttons etc.)
 - make XML - documentation for project in two languages (English and Russian)
@@ -53,4 +45,4 @@ make in distant future(after making pricelist page and features):
 
 make in distant future(after making add administration feature with blazor):
 
-- make imposible to create product without category for users
+- make impossible to create product without category for users
