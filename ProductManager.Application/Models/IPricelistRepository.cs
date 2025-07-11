@@ -10,6 +10,7 @@ public interface IPricelistRepository
     IQueryable<ProductQuantity> ProductQuantities { get; }
     IQueryable<ProductQuantityType> ProductQuantityTypes { get; }
     IQueryable<OptionalParameter> OptionalParameters { get; }
+    IQueryable<DeletedRecord> DeletedRecords { get; }
     void CreatePriceList(Pricelist pricelist);
     void UpdatePriceList(Pricelist pricelist);
     void DeletePriceList(Pricelist pricelist);

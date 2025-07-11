@@ -1,9 +1,10 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace ProductManager.Application.Models.DBEntities;
-//класс для формирования таблицы в бд для посвященной типам разновидности количеств продукта(поштучно, по весу, по объёму)
+//класс для формирования таблицы в бд для посвященной типам наименований количеств продукта (поштучно, по весу, по объёму)
 [Table("ProductQuantityTypes")]
 public class ProductQuantityType
 {

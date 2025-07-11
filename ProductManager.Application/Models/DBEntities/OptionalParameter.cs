@@ -1,18 +1,19 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductManager.Application.Models.DBEntities;
-//класс для формирования таблицы в бд посвящённой опциональным параметрам
+//класс для формирования таблицы в бд посвящённой названиям (и типам - планируется позже сделать) опциональных параметров
 [Table("OptionalParameters")]
 public class OptionalParameter
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public long OptionalParameterID { get; set; }//ИД опционального параметра//уникальный,первичный ключ
-    [DisplayName("Тип опционального параметра")]
-    [Required(ErrorMessage = "Выберите название типа опционального параметра.")]
-    [StringLength(20, MinimumLength = 1)]
-    public string OptionalParameterType { get; set; } = string.Empty; //Название название опционального параметра
+    public long? OptionalParameterID { get; set; }//ИД опционального параметра//уникальный,первичный ключ
+    //[DisplayName("Тип опционального параметра")]
+    //[Required(ErrorMessage = "Выберите название типа опционального параметра.")]
+    //[StringLength(20, MinimumLength = 1)]
+    //public string OptionalParameterType { get; set; } = string.Empty; //Название типа опционального параметра
     [DisplayName("Название опционального параметра")]
     [Required(ErrorMessage = "Введите название опционального параметра.")]
     [StringLength(50)]

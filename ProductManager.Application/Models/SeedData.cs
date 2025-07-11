@@ -71,50 +71,79 @@ public static class SeedData
                 if (!context.Pricelists.Any())
                 {
                     context.Pricelists.AddRange(//fill Pricelists Table with sample data
-                        new Pricelist { 
+                        new Pricelist
+                        {
                             PricelistName = "Январьский прайслист",
                             PriceListDateCreation = new DateTime(2025, 1, 23, 12, 34, 55),
                             PriceListDateModification = new DateTime(2025, 2, 28, 17, 56, 12),
-                            PricelistProductPurchases = new List<PricelistProductPurchase>
-                            {
-                                new PricelistProductPurchase { 
-                                    ProductID = 1,
-                                    //ProductQuantityID = 1,
-                                    ProductPrice = 1547.04m 
-                                },
-                                new PricelistProductPurchase { 
-                                    ProductID = 2,
-                                    //ProductQuantityID = 2,
-                                    ProductPrice = 196.67m 
-                                },
-                                new PricelistProductPurchase { 
-                                    ProductID = 3,
-                                    //ProductQuantityID = 2, 
-                                    ProductPrice = 378.00m 
-                                }
-                            }
                         },
-                        new Pricelist 
-                        { 
+                        new Pricelist
+                        {
                             PricelistName = "Февральский прайслист",
                             PriceListDateCreation = new DateTime(2025, 1, 26, 9, 45, 5),
                             PriceListDateModification = new DateTime(2025, 5, 12, 10, 13, 17),
-                            PricelistProductPurchases = new List<PricelistProductPurchase>
-                            {
-                                new PricelistProductPurchase { 
-                                    ProductID = 5,
-                                    //ProductQuantityID = 2,
-                                    ProductPrice = 247.07m 
-                                },
-                                new PricelistProductPurchase { 
-                                    ProductID = 6,
-                                    //ProductQuantityID = 1,
-                                    ProductPrice = 15999.98m 
-                                }
-                            }
-                        }
-                        );
+                        });                    
                     context.SaveChanges();
+                    if (!context.PricelistProductPurchases.Any())
+                    {
+                        context.PricelistProductPurchases.AddRange(
+                            new PricelistProductPurchase 
+                            {
+                                PricelistID = 1,
+                                ProductID = 1,
+                                ProductNameAtBuy = "Стул",
+                                ProductPriceAtBuy = 1547.04m,
+                                ProductQuantityNameAtBuy = "шт.",
+                                ProductQuantityNumber = 2
+                            },
+                            new PricelistProductPurchase
+                            {
+                                PricelistID = 1,
+                                ProductID = 2,
+                                ProductNameAtBuy = "Яблоко",
+                                ProductPriceAtBuy = 196.67m,
+                                ProductQuantityNameAtBuy = "кг.",
+                                ProductQuantityNumber = 3.47
+                            },
+                            new PricelistProductPurchase
+                            {
+                                PricelistID = 1,
+                                ProductID = 3,
+                                ProductNameAtBuy = "Слива",
+                                ProductPriceAtBuy = 378.00m,
+                                ProductQuantityNameAtBuy = "кг.",
+                                ProductQuantityNumber = 2.31
+                            },
+                            new PricelistProductPurchase
+                            {
+                                PricelistID = 2,
+                                ProductID = 5,
+                                ProductNameAtBuy = "Груша",
+                                ProductPriceAtBuy = 247.07m,
+                                ProductQuantityNameAtBuy = "кг.",
+                                ProductQuantityNumber = 1.98
+                            },
+                            new PricelistProductPurchase
+                            {
+                                PricelistID = 2,
+                                ProductID = 6,
+                                ProductNameAtBuy = "Стол  № 2",
+                                ProductPriceAtBuy = 15999.98m,
+                                ProductQuantityNameAtBuy = "кг.",
+                                ProductQuantityNumber = 1
+                            },
+                            new PricelistProductPurchase
+                            {
+                                PricelistID = 2,
+                                ProductID = 9,
+                                ProductNameAtBuy = "Вода",
+                                ProductPriceAtBuy = 98.65m,
+                                ProductQuantityNameAtBuy = "л.",
+                                ProductQuantityNumber = 1.5
+                            }
+                            );
+                        context.SaveChanges();
+                    }
                 }
             }
         }

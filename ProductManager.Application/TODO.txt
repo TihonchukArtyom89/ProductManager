@@ -16,29 +16,51 @@
 
 make at now:
 
-
+- draw and save visual diagram of current database (by using site -> https://drawsql.app/)
+- make connection from products table to product quantities table in visual scheme of db 
+- write characteristics of relations tables in db (in devnote)
+- add foreign keys to classes of dbentities (relations between tables of db)
+- rework visual diagram of database (make from beginnig in web service to create db online and watch visual scheme)
+- check and make relations between tables of dbentities (in models)
+- temporary fix deleting product in product list view (when delete product deletes a record of purchases where a deleting product is exist - make hard delete)
+- add name of product field to purchases table in dbentities
+- make a table for deleted record
+- make inserting record of deleting product to table of deleted product
+- fix exception when deleting product(after changes to preevent data leak)
+- remake action of deleting product in product controller to prevent a data leak
+- add default value of purchases
+- display all purchases in view of specified pricelist
 
 make in near future:
 
+- add linkable names of product in purchases of some pricelist(if id of product not equal null)
+- rework txt DevNote to folder with txt files
+- work with deleting items to prevent a data leak(make table of deleted records -> https://habr.com/ru/articles/677932/)
+- add dbentity of deleted record
+- rework deleting product in product list view (set a id of product in purchases with this product to null and insert record with this product to table of deleted records)
+- make XML - documentation for project in two languages (English and Russian)
+- test functionality of project
+- add default values of pricelists
+- make if search string is empty, then show all products in product list view
 - fix troubles by go to backward
-- draw db diagram with using web service (by using site -> https://app.database-design.ru/)
-- rework visual diagram of database (make from beginnig in web service to create db online and watch visual scheme)
-- rework CRUD of product (add some features to using product quantity)
-- add default values of product to pricelists
+- rework classes of dbentities (use visual scheme to checking)
+- rework CRUD of product pricelist (add some features to using product quantity)
 - make action for page of selected pricelist in pricelist controller
 - make page(not model popup) for pricelist with list of products(with some link on name of pricelist, without page reloading)
 - make buttons with crud actions displaying on modal popup on pricelist view
 - make CRUD for pricelist feature 
 - save some data values when creating pricelist (price, type of quantity, number of products in purchase)
 - when editing pricelist you can (1, 2, 3, 6 -> devnote)
-- make dbentity for type of optional parameter and relations between tables of db(make after making crud of pricelists - make add optional parameters with different types)
 - fix unit tests for productlist controller, view
 - make unit tests for pricelist controller, view
 - make another list of pricelists of products (controller, view & buttons etc.)
-- make XML - documentation for project in two languages (English and Russian)
 
 make in distant future(after making pricelist page and features):
 
+- replace foreach for getting with LINQ set of variables
+- make all ID field GUID type for dbentities
+- get all data from popup window of CRUD of product 
+- make dbentity for type of optional parameter and relations between tables of db(make after making crud of pricelists - make add optional parameters with different types  - sql_variant???)
 - make check in SeedData cs if existing database (if no create new db with some test data - software migration management)
 - make seed date by default values to some of system tables(category, quantity type e.t.c)
 - think about rework application with using fluent api

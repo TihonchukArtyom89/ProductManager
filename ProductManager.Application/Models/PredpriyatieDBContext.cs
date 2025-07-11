@@ -16,4 +16,5 @@ public class PredpriyatieDBContext : DbContext
     public DbSet<OptionalParameter> OptionalParameters => Set<OptionalParameter>();
     public DbSet<ProductQuantity> ProductQuantities => Set<ProductQuantity>();
     public DbSet<ProductQuantityType> ProductQuantityTypes => Set<ProductQuantityType>();
+    public DbSet<DeletedRecord> DeletedRecords => Set<DeletedRecord>();
 }

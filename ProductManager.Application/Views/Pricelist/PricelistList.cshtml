@@ -38,11 +38,11 @@
             @foreach (Pricelist pricelist in Model?.PriceLists ?? Enumerable.Empty<Pricelist>())
             {
                 <tr>
-                    <td>@pricelist.PricelistId</td>
-                    @if (@pricelist.PricelistId != null)
+                    <td>@pricelist.PricelistID</td>
+                    @if (@pricelist.PricelistID != null)
                     {
                         <td>
-                            <a asp-controller="@Model?.ControllerName" asp-action="PricelistPage" asp-route-pricelistId="@pricelist.PricelistId">@pricelist.PricelistName</a>
+                            <a asp-controller="@Model?.ControllerName" asp-action="PricelistPage" asp-route-pricelistId="@pricelist.PricelistID">@pricelist.PricelistName</a>
                         </td>
                     }
                     else

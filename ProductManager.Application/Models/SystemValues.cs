@@ -28,7 +28,7 @@ public class SystemValues
     {
         return new Pricelist()
         {
-            PricelistId = null,
+            PricelistID = null,
             PricelistName = "Нет прайс-листов!",
             PriceListDateCreation = null,
             PriceListDateModification = null,
@@ -38,7 +38,7 @@ public class SystemValues
     {
         return new Pricelist()
         {
-            PricelistId = null,
+            PricelistID = null,
             PricelistName = "Не найдено таких прайслистов: " + searchQuery + " !",
             PriceListDateCreation = null,
             PriceListDateModification = null,

@@ -40,23 +40,47 @@ namespace ProductManager.Application.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.OptionalParameter", b =>
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.DeletedRecord", b =>
                 {
-                    b.Property<long>("OptionalParameterID")
+                    b.Property<long?>("DeletedRecordID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("OptionalParameterID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("DeletedRecordID"));
+
+                    b.Property<DateTime?>("RecordDeleteDateTime")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("TableSourceDeletedRecordID")
+                        .IsRequired()
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("TableSourceDeletedRecordValueFromJSON")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TableSourceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DeletedRecordID");
+
+                    b.ToTable("DeletedRecords");
+                });
+
+            modelBuilder.Entity("ProductManager.Application.Models.DBEntities.OptionalParameter", b =>
+                {
+                    b.Property<long?>("OptionalParameterID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("OptionalParameterID"));
 
                     b.Property<string>("OptionalParameterName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("OptionalParameterType")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("OptionalParameterID");
 
@@ -65,11 +89,11 @@ namespace ProductManager.Application.Migrations
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Pricelist", b =>
                 {
-                    b.Property<long?>("PricelistId")
+                    b.Property<long?>("PricelistID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("PricelistId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("PricelistID"));
 
                     b.Property<DateTime?>("PriceListDateCreation")
                         .HasColumnType("datetime2");
@@ -82,20 +106,20 @@ namespace ProductManager.Application.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("PricelistId");
+                    b.HasKey("PricelistID");
 
                     b.ToTable("Pricelists");
                 });
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PricelistOptionalParameter", b =>
                 {
-                    b.Property<long>("OptionalParameterEntryID")
+                    b.Property<long?>("OptionalParameterEntryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("OptionalParameterEntryID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("OptionalParameterEntryID"));
 
-                    b.Property<long>("OptionalParameterID")
+                    b.Property<long?>("OptionalParameterID")
                         .HasColumnType("bigint");
 
                     b.Property<string>("OptionalParameterValue")
@@ -103,20 +127,15 @@ namespace ProductManager.Application.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<long?>("PricelistId")
-                        .HasColumnType("bigint");
-
                     b.Property<long?>("PricelistProductPurchasePurchaseID")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PricelistPurchaseID")
+                    b.Property<long?>("PricelistPurchaseID")
                         .HasColumnType("bigint");
 
                     b.HasKey("OptionalParameterEntryID");
 
                     b.HasIndex("OptionalParameterID");
-
-                    b.HasIndex("PricelistId");
 
                     b.HasIndex("PricelistProductPurchasePurchaseID");
 
@@ -125,34 +144,37 @@ namespace ProductManager.Application.Migrations
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.PricelistProductPurchase", b =>
                 {
-                    b.Property<long>("PurchaseID")
+                    b.Property<long?>("PurchaseID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PurchaseID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("PurchaseID"));
 
-                    b.Property<long>("PricelistID")
+                    b.Property<long?>("PricelistID")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ProductID")
+                    b.Property<long?>("ProductID")
                         .HasColumnType("bigint");
 
-                    b.Property<decimal>("ProductPrice")
+                    b.Property<string>("ProductNameAtBuy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ProductPriceAtBuy")
                         .HasColumnType("decimal(8,2)");
 
-                    b.Property<long?>("ProductQuantityID")
-                        .HasColumnType("bigint");
+                    b.Property<string>("ProductQuantityNameAtBuy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("ProductQuantityNumber")
-                        .HasColumnType("real");
+                    b.Property<double>("ProductQuantityNumber")
+                        .HasColumnType("float");
 
                     b.HasKey("PurchaseID");
 
                     b.HasIndex("PricelistID");
 
                     b.HasIndex("ProductID");
-
-                    b.HasIndex("ProductQuantityID");
 
                     b.ToTable("PricelistProductPurchases");
                 });
@@ -196,18 +218,18 @@ namespace ProductManager.Application.Migrations
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.ProductQuantity", b =>
                 {
-                    b.Property<long>("ProductQuantityID")
+                    b.Property<long?>("ProductQuantityID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ProductQuantityID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("ProductQuantityID"));
 
                     b.Property<string>("ProductQuantityName")
                         .IsRequired()
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
-                    b.Property<long>("ProductQuantityTypeID")
+                    b.Property<long?>("ProductQuantityTypeID")
                         .HasColumnType("bigint");
 
                     b.HasKey("ProductQuantityID");
@@ -239,21 +261,13 @@ namespace ProductManager.Application.Migrations
                 {
                     b.HasOne("ProductManager.Application.Models.DBEntities.OptionalParameter", "OptionalParameter")
                         .WithMany("PricelistOptionalParameters")
-                        .HasForeignKey("OptionalParameterID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProductManager.Application.Models.DBEntities.Pricelist", "Pricelist")
-                        .WithMany("PricelistOptionalParameters")
-                        .HasForeignKey("PricelistId");
+                        .HasForeignKey("OptionalParameterID");
 
                     b.HasOne("ProductManager.Application.Models.DBEntities.PricelistProductPurchase", "PricelistProductPurchase")
                         .WithMany("PricelistOptionalParameters")
                         .HasForeignKey("PricelistProductPurchasePurchaseID");
 
                     b.Navigation("OptionalParameter");
-
-                    b.Navigation("Pricelist");
 
                     b.Navigation("PricelistProductPurchase");
                 });
@@ -262,25 +276,15 @@ namespace ProductManager.Application.Migrations
                 {
                     b.HasOne("ProductManager.Application.Models.DBEntities.Pricelist", "Pricelist")
                         .WithMany("PricelistProductPurchases")
-                        .HasForeignKey("PricelistID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PricelistID");
 
                     b.HasOne("ProductManager.Application.Models.DBEntities.Product", "Product")
                         .WithMany("PricelistProductPurchases")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProductManager.Application.Models.DBEntities.ProductQuantity", "ProductQuantity")
-                        .WithMany("PricelistProductPurchases")
-                        .HasForeignKey("ProductQuantityID");
+                        .HasForeignKey("ProductID");
 
                     b.Navigation("Pricelist");
 
                     b.Navigation("Product");
-
-                    b.Navigation("ProductQuantity");
                 });
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Product", b =>
@@ -304,9 +308,7 @@ namespace ProductManager.Application.Migrations
                 {
                     b.HasOne("ProductManager.Application.Models.DBEntities.ProductQuantityType", "ProductQuantityType")
                         .WithMany("ProductQuantities")
-                        .HasForeignKey("ProductQuantityTypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductQuantityTypeID");
 
                     b.Navigation("ProductQuantityType");
                 });
@@ -323,8 +325,6 @@ namespace ProductManager.Application.Migrations
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.Pricelist", b =>
                 {
-                    b.Navigation("PricelistOptionalParameters");
-
                     b.Navigation("PricelistProductPurchases");
                 });
 
@@ -340,8 +340,6 @@ namespace ProductManager.Application.Migrations
 
             modelBuilder.Entity("ProductManager.Application.Models.DBEntities.ProductQuantity", b =>
                 {
-                    b.Navigation("PricelistProductPurchases");
-
                     b.Navigation("Products");
                 });
 

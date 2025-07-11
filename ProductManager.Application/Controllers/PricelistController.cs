@@ -58,14 +58,14 @@ public class PricelistController : Controller
                 ViewBag.SortOrder = ViewBag.NameSortOrder;
                 break;
             default:
-                pricelists = pricelists.OrderBy(e => e.PricelistId);
+                pricelists = pricelists.OrderBy(e => e.PricelistID);
                 ViewBag.SortOrder = SortOrder.Neutral;
                 break;
         }
         if (pricelists.Count() == 0 && pricelistPage != 1)
         {
             pricelistPage = 1; //если нет прайслистов, то сбрасываем страницу на 1
-            pricelists = pricelistRepository.Pricelists.OrderBy(p => p.PricelistId);
+            pricelists = pricelistRepository.Pricelists.OrderBy(p => p.PricelistID);
         }
         if (pricelistPage > (int)Math.Ceiling((decimal)totalItems / pageSize))
         {
@@ -112,10 +112,19 @@ public class PricelistController : Controller
         //в передаваемом параметре будет передаваться ИД прайслиста, который нужно отобразить(наверное на данном этапе это всё)
         //сделать модель представления для страницы прайслиста, которая будет содержать в себе список продуктов и список опциональных параметров
         //изменить количество отображаемых продуктов на странице прайслиста с 1,2,5,10 на 5,10,20,50,100
-        Pricelist pricelist = pricelistRepository.Pricelists.Where(e=>e.PricelistId == pricelistId).FirstOrDefault() ?? SystemValues.GetPricelistNull();//получение прайлиста по ид
+        Pricelist pricelist = pricelistRepository.Pricelists.Where(e=>e.PricelistID == pricelistId).FirstOrDefault() ?? SystemValues.GetPricelistNull();//получение прайлиста по ид
+        List<PricelistProductPurchase> purchases = new List<PricelistProductPurchase>();
+        foreach (PricelistProductPurchase purchase in pricelistRepository.PricelistProductPurchases)
+        {
+            if(pricelist.PricelistID == purchase.PricelistID)
+            {
+                purchases.Add(purchase);
+            }
+        }
         PricelistPageViewModel viewModel = new PricelistPageViewModel
         {
-            Pricelist = pricelist
+            Pricelist = pricelist,
+            Purchases = purchases
         };
         //сюда добавить формирование списка продуктов и опциональных параметров для данного прайслиста
         return View(viewModel);

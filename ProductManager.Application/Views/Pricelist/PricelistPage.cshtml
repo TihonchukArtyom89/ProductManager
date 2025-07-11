@@ -9,4 +9,27 @@
 @* сделать кнопки для редактирования и удаления прайслиста *@
 @* сделать таблицу передвигаемой побокам
 сделать пагинацию  *@
-<div>View of selected pricelist  @Model.Pricelist!.PricelistName </div>
+<div>Страница прайслиста @Model.Pricelist!.PricelistName </div>
+<div>Таблица покупок прайслиста:</div>
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Ид продукта</th>
+            <th>Название продукта</th>
+            <th>Количество</th>
+            <th>Цена за ед.</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (PricelistProductPurchase purchase in Model?.Purchases ?? new List<PricelistProductPurchase>())
+        {
+            <tr>
+                <td>@purchase.ProductID</td>
+                <td>@purchase.ProductNameAtBuy</td>
+                <td>@purchase.ProductQuantityNumber @purchase.ProductQuantityNameAtBuy</td>
+                <td>@purchase.ProductPriceAtBuy</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@* сделать вывод общей суммы прайслиста внизу *@

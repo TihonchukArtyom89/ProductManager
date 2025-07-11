@@ -13,6 +13,7 @@ public class EFPricelistRepository:IPricelistRepository
     public IQueryable<OptionalParameter> OptionalParameters => context.OptionalParameters;
     public IQueryable<PricelistOptionalParameter> PricelistOptionalParameters => context.PricelistOptionalParameters;
     public IQueryable<PricelistProductPurchase> PricelistProductPurchases => context.PricelistProductPurchases;
+    public IQueryable<DeletedRecord> DeletedRecords => context.DeletedRecords;
 
     public void CreatePriceList(Pricelist pricelist)
     {

@@ -104,6 +104,8 @@ https://www.youtube.com/watch?v=gRBC50ddQzw <-???
 dotnet ef database drop --force --context PredpriyatieDBContext <-reset database
 dotnet ef migrations add Initial <- add initial migration
 
+dotnet ef database drop --force --context PredpriyatieDBContext ; dotnet ef migrations add Initial
+
 https://code-maze.com/select-tag-helper-aspnetcore/ <-dropdown list
 
 https://github.com/shahedbd/DropdownTest/tree/main/DropdownTest2
@@ -126,7 +128,7 @@ crud unit test
 https://www.c-sharpcorner.com/article/crud-operations-unit-testing-in-asp-net-core-web-api-with-xunit/?ysclid=mam6axezsv314719474
 https://stackoverflow.com/questions/3215224/when-how-to-unit-test-crud-applications
 
-
+https://drawsql.app/ <- online database visual schema editor
 
 
 Базовый функционал редактирования прайслиста:
@@ -223,8 +225,44 @@ https://stackoverflow.com/questions/3215224/when-how-to-unit-test-crud-applicati
 
 Переработка схемы отношений между таблицами в бд
 
-сделать опциональные параметры прайслиста частью покупки в прайслисте (пересмотреть отношения )
-(У OptionalParameter может быть много PricelistOptionalParameter, т.к. в OptionalParameter хранится название опционального параметра)
-сделать количество частью продукта(вид количества шт.,кг.,грамм)
-при создании покупки вводить количество продукта в покупку которая будет формировать цену за эту покупку
-(У Product может быть один ProductQuantity, т.к. в ProductQuantity содержится как хранится продукт)
+Отношение между таблицами в базе данных:
+(Перепроверить)
+сделано
+Products - Categories (N:1 - У одной категории может быть много продуктов, иначе нельзя)
+В таблице Products есть внешний ключ CategoryID, который ссылается на таблицу Categories.
+Таблица Categories - главная, а таблица Products - зависимая.
+
+сделано
+Products - PricelistProductPurchases (1:N - Один продукт может встречаться во многих покупках прайслистов,иначе нельзя)
+В таблице PricelistProductPurchases есть внешний ключ ProductID, который ссылается на таблицу Products.
+Таблица Products - главная, а таблица PricelistProductPurchases - зависимая.
+
+сделано
+PricelistProductPurchases - Pricelists (N:1 - Один прайслист может содержать много покупок продуктов, иначе нельзя)
+В таблице PricelistProductPurchases есть внешний ключ PricelistID, который ссылается на таблицу Pricelists.
+Таблица Pricelists - главная, а таблица PricelistProductPurchases - зависимая.
+
+сделано
+Products - ProductQuantities (N:1 - У одного наименования количества продуктов может быть много продуктов, иначе нельзя)
+В таблице Products есть внешний ключ ProductQuantityID, который ссылается на таблицу ProductQuantities.
+Таблица ProductQuantities - главная, а таблица Products - зависимая.
+
+сделано
+ProductQuantityTypes - ProductQuantities (1:N - У одного типа наименования количества продуктов может быть много наименований количеств продуктов, иначе нельзя)
+В таблице ProductQuantities есть внешний ключ ProductQuantityTypeID, который ссылается на таблицу ProductQuantityTypes.
+Таблица ProductQuantityTypes - главная, а таблица ProductQuantities - зависимая.
+
+сделано
+PricelistProductPurchases - PricelistOptionalParameters (1:N - У одной покупки может много значений опциональных параметров)
+В таблице PricelistOptionalParameters есть внешний ключ PurchaseID, который ссылается на таблицу PricelistProductPurchases.
+Таблица PricelistProductPurchases - главная, а таблица PricelistOptionalParameters - зависимая.
+
+сделано
+OptionalParameters - PricelistOptionalParameters (1:N - У одного наименования опционального параметра покупки может много значений опциональных параметров)
+В таблице PricelistOptionalParameters есть внешний ключ OptionalParameterID, который ссылается на таблицу OptionalParameters.
+Таблица OptionalParameters - главная, а таблица PricelistOptionalParameters - зависимая.
+
+https://habr.com/ru/articles/677932/ <- make table of deleted record
+
+dotnet ef database drop --force --context PredpriyatieDBContext ; dotnet ef migrations add Initial <-reset database and make initial migration (launch after first launch)
+cd ProductManager.Application ; dotnet ef database drop --force --context PredpriyatieDBContext ; dotnet ef migrations add Initial <- launch at first
