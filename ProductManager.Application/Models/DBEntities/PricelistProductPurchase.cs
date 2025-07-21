@@ -11,10 +11,8 @@ public class PricelistProductPurchase
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long? PurchaseID { get; set; }//ИД покупки продукта//уникальный,первичный ключ
     public long? PricelistID { get; set; }//ИД прайслиста, куда была занесена покупка продукта// внешний ключ на таблицу прайслистов
-    //[DeleteBehavior(DeleteBehavior.Cascade)]
     public Pricelist? Pricelist { get; set; }//навигационное св-во на таблицу прайслистов покупок продуктов(на главную сущность)
     public long? ProductID { get; set; }//ИД продукта, который был куплен// внешний ключ на таблицу продуктов
-    //[DeleteBehavior(DeleteBehavior.Cascade)]
     public Product? Product { get; set; }//навигационное св-во на таблицу продуктов(на главную сущность)
     [DisplayName("Количество продуктов в покупке")]
     [Required(ErrorMessage = "Введите количество продуктов в прайслисте.")]
@@ -25,7 +23,6 @@ public class PricelistProductPurchase
     [Column(TypeName = "decimal(8,2)")]
     public decimal ProductPriceAtBuy { get; set; }//цена по которой был куплен продукт(именно весь продукт, а не единично)
     public string ProductNameAtBuy { get; set; } = string.Empty;//наименование продукта во время покупки
-    //public bool IsProductDelete { get; set; } = false;//логический признак того этот продукт не удалили из таблицы продуктов
     public string ProductQuantityNameAtBuy { get; set; } = string.Empty;//наименование количества продукта (например: шт., кг., л.) во время покупки продукта
     public List<PricelistOptionalParameter>? PricelistOptionalParameters { get; set; }//навигационное св-во на таблицу опциональных параметров покупки в прайслисте (на зависимую сущность)
 }

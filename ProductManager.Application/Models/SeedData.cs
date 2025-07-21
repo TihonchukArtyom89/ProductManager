@@ -55,17 +55,17 @@ public static class SeedData
                 Category category_2 = context.Categories.Where(c => c.CategoryName == "Фрукты").FirstOrDefault()!;//add value for null categories
                 Category category_3 = context.Categories.Where(c => c.CategoryName == "Напитки").FirstOrDefault()!;//add value for null categories
                 context.Products.AddRange(//fill Products Table with sample data
-                    new Product { ProductName = "Стул", ProductDescription = "Обычный стул", ProductPrice = 1547.04m, CategoryID = category_1.CategoryID },
-                    new Product { ProductName = "Яблоко", ProductDescription = "Красное, наливное", ProductPrice = 196.67m, CategoryID = category_2.CategoryID },
-                    new Product { ProductName = "Слива", ProductDescription = "Спелая,садовая", ProductPrice = 378.00m, CategoryID = category_2.CategoryID },
-                    new Product { ProductName = "Стол № 1", ProductDescription = "Для обеда в саду", ProductPrice = 3098.39m, CategoryID = category_1.CategoryID },
-                    new Product { ProductName = "Груша", ProductDescription = "Можно скушать", ProductPrice = 247.07m, CategoryID = category_2.CategoryID },
-                    new Product { ProductName = "Стол  № 2", ProductDescription = "Компьтерный стол", ProductPrice = 15999.98m, CategoryID = category_1.CategoryID },
-                    new Product { ProductName = "Табуретка", ProductDescription = "Стильная, модная", ProductPrice = 6999.98m, CategoryID = category_1.CategoryID },
-                    new Product { ProductName = "Маракуйя", ProductDescription = "Фрукт страсти", ProductPrice = 2399.07m, CategoryID = category_2.CategoryID },
-                    new Product { ProductName = "Молоко", ProductDescription = "Коровье, деревенское, парное", ProductPrice = 799.77m, CategoryID = category_3.CategoryID },
-                    new Product { ProductName = "Вино", ProductDescription = "Виноградное, домашнее", ProductPrice = 1298.65m, CategoryID = category_3.CategoryID },
-                    new Product { ProductName = "Вода", ProductDescription = "Артезианская, ключевая", ProductPrice = 98.65m, CategoryID = category_3.CategoryID }
+                    new Product { ProductName = "Стул", ProductDescription = "Обычный стул", ProductPrice = 1547.04m, CategoryID = category_1.CategoryID, ProductQuantityID = 1 },
+                    new Product { ProductName = "Яблоко", ProductDescription = "Красное, наливное", ProductPrice = 196.67m, CategoryID = category_2.CategoryID, ProductQuantityID = 2 },
+                    new Product { ProductName = "Слива", ProductDescription = "Спелая,садовая", ProductPrice = 378.00m, CategoryID = category_2.CategoryID, ProductQuantityID = 2 },
+                    new Product { ProductName = "Стол № 1", ProductDescription = "Для обеда в саду", ProductPrice = 3098.39m, CategoryID = category_1.CategoryID, ProductQuantityID = 1 },
+                    new Product { ProductName = "Груша", ProductDescription = "Можно скушать", ProductPrice = 247.07m, CategoryID = category_2.CategoryID, ProductQuantityID = 2 },
+                    new Product { ProductName = "Стол  № 2", ProductDescription = "Компьтерный стол", ProductPrice = 15999.98m, CategoryID = category_1.CategoryID, ProductQuantityID = 1 },
+                    new Product { ProductName = "Табуретка", ProductDescription = "Стильная, модная", ProductPrice = 6999.98m, CategoryID = category_1.CategoryID, ProductQuantityID = 1 },
+                    new Product { ProductName = "Маракуйя", ProductDescription = "Фрукт страсти", ProductPrice = 2399.07m, CategoryID = category_2.CategoryID, ProductQuantityID = 2 },
+                    new Product { ProductName = "Молоко", ProductDescription = "Коровье, деревенское, парное", ProductPrice = 799.77m, CategoryID = category_3.CategoryID, ProductQuantityID = 3 },
+                    new Product { ProductName = "Вино", ProductDescription = "Виноградное, домашнее", ProductPrice = 1298.65m, CategoryID = category_3.CategoryID, ProductQuantityID = 3 },
+                    new Product { ProductName = "Вода", ProductDescription = "Артезианская, ключевая", ProductPrice = 98.65m, CategoryID = category_3.CategoryID, ProductQuantityID = 3 }
                     );
                 context.SaveChanges();
                 if (!context.Pricelists.Any())
@@ -82,12 +82,12 @@ public static class SeedData
                             PricelistName = "Февральский прайслист",
                             PriceListDateCreation = new DateTime(2025, 1, 26, 9, 45, 5),
                             PriceListDateModification = new DateTime(2025, 5, 12, 10, 13, 17),
-                        });                    
+                        });
                     context.SaveChanges();
                     if (!context.PricelistProductPurchases.Any())
                     {
                         context.PricelistProductPurchases.AddRange(
-                            new PricelistProductPurchase 
+                            new PricelistProductPurchase
                             {
                                 PricelistID = 1,
                                 ProductID = 1,
@@ -129,7 +129,7 @@ public static class SeedData
                                 ProductID = 6,
                                 ProductNameAtBuy = "Стол  № 2",
                                 ProductPriceAtBuy = 15999.98m,
-                                ProductQuantityNameAtBuy = "кг.",
+                                ProductQuantityNameAtBuy = "шт.",
                                 ProductQuantityNumber = 1
                             },
                             new PricelistProductPurchase
@@ -143,6 +143,136 @@ public static class SeedData
                             }
                             );
                         context.SaveChanges();
+                        if (!context.OptionalParameters.Any())
+                        {
+                            context.OptionalParameters.AddRange(
+                                new OptionalParameter //январьский прайслист
+                                {
+                                    OptionalParameterName = "Дополнительные опции"
+                                },
+                                new OptionalParameter
+                                {
+                                    OptionalParameterName = "Доставка"
+                                },
+                                new OptionalParameter //февральский прайслист
+                                {
+                                    OptionalParameterName = "Особенности"
+                                },
+                                new OptionalParameter
+                                {
+                                    OptionalParameterName = "Акция"
+                                },
+                                new OptionalParameter
+                                {
+                                    OptionalParameterName = "Складские метки"
+                                }
+                                );
+                            context.SaveChanges();
+                            if (!context.PricelistOptionalParameters.Any())
+                            {
+                                context.PricelistOptionalParameters.AddRange(
+                                    //январьский прайслист
+                                    //Стул кол-во 2
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 1, //Дополнительные опции
+                                        OptionalParameterValue = "Сборка на месте",
+                                        PurchaseID = 1,
+                                    },
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 2, //Доставка
+                                        OptionalParameterValue = "Доставка к двери",
+                                        PurchaseID = 1,
+                                    },
+                                    //Яблоко кол-во 3.47
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 1,//Дополнительные опции
+                                        OptionalParameterValue = "Экологичная упаковка",
+                                        PurchaseID = 2,
+                                    },
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 2, //Доставка
+                                        OptionalParameterValue = "Курьер",
+                                        PurchaseID = 2,
+                                    },
+                                    //Слива кол-во 2.31
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 1,//Дополнительные опции
+                                        OptionalParameterValue = "Подарочное оформление",
+                                        PurchaseID = 3,
+                                    },
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 2,//Доставка
+                                        OptionalParameterValue = "Самовывоз",
+                                        PurchaseID = 3,
+                                    },
+                                    //февральский прайслист
+                                    //Груша кол-во 1.98
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 3,//Особенности
+                                        OptionalParameterValue = "Желтая, крупная, египетская",
+                                        PurchaseID = 4,
+                                    },
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 4,//Акция
+                                        OptionalParameterValue = " - ",
+                                        PurchaseID = 4,
+                                    },
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 5,//Складские метки
+                                        OptionalParameterValue = "Вегетерианская",
+                                        PurchaseID = 4,
+                                    },
+                                    //Стол № 2 кол-во 1
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 3,//Особенности
+                                        OptionalParameterValue = "Остаток с прошлого года",
+                                        PurchaseID = 5,
+                                    },
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 4,//Скидки в феврале
+                                        OptionalParameterValue = "В подарок бонусная карта",
+                                        PurchaseID = 5,
+                                    },
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 5,//Складские метки
+                                        OptionalParameterValue = "Уценка",
+                                        PurchaseID = 5,
+                                    },
+                                    //Вода кол-во 1.5
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 3,//Особенности
+                                        OptionalParameterValue = "Остатки с ликвидированного филиала",
+                                        PurchaseID = 6,
+                                    },
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 4,//Акция
+                                        OptionalParameterValue = "Пять бутылок по цене четырёх",
+                                        PurchaseID = 6,
+                                    },
+                                    new PricelistOptionalParameter
+                                    {
+                                        OptionalParameterID = 5,//Складские метки
+                                        OptionalParameterValue = "Без газа",
+                                        PurchaseID = 6,
+                                    }
+                                    );
+                                context.SaveChanges();
+                            }
+                        }
                     }
                 }
             }

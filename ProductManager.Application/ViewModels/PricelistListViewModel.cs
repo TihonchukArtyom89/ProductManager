@@ -8,5 +8,5 @@ public class PricelistListViewModel : BaseListViewModel
         PageViewModel = new BaseListViewModel().PageViewModel;
         PageSizes = new BaseListViewModel().PageSizes;
     }
-    public IEnumerable<Pricelist> PriceLists { get; set; } = Enumerable.Empty<Pricelist>();
+    public IEnumerable<Pricelist> Pricelists { get; set; } = Enumerable.Empty<Pricelist>();
 }

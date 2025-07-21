@@ -15,7 +15,6 @@ public class ProductQuantity
     [StringLength(5, MinimumLength = 3)]
     public string ProductQuantityName { get; set; } = string.Empty;//название разновидности покупки 
     public long? ProductQuantityTypeID { get; set; }//ид типа разновидности// внешний ключ на таблицу типов разновидностей количеств продуктов
-    //[DeleteBehavior(DeleteBehavior.Cascade)]
     public ProductQuantityType? ProductQuantityType { get; set; }//навигационное св-во на таблицу типов разновидностей количеств продукта(на главную сущность)
     public List<Product>? Products { get; set; }//навигационное св-во на таблицу продуктов(на зависимую сущность)
 }

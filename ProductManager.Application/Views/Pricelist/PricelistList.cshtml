@@ -1,30 +1,21 @@
-﻿@* вывод списка прайслистов
-добавить пагинацию
-сделать кнопку вызова модального окна для добавления нового прайслиста
-на каждую позицию прайслиста добавить кнопку вызова модального окна для редактирования, удаления данного прайслиста и просмотра дополнительных деталей о нём    *@
-@using ProductManager.Application.Models.DBEntities
+﻿@using ProductManager.Application.Models.DBEntities
 @model PricelistListViewModel
 
 <div class="col-11">
     <div class="d-inline-block d-flex align-items-center">
         <h4 class="m-1 pb-2"> ПРАЙСЛИСТЫ </h4>
-        @* поиск по прайслистам *@
         <form asp-controller="@Model?.ControllerName" asp-action="@Model?.ActionName" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-pricelistPage="1">
             <p>
                 <label>Поиск: <input type="text" name="searchString" value="@ViewBag.SearchString" /></label>
                 <input type="submit" value="Искать" />
             </p>
         </form>
-        @* сортировка по полям прайслиста *@
         <a class="m-1 pb-2 btn btn-info" asp-controller="@Model?.ControllerName" asp-action="@Model?.ActionName" asp-route-searchString="@ViewBag.SearchString" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.DateCreationSortOrder" asp-route-pricelistPage="@ViewBag.SelectedPage"> @ViewBag.DateCreationSortingText </a>
         <a class="m-1 pb-2 btn btn-info" asp-controller="@Model?.ControllerName" asp-action="@Model?.ActionName" asp-route-searchString="@ViewBag.SearchString" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.DateModificationSortOrder" asp-route-pricelistPage="@ViewBag.SelectedPage"> @ViewBag.DateModificationSortingText </a>
         <a class="m-1 pb-2 btn btn-info" asp-controller="@Model?.ControllerName" asp-action="@Model?.ActionName" asp-route-searchString="@ViewBag.SearchString" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@ViewBag.NameSortOrder" asp-route-pricelistPage="@ViewBag.SelectedPage"> @ViewBag.NameSortingText </a>
         <a class="m-1 pb-2 btn btn-info" asp-controller="@Model?.ControllerName" asp-action="@Model?.ActionName" asp-route-searchString="@ViewBag.SearchString" asp-route-pageSize="@ViewBag.SelectedPageSize" asp-route-sortOrder="@SortOrder.Neutral" asp-route-pricelistPage="@ViewBag.SelectedPage"> По умолчанию </a>
-        @*кнопка добавления нового прайслиста *@
+        @* @*кнопка добавления нового прайслиста вызывает всплывающее окно, где можно задать название прайслиста и его опциональных параметров *@
     </div>
-    @* список прайслистов *@
-    @*     таблица списка прайслистов (колонки ид, название, дата создания, дата изменения)
-    при нажатии на название прайслиста открывается страница прайслиста *@
     <table class="table table-striped table-bordered table-hover">
         <thead class="thead-dark">
             <tr>
@@ -35,13 +26,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Pricelist pricelist in Model?.PriceLists ?? Enumerable.Empty<Pricelist>())
+            @foreach (Pricelist pricelist in Model?.Pricelists ?? Enumerable.Empty<Pricelist>())
             {
                 <tr>
                     <td>@pricelist.PricelistID</td>
                     @if (@pricelist.PricelistID != null)
                     {
                         <td>
+                            @* ссылка ниже будет вызывать новую страницу в режиме просмотра!!!(страница одна, но режима работы два просмотр/редактирование) *@
+                            @* ссылка просмотра прайслиста *@
                             <a asp-controller="@Model?.ControllerName" asp-action="PricelistPage" asp-route-pricelistId="@pricelist.PricelistID">@pricelist.PricelistName</a>
                         </td>
                     }
@@ -51,15 +44,17 @@
                     }
                     <td>@pricelist.PriceListDateCreation</td>
                     <td>@pricelist.PriceListDateModification</td>
+                    @* кнопка ниже будет вызывать новую страницу в режиме редактирования!!!(страница одна, но режима работы два просмотр/редактирование) *@
+                    @* кнопка редактирования прайслиста *@
+                    @* кнопка ниже будет вызывать всплывающее окно с подтверждением *@
+                    @* кнопка удаления прайслиста *@
                 </tr>
             }
         </tbody>
     </table>
     @if (ViewBag.PricelistCount > 0)
     {
-        @* выбор количества отображаемых прайслистов *@
         <vc:page-size-selector list-view-model="@Model" />
-        @* пагинация *@
         <div page-model="@Model?.PageViewModel" page-action="@Model?.ActionName" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark"
              page-class-selected="btn-primary" page-class-arrow="btn-secondary"
              page-url-searchString="@ViewBag.SearchString" page-sort-order="@ViewBag.SortOrder" page-url-pageSize="@Model?.PageViewModel.PageSize ?? 1"

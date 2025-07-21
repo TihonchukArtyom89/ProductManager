@@ -14,7 +14,8 @@ public class EFPricelistRepository:IPricelistRepository
     public IQueryable<PricelistOptionalParameter> PricelistOptionalParameters => context.PricelistOptionalParameters;
     public IQueryable<PricelistProductPurchase> PricelistProductPurchases => context.PricelistProductPurchases;
     public IQueryable<DeletedRecord> DeletedRecords => context.DeletedRecords;
-
+    public IQueryable<Product> Products => context.Products;
+    public IQueryable<Category> Categories => context.Categories;  
     public void CreatePriceList(Pricelist pricelist)
     {
         context.Add(pricelist);

@@ -10,20 +10,21 @@ namespace ProductManager.Application.Controllers;
 public class ProductController : Controller
 {
     private IProductRepository productRepository;
-
+    private int[] productNumberOnPage = { 2, 4, 6, 8, 10 };
     public ProductController(IProductRepository _productRepository)
     {
         productRepository = _productRepository;
     }
-    public ViewResult ProductList(string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
+    public ViewResult ProductList(string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 0)
     {
+        pageSize = pageSize == 0 ? productNumberOnPage[0] : pageSize;
         ViewBag.SelectedPageSize = pageSize;
         ViewBag.SelectedCategory = category;
         ViewBag.PriceSortOrder = sortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
         ViewBag.NameSortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
         ViewBag.PriceSortingText = sortOrder != SortOrder.PriceDesc ? "От дорогих к дешёвым" : "От дешёвых к дорогим";
         ViewBag.NameSortingText = sortOrder != SortOrder.NameDesc ? "От Я до А" : "От А до Я";
-        Category ? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
+        Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
         ViewBag.Categories = new SelectList(productRepository.Categories, "CategoryID", "CategoryName");
         IEnumerable<Product> products = productRepository.Products;
         Product SystemProduct = SystemValues.GetProductNull(CurrentCategory ?? new Category());
@@ -89,6 +90,8 @@ public class ProductController : Controller
             CurrentCategory = (CurrentCategory ?? new Category { CategoryName = null ?? "" }).CategoryName,
             ControllerName = ControllerContext.ActionDescriptor.ControllerName ?? "",
             ActionName = ControllerContext.ActionDescriptor.ActionName ?? "",
+            PageSizes = productNumberOnPage,
+            SizeSelectorText = "Выберите количество отображаемых продуктов: "
         };
         ViewBag.CurrentCategory = viewModel.CurrentCategory;
         return View(viewModel);

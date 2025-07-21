@@ -1,8 +1,8 @@
 ﻿@model BaseListViewModel
 
-<form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-category="@ViewBag.SelectedCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
+@* <form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-category="@ViewBag.SelectedCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
     <div class="d-grip gap-2">
-        <b class="m-1">Выберите размер страницы</b>
+        <b class="m-1">@Model.SizeSelectorText</b>
         <select id="pageSizeSelector" name="pageSize">
             @foreach (int pageSize in Model?.PageSizes ?? new int[] { })
             {
@@ -18,4 +18,72 @@
         </select>
         <button id="submitButton" type="submit" class="btn btn-outline-secondary btn-sm">Выбрать</button>
     </div>
-</form>
+</form> *@
+@* сделать switch вместо if-else *@
+@* сделать partial view  *@
+@if (Model?.ActionName == "ProductList")
+{
+    <form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-category="@ViewBag.SelectedCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
+        <div class="d-grip gap-2">
+            <b class="m-1">@Model.SizeSelectorText</b>
+            <select id="pageSizeSelector" name="pageSize">
+                @foreach (int pageSize in Model?.PageSizes ?? new int[] { })
+                {
+                    @if (pageSize == ViewBag.SelectedPageSize)
+                    {
+                        <option selected>@pageSize</option>
+                    }
+                    else
+                    {
+                        <option value="@pageSize">@pageSize</option>
+                    }
+                }
+            </select>
+            <button id="submitButton" type="submit" class="btn btn-outline-secondary btn-sm">Выбрать</button>
+        </div>
+    </form>
+}
+else if (Model?.ActionName == "PricelistList")
+{
+    <form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-category="@ViewBag.SelectedCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
+        <div class="d-grip gap-2">
+            <b class="m-1">@Model.SizeSelectorText</b>
+            <select id="pageSizeSelector" name="pageSize">
+                @foreach (int pageSize in Model?.PageSizes ?? new int[] { })
+                {
+                    @if (pageSize == ViewBag.SelectedPageSize)
+                    {
+                        <option selected>@pageSize</option>
+                    }
+                    else
+                    {
+                        <option value="@pageSize">@pageSize</option>
+                    }
+                }
+            </select>
+            <button id="submitButton" type="submit" class="btn btn-outline-secondary btn-sm">Выбрать</button>
+        </div>
+    </form>
+}
+else if (Model?.ActionName == "PricelistPage")
+{
+    <form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-pricelistId="@ViewBag.SelectedPricelistId" asp-route-purchasePage="@ViewBag.SelectedPurchasePage">
+        <div class="d-grip gap-2">
+            <b class="m-1">@Model.SizeSelectorText</b>
+            <select id="pageSizeSelector" name="pageSize">
+                @foreach (int pageSize in Model?.PageSizes ?? new int[] { })
+                {
+                    @if (pageSize == ViewBag.SelectedPageSize)
+                    {
+                        <option selected>@pageSize</option>
+                    }
+                    else
+                    {
+                        <option value="@pageSize">@pageSize</option>
+                    }
+                }
+            </select>
+            <button id="submitButton" type="submit" class="btn btn-outline-secondary btn-sm">Выбрать</button>
+        </div>
+    </form>
+}

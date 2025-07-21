@@ -1,35 +1,84 @@
 ﻿@using ProductManager.Application.Models.DBEntities
 @model ProductManager.Application.ViewModels.PricelistPageViewModel
-@* вверх будем пихать модель представления отдельного прайслиста - сделать при создании действия контроллера для отдельного прайслиста*@
 
-@* сделать вывод базовых данных прайслиста(ид прайслиста, название прайслиста, даты изменения прайслиста,создания прайслиста) *@
-@* сделать вывод данных о покупках прайслиста и дополнительных параметрах в виде таблицы -->
---> Название товара покупки(кликабельно вызывает всплывающее окно о товаре), цена за весь товар, вид количества товара (шт.,кг.,л.) -->
---> Список дополнительных параметров для покупок (Название параметра) *@
-@* сделать кнопки для редактирования и удаления прайслиста *@
-@* сделать таблицу передвигаемой побокам
-сделать пагинацию  *@
 <div>Страница прайслиста @Model.Pricelist!.PricelistName </div>
+<div>ИД прайслиста @Model.Pricelist!.PricelistID</div>
+@* эта страница одна, но режима работы два просмотр/редактирование) *@
+@* кнопка редактирования/просмотра прайслиста - вызов страницы с нужным режимом*@
+@* кнопка ниже будет вызывать всплывающее окно с подтверждением *@
+@* кнопка удаления прайслиста *@
+@* примерный функционал этой страницы в режимах просмотр/редактирование *@
+@* режим просмотр прайслиста *@
+@* кнопка редактирования прайслиста *@
+@* кнопка удаления прайслиста *@
+@* режим редактирования прайслиста *@
+@* кнопка просмотра прайслиста *@
+@* кнопка добавления покупки - всплывающее окно *@
+@* кнопки удаления покупки на покупках - всплывающее окно с подтверждением *@
+@* кнопка удаления прайслиста *@
 <div>Таблица покупок прайслиста:</div>
 <table class="table table-striped table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
+            <th>Ид покупки</th>
             <th>Ид продукта</th>
             <th>Название продукта</th>
             <th>Количество</th>
             <th>Цена за ед.</th>
+            @foreach(string name in Model?.OptionalParameterNames ?? new List<string>())
+            {
+                <th>@name</th>
+            }
         </tr>
     </thead>
     <tbody>
-        @foreach (PricelistProductPurchase purchase in Model?.Purchases ?? new List<PricelistProductPurchase>())
+        @* сделать пагинацию покупок в прайслисте*@
+        @* сделать выбор количества выводимых покупок*@
+        @foreach (PricelistProductPurchase purchase in Model?.PurchaseListViewModel?.Purchases ?? new List<PricelistProductPurchase>())
         {
             <tr>
-                <td>@purchase.ProductID</td>
-                <td>@purchase.ProductNameAtBuy</td>
+                <td>@purchase.PurchaseID</td>
+                @if (purchase.ProductID != null)
+                {
+                    <td>@purchase.ProductID</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="@("#productDetails_" + @purchase.ProductID)" asp-controller="Product" asp-action="ProductDetails">
+                            @purchase.ProductNameAtBuy
+                        </button>
+                        <partial name="../Shared/Product/_ProductDetailsPartialView" , model="new ProductPageViewModel(Model!.PricelistProducts!.Where(e=>e.ProductID == purchase.ProductID).FirstOrDefault() ?? SystemValues.GetProductNull(), ViewBag.PricelistCategories)" />
+                    </td>                     
+                }
+                else
+                {
+                    <td> - </td>
+                    <td>@purchase.ProductNameAtBuy</td>
+                }
                 <td>@purchase.ProductQuantityNumber @purchase.ProductQuantityNameAtBuy</td>
                 <td>@purchase.ProductPriceAtBuy</td>
+                @foreach (PricelistOptionalParameter value in Model?.OptionalParameterValues ?? new List<PricelistOptionalParameter>())
+                {
+                    @if (value.PurchaseID == purchase.PurchaseID)
+                    {
+                        <th>@value.OptionalParameterValue</th>
+                    }
+                }
             </tr>
         }
     </tbody>
+    @if ((Model?.Purchases ?? new List<PricelistProductPurchase>()).Count > 0)
+    {
+        @* в выбор количества покупок на странице конкретного прайслиста вставить модель представления списка покупок *@
+        <vc:page-size-selector list-view-model="Model?.PurchaseListViewModel ?? new PurchaseListViewModel()" />
+
+@*         <div page-model="@Model?.PageViewModel" page-action="@Model?.ActionName" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark"
+             page-class-selected="btn-primary" page-class-arrow="btn-secondary"
+             page-url-searchString="@ViewBag.SearchString" page-sort-order="@ViewBag.SortOrder" page-url-pageSize="@Model?.PageViewModel.PageSize ?? 1"
+             class="btn-group pull-right m-1">
+        </div> *@
+    }
 </table>
-@* сделать вывод общей суммы прайслиста внизу *@
+@* сделать вывод базовой суммы прайслиста внизу *@
+@* сделать вывод общей суммы прайслиста внизу - то есть суммы с учётом акций и скидок, которые вводятся вручную - добавить поля цен в таблицу Pricelist*@
+
+
+

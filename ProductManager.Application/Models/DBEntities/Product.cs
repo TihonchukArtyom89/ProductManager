@@ -20,7 +20,6 @@ public class Product
     public string ProductDescription { get; set; } = string.Empty;//описание продукта
     [Required(ErrorMessage = "Выберите категорию продукта.")]
     public long? CategoryID { get; set; }//ИД категория продукта// внешний ключ на таблицу категорий продукта
-    //[DeleteBehavior(DeleteBehavior.Cascade)]
     public Category? Category { get; set; }//навигационное св-во на таблицу категорий(на главную сущность)
     [DisplayName("Цена продукта")]
     [Required(ErrorMessage = "Введите цену продукта.")]
@@ -29,7 +28,6 @@ public class Product
     [Column(TypeName = "decimal(8,2)")]
     public decimal ProductPrice { get; set; }//цена продукта
     public long? ProductQuantityID { get; set; }//ИД наименования количества продукта (шт., кг., л.)//внешний ключ на таблицу наименований количеств продуктов
-    //[DeleteBehavior(DeleteBehavior.Cascade)]
     public ProductQuantity? ProductQuantity { get; set; }//навигационное св-во на таблицу наименований количеств продуктов(на главную сущность)
     public List<PricelistProductPurchase>? PricelistProductPurchases { get; set; }//навигационное св-во на таблицу покупок продуктов(на зависимую сущность)
     public Product() { CategoryID = new Category().CategoryID; }
