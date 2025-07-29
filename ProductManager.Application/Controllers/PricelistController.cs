@@ -16,10 +16,10 @@ public class PricelistController : Controller
     {
         pricelistRepository = _pricelistRepository;
     }
-    public IActionResult PricelistList(string? searchString, SortOrder sortOrder = SortOrder.Neutral, int pricelistPage = 1, int pricelistOnPage = 0)
+    public IActionResult PricelistList(string? searchString, SortOrder sortOrder = SortOrder.Neutral, int pricelistPage = 1, int pageSize = 0)
     {
-        pricelistOnPage = pricelistOnPage == 0 ? pricelistNumberOnPage[0] : pricelistOnPage;
-        ViewBag.SelectedPageSize = pricelistOnPage;
+        pageSize = pageSize == 0 ? pricelistNumberOnPage[0] : pageSize;
+        ViewBag.SelectedPricelistOnPage = pageSize;
         ViewBag.DateCreationSortOrder = sortOrder == SortOrder.DateCreationDesc ? SortOrder.DateCreationAsc : SortOrder.DateCreationDesc;
         ViewBag.DateModificationSortOrder = sortOrder == SortOrder.DateModificationDesc ? SortOrder.DateModificationAsc : SortOrder.DateModificationDesc;
         ViewBag.NameSortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
@@ -72,11 +72,11 @@ public class PricelistController : Controller
             pricelistPage = 1; //если нет прайслистов, то сбрасываем страницу на 1
             pricelists = pricelistRepository.Pricelists.OrderBy(p => p.PricelistID);
         }
-        if (pricelistPage > (int)Math.Ceiling((decimal)totalItems / pricelistOnPage))
+        if (pricelistPage > (int)Math.Ceiling((decimal)totalItems / pageSize))
         {
             pricelistPage = 1;
         }
-        pricelists = pricelists.Skip((pricelistPage - 1) * pricelistOnPage).Take(pricelistOnPage);
+        pricelists = pricelists.Skip((pricelistPage - 1) * pageSize).Take(pageSize);
         ViewBag.PricelistCount = pricelists.Count();
         ViewBag.SelectedPage = pricelistPage;
         pricelists = pricelists.Count() != 0 ? pricelists : pricelists.Append(SystemPricelist);
@@ -86,9 +86,9 @@ public class PricelistController : Controller
             PageViewModel = new PageViewModel
             {
                 CurrentPage = ViewBag.SelectedPage,
-                PageSize = pricelistOnPage,
-                TotalItems = totalItems
-            },
+                PageSize = pageSize,
+                TotalItems = totalItems                
+            },            
             ControllerName = ControllerContext.ActionDescriptor.ControllerName ?? "",
             ActionName = ControllerContext.ActionDescriptor.ActionName ?? "",
             PageSizes = pricelistNumberOnPage,
@@ -113,7 +113,7 @@ public class PricelistController : Controller
         }
         return sortOrder;
     }
-    public IActionResult PricelistPage(long? pricelistId = 0, int purchasePage = 1, int purchaseOnPage = 0)
+    public IActionResult PricelistPage(long? pricelistId = 0, int purchasePage = 1, int pageSize = 0)
     {
         //действие для отображения страницы прайслиста с продуктами и дополнительными параметрами в нём
         //в передаваемом параметре будет передаваться ИД прайслиста, который нужно отобразить(наверное на данном этапе это всё)
@@ -138,8 +138,8 @@ public class PricelistController : Controller
             }
         }
         bufferPurchases = purchases;
-        purchaseOnPage = (purchaseOnPage == 0 || purchases.Count() == 0) ? purchaseNumberOnPage[0] : purchaseOnPage;
-        ViewBag.SelectedPurchasePageSize = purchaseOnPage;
+        pageSize = (pageSize == 0 || purchases.Count() == 0) ? purchaseNumberOnPage[0] : pageSize;
+        ViewBag.SelectedPurchasePageSize = pageSize;
         List<long?> optionalParameterUniqueID = optionalParameterValues.Select(e => e.OptionalParameterID).Distinct().ToList();//выбор уникальных ИД прайслиста
         List<string> optionalParameterNames = new List<string>();
         foreach (OptionalParameter parameter in pricelistRepository.OptionalParameters)
@@ -164,20 +164,32 @@ public class PricelistController : Controller
             purchasePage = 1;
             purchases = bufferPurchases;
         }
-        if (purchasePage > (int)Math.Ceiling((decimal)totalItems / purchaseOnPage))
+        if (purchasePage > (int)Math.Ceiling((decimal)totalItems / pageSize))
         {//check if current page is more than pages 
             purchasePage = 1;
         }
-        purchases = purchases.Skip((purchasePage - 1) * purchaseOnPage).Take(purchaseOnPage).ToList();
-        ViewBag.SelectedPurchaseOnPage = purchaseOnPage;
+        purchases = purchases.Skip((purchasePage - 1) * pageSize).Take(pageSize).ToList();
+        ViewBag.SelectedPurchaseOnPage = pageSize;
         ViewBag.SelectedPurchasePage = purchasePage;
         PricelistPageViewModel viewModel = new PricelistPageViewModel
         {
+            PageViewModel = new PageViewModel 
+            {
+                CurrentPage = purchasePage,
+                PageSize = pageSize,
+                TotalItems = totalItems
+            },
             Pricelist = pricelist,
             Purchases = purchases,
             PurchaseListViewModel = new PurchaseListViewModel()
             {
                 Purchases = purchases,
+                PageViewModel = new PageViewModel 
+                {
+                    CurrentPage = purchasePage,
+                    PageSize = pageSize,
+                    TotalItems = totalItems
+                },
                 ControllerName = ControllerContext.ActionDescriptor.ControllerName ?? "",
                 ActionName = ControllerContext.ActionDescriptor.ActionName ?? "",
                 PageSizes = purchaseNumberOnPage,
@@ -185,12 +197,7 @@ public class PricelistController : Controller
             },
             PricelistProducts = products,
             OptionalParameterNames = optionalParameterNames,
-            OptionalParameterValues = optionalParameterValues,
-            //ControllerName = ControllerContext.ActionDescriptor.ControllerName ?? "",
-            //ActionName = ControllerContext.ActionDescriptor.ActionName ?? "",
-            //PageSizes = purchaseNumberOnPage,
-            //SizeSelectorText = "Выберите количество отображаемых покупок: "
-
+            OptionalParameterValues = optionalParameterValues
         };
         return View(viewModel);
     }

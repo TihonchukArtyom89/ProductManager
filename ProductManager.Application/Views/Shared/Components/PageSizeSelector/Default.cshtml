@@ -1,31 +1,13 @@
 ﻿@model BaseListViewModel
 
-@* <form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-category="@ViewBag.SelectedCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
-    <div class="d-grip gap-2">
-        <b class="m-1">@Model.SizeSelectorText</b>
-        <select id="pageSizeSelector" name="pageSize">
-            @foreach (int pageSize in Model?.PageSizes ?? new int[] { })
-            {
-                @if (pageSize == ViewBag.SelectedPageSize)
-                {
-                    <option selected>@pageSize</option>
-                }
-                else
-                {
-                    <option value="@pageSize">@pageSize</option>
-                }
-            }
-        </select>
-        <button id="submitButton" type="submit" class="btn btn-outline-secondary btn-sm">Выбрать</button>
-    </div>
-</form> *@
 @* сделать switch вместо if-else *@
 @* сделать partial view  *@
+@* different actions - different form and one partial view for all form *@
 @if (Model?.ActionName == "ProductList")
 {
     <form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-category="@ViewBag.SelectedCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
         <div class="d-grip gap-2">
-            <b class="m-1">@Model.SizeSelectorText</b>
+            <b class="m-1">@Model.SizeSelectorText 1</b>
             <select id="pageSizeSelector" name="pageSize">
                 @foreach (int pageSize in Model?.PageSizes ?? new int[] { })
                 {
@@ -45,13 +27,13 @@
 }
 else if (Model?.ActionName == "PricelistList")
 {
-    <form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-category="@ViewBag.SelectedCategory" asp-route-productPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
+    <form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-pricelistPage="@ViewBag.SelectedPage" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-searchString="@ViewBag.SearchString">
         <div class="d-grip gap-2">
-            <b class="m-1">@Model.SizeSelectorText</b>
+            <b class="m-1">@Model.SizeSelectorText 2</b>
             <select id="pageSizeSelector" name="pageSize">
                 @foreach (int pageSize in Model?.PageSizes ?? new int[] { })
                 {
-                    @if (pageSize == ViewBag.SelectedPageSize)
+                    @if (pageSize == ViewBag.SelectedPricelistOnPage)
                     {
                         <option selected>@pageSize</option>
                     }
@@ -67,13 +49,13 @@ else if (Model?.ActionName == "PricelistList")
 }
 else if (Model?.ActionName == "PricelistPage")
 {
-    <form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-pricelistId="@ViewBag.SelectedPricelistId" asp-route-purchasePage="@ViewBag.SelectedPurchasePage">
+    <form method="post" id=@("form"+Model?.ActionName+"PageSizeSelector") asp-for="@Model." asp-controller=@Model?.ControllerName asp-action=@Model?.ActionName asp-route-pricelistId="@ViewBag.SelectedPricelistId" asp-route-purchasePage="@ViewBag.SelectedPurchasePage">
         <div class="d-grip gap-2">
-            <b class="m-1">@Model.SizeSelectorText</b>
+            <b class="m-1">@Model.SizeSelectorText 3</b>
             <select id="pageSizeSelector" name="pageSize">
                 @foreach (int pageSize in Model?.PageSizes ?? new int[] { })
                 {
-                    @if (pageSize == ViewBag.SelectedPageSize)
+                    @if (pageSize == ViewBag.SelectedPurchaseOnPage)
                     {
                         <option selected>@pageSize</option>
                     }

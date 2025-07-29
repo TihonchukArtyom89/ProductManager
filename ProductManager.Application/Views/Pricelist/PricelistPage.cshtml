@@ -68,13 +68,12 @@
     @if ((Model?.Purchases ?? new List<PricelistProductPurchase>()).Count > 0)
     {
         @* в выбор количества покупок на странице конкретного прайслиста вставить модель представления списка покупок *@
-        <vc:page-size-selector list-view-model="Model?.PurchaseListViewModel ?? new PurchaseListViewModel()" />
-
-@*         <div page-model="@Model?.PageViewModel" page-action="@Model?.ActionName" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark"
+        <vc:page-size-selector list-view-model="Model?.PurchaseListViewModel" />
+        <div page-model="@Model?.PurchaseListViewModel?.PageViewModel" page-action="@Model?.ActionName" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark"
              page-class-selected="btn-primary" page-class-arrow="btn-secondary"
-             page-url-searchString="@ViewBag.SearchString" page-sort-order="@ViewBag.SortOrder" page-url-pageSize="@Model?.PageViewModel.PageSize ?? 1"
+             page-url-pageSize="@Model?.PurchaseListViewModel!.PageViewModel.PageSize ?? 1"
              class="btn-group pull-right m-1">
-        </div> *@
+        </div>
     }
 </table>
 @* сделать вывод базовой суммы прайслиста внизу *@

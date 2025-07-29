@@ -17,25 +17,17 @@
 
 make at now:
 
-- rework deleting product in product list view (set a id of product in purchases with this product to null and insert record with this product to table of deleted records)
-- make deleting products to prevent a data leak(make table of deleted records -> https://habr.com/ru/articles/677932/)
-- add linkable names of product in purchases of some pricelist(if id of product not equal null)
-- clean code
-- make changes in action for view for display some controller to add optional parameters to view model for this view
-- make changes in view for display some controller to render optional parameters in table of purchases
-- add default values of optional parameter for name and value in pricelists
-- test view of some pricelist for functionality(base page, deleting product, optional parameter)
-- make optional parameters for list of purchases on page of specified pricelist
-- clean and order comments
-- fix wrong default values for product with quantity 
-- rework viewcomponent of size selector to get custom text and array with values of variants
-- remake action of pricelist controller and view for displaying some pricelist to render a size selector view component for changing number of purchases of some pricelist
+- fix now working page size selector(rename parameter onpage to pagesize)
+- save selected pagesize for pricelist page action for pricelist controller after setting new page size
+- fix exception for pagination of purchase table
 
 make in near future:
 
-- make size selector view component working for three actions of two controllers(different actions - different form and one partial view for all form)
+- make partial view for size selector view component and switch
+- try make selected page size parameter for page view model(??)
+- try rename pagesize to number of item on page for different actions of controllers
 - make size selection of purchases in view of some pricelist
-- make pagination of purchases in view of some pricelist (search table pagination)
+- make pagination of purchases in view of some pricelist (fix working and design of pagination)
 - make create new pricelist (name of pricelist and optional parameters)
 - make read existing pricelist(view of some pricelist with read mode)
 - make edit existing pricelist(when editing pricelist you can (1, 2, 3, 6 -> devnote) - view of some pricelist with edit mode)
@@ -54,6 +46,7 @@ make in near future:
 
 make in distant future(after making pricelist page and features):
 
+- make display pages without reloading
 - make improvments from list of errors in info messages
 - use linq more often
 - replace foreach for getting with LINQ set of variables
