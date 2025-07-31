@@ -17,25 +17,18 @@
 
 make at now:
 
-- fix now working page size selector(rename parameter onpage to pagesize)
-- save selected pagesize for pricelist page action for pricelist controller after setting new page size
-- fix exception for pagination of purchase table
+- fix design of pagination of purchases in view of some pricelist
+- make size selection of purchases in view of some pricelist
 
 make in near future:
 
-- make partial view for size selector view component and switch
-- try make selected page size parameter for page view model(??)
-- try rename pagesize to number of item on page for different actions of controllers
-- make size selection of purchases in view of some pricelist
-- make pagination of purchases in view of some pricelist (fix working and design of pagination)
-- make create new pricelist (name of pricelist and optional parameters)
-- make read existing pricelist(view of some pricelist with read mode)
-- make edit existing pricelist(when editing pricelist you can (1, 2, 3, 6 -> devnote) - view of some pricelist with edit mode)
+- make pagination of purchases in view of some pricelist (fix working - parameters to taglink helper)
 - make auto calculate total prices in pricelist
+- make read existing pricelist(view of some pricelist with read mode)
+- make create new pricelist (name of pricelist and optional parameters)
 - make delete existing pricelist
-- make view for some pricelist without reloading
+- make edit existing pricelist(when editing pricelist you can (1, 2, 3, 6 -> devnote) - view of some pricelist with edit mode)
 - make CRUD for pricelist feature
-- make text for PageSizeSelector component (also change name of folder somehow)
 - rework txt DevNote to folder with txt files
 - make XML - documentation for project in two languages (English and Russian)
 - make if search string is empty, then show all products in product list view
@@ -46,6 +39,9 @@ make in near future:
 
 make in distant future(after making pricelist page and features):
 
+- make view for some pricelist without reloading
+- rename page parameter for routes to actions of controller in one naming
+- make one form for different forms in page size selection view component
 - make display pages without reloading
 - make improvments from list of errors in info messages
 - use linq more often

@@ -32,8 +32,6 @@
         </tr>
     </thead>
     <tbody>
-        @* сделать пагинацию покупок в прайслисте*@
-        @* сделать выбор количества выводимых покупок*@
         @foreach (PricelistProductPurchase purchase in Model?.PurchaseListViewModel?.Purchases ?? new List<PricelistProductPurchase>())
         {
             <tr>
@@ -65,19 +63,21 @@
             </tr>
         }
     </tbody>
-    @if ((Model?.Purchases ?? new List<PricelistProductPurchase>()).Count > 0)
-    {
-        @* в выбор количества покупок на странице конкретного прайслиста вставить модель представления списка покупок *@
-        <vc:page-size-selector list-view-model="Model?.PurchaseListViewModel" />
-        <div page-model="@Model?.PurchaseListViewModel?.PageViewModel" page-action="@Model?.ActionName" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark"
-             page-class-selected="btn-primary" page-class-arrow="btn-secondary"
-             page-url-pageSize="@Model?.PurchaseListViewModel!.PageViewModel.PageSize ?? 1"
-             class="btn-group pull-right m-1">
-        </div>
-    }
-</table>
+</table>    
+@if ((Model?.Purchases ?? new List<PricelistProductPurchase>()).Count > 0)
+{
+                        @* сделать пагинацию покупок в прайслисте*@
+                        @* сделать выбор количества выводимых покупок*@
+    <vc:page-size-selector list-view-model="Model?.PurchaseListViewModel" />
+    <div page-model="@Model?.PurchaseListViewModel?.PageViewModel" page-action="@Model?.ActionName" page-controller="@Model?.ControllerName" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark"
+         page-class-selected="btn-primary" page-class-arrow="btn-secondary"
+         page-url-pageSize="@Model?.PurchaseListViewModel!.PageViewModel.PageSize ?? 1"
+         page-url-pricelistId="@Model?.Pricelist.PricelistID ?? 0"
+         page-sort-order="null"
+         class="btn-group pull-right m-1">
+    </div>
+}
 @* сделать вывод базовой суммы прайслиста внизу *@
-@* сделать вывод общей суммы прайслиста внизу - то есть суммы с учётом акций и скидок, которые вводятся вручную - добавить поля цен в таблицу Pricelist*@
 
 
 

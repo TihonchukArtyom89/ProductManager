@@ -20,6 +20,7 @@ public class PageLinkTagHelper : TagHelper
     [HtmlAttributeNotBound]
     public ViewContext? ViewContext { get; set; }
     public PageViewModel? PageModel { get; set; }
+    public string? PageController { get; set; }
     public string? PageAction { get; set; }
     [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
     public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
@@ -28,7 +29,8 @@ public class PageLinkTagHelper : TagHelper
     public string PageClassNormal { get; set; } = string.Empty;
     public string PageClassSelected { get; set; } = string.Empty;
     public string PageClassArrow { get; set; } = string.Empty;
-    public SortOrder PageSortOrder { get; set; } = SortOrder.Neutral;
+    public string? PricelistId { get;set; } = string.Empty;
+    public SortOrder? PageSortOrder { get; set; } = SortOrder.Neutral;
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
         if (ViewContext != null && PageModel != null)
@@ -85,7 +87,15 @@ public class PageLinkTagHelper : TagHelper
     public TagBuilder PageLinkBuilder(int pageNumber, IUrlHelper urlHelper, string pageText, string css1 = "", string css2 = "")
     {
         TagBuilder pageLink = new TagBuilder("a");
-        PageUrlValues["sortOrder"] = PageSortOrder;
+        if (PricelistId != null)
+        {
+            PageUrlValues["pricelistId"] = PricelistId;
+        }
+        if (PageSortOrder != null)
+        {
+            PageUrlValues["sortOrder"] = PageSortOrder;
+        }
+        //PageUrlValues["sortOrder"] = PageSortOrder;
         string pageAction = PageAction ?? string.Empty;
         if (pageAction.Contains("ProductList"))
         {
@@ -95,8 +105,12 @@ public class PageLinkTagHelper : TagHelper
         {
             PageUrlValues["pricelistPage"] = pageNumber;
         }
+        if (pageAction.Contains("PricelistPage"))
+        {
+            PageUrlValues["purchasePage"] = pageNumber;
+        }
         PageUrlValues["pageSize"] = (PageModel ?? new()).PageSize;
-        pageLink.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
+        pageLink.Attributes["href"] = urlHelper.Action(PageAction, PageController, PageUrlValues);
         pageLink.AddCssClass(css1);
         pageLink.AddCssClass(css2);
         pageLink.InnerHtml.Append(pageText);

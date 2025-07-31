@@ -19,7 +19,7 @@ public class PricelistController : Controller
     public IActionResult PricelistList(string? searchString, SortOrder sortOrder = SortOrder.Neutral, int pricelistPage = 1, int pageSize = 0)
     {
         pageSize = pageSize == 0 ? pricelistNumberOnPage[0] : pageSize;
-        ViewBag.SelectedPricelistOnPage = pageSize;
+        ViewBag.SelectedPageSize = pageSize;
         ViewBag.DateCreationSortOrder = sortOrder == SortOrder.DateCreationDesc ? SortOrder.DateCreationAsc : SortOrder.DateCreationDesc;
         ViewBag.DateModificationSortOrder = sortOrder == SortOrder.DateModificationDesc ? SortOrder.DateModificationAsc : SortOrder.DateModificationDesc;
         ViewBag.NameSortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
@@ -169,7 +169,7 @@ public class PricelistController : Controller
             purchasePage = 1;
         }
         purchases = purchases.Skip((purchasePage - 1) * pageSize).Take(pageSize).ToList();
-        ViewBag.SelectedPurchaseOnPage = pageSize;
+        ViewBag.SelectedPageSize = pageSize;
         ViewBag.SelectedPurchasePage = purchasePage;
         PricelistPageViewModel viewModel = new PricelistPageViewModel
         {
