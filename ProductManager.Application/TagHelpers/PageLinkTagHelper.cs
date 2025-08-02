@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.IdentityModel.Tokens;
 using ProductManager.Application.ViewModels;
 using SortOrder = ProductManager.Application.Models.SortOrder;
 
@@ -35,14 +36,15 @@ public class PageLinkTagHelper : TagHelper
     {
         if (ViewContext != null && PageModel != null)
         {
-            if (PageSortOrder == SortOrder.NameAsc || PageSortOrder == SortOrder.NameDesc)
-            {
-                PageSortOrder = PageSortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
-            }
-            if (PageSortOrder == SortOrder.PriceAsc || PageSortOrder == SortOrder.PriceDesc)
-            {
-                PageSortOrder = PageSortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
-            }
+            //if (PageSortOrder == SortOrder.NameAsc || PageSortOrder == SortOrder.NameDesc)
+            //{
+            //    PageSortOrder = PageSortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
+            //}
+            //if (PageSortOrder == SortOrder.PriceAsc || PageSortOrder == SortOrder.PriceDesc)
+            //{
+            //    PageSortOrder = PageSortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
+            //}
+            PageSortOrder = SaveSortOrderState(PageSortOrder ?? SortOrder.Neutral);
             IUrlHelper urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
             string css1 = "", css2 = "";
             TagBuilder pagination = new TagBuilder("div");
@@ -87,25 +89,23 @@ public class PageLinkTagHelper : TagHelper
     public TagBuilder PageLinkBuilder(int pageNumber, IUrlHelper urlHelper, string pageText, string css1 = "", string css2 = "")
     {
         TagBuilder pageLink = new TagBuilder("a");
-        if (PricelistId != null)
+        if (!PricelistId.IsNullOrEmpty())
         {
-            PageUrlValues["pricelistId"] = PricelistId;
+            PageUrlValues["pricelistId"] = PricelistId ?? "0";
         }
         if (PageSortOrder != null)
         {
             PageUrlValues["sortOrder"] = PageSortOrder;
         }
-        //PageUrlValues["sortOrder"] = PageSortOrder;
-        string pageAction = PageAction ?? string.Empty;
-        if (pageAction.Contains("ProductList"))
+        if ((PageAction ?? string.Empty).Contains("ProductList"))
         {
             PageUrlValues["productPage"] = pageNumber;
         }
-        if (pageAction.Contains("PricelistList"))
+        if ((PageAction ?? string.Empty).Contains("PricelistList"))
         {
             PageUrlValues["pricelistPage"] = pageNumber;
         }
-        if (pageAction.Contains("PricelistPage"))
+        if ((PageAction ?? string.Empty).Contains("PricelistPage"))
         {
             PageUrlValues["purchasePage"] = pageNumber;
         }
@@ -115,5 +115,18 @@ public class PageLinkTagHelper : TagHelper
         pageLink.AddCssClass(css2);
         pageLink.InnerHtml.Append(pageText);
         return pageLink;
+    }
+    public SortOrder SaveSortOrderState(SortOrder sortOrder)
+    {
+
+        if (sortOrder == SortOrder.NameAsc || sortOrder == SortOrder.NameDesc)
+        {
+            sortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
+        }
+        if (sortOrder == SortOrder.PriceAsc || sortOrder == SortOrder.PriceDesc)
+        {
+            sortOrder = sortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
+        }
+        return sortOrder;
     }
 }

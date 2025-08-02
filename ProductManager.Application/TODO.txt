@@ -17,12 +17,11 @@
 
 make at now:
 
-- fix design of pagination of purchases in view of some pricelist
-- make size selection of purchases in view of some pricelist
+- make pagination of purchases in view of some pricelist
 
 make in near future:
 
-- make pagination of purchases in view of some pricelist (fix working - parameters to taglink helper)
+- fix pagination in page of pricelist list(not correct work date sorting when using pagination of pricelists)
 - make auto calculate total prices in pricelist
 - make read existing pricelist(view of some pricelist with read mode)
 - make create new pricelist (name of pricelist and optional parameters)
