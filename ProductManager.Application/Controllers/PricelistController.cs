@@ -183,4 +183,9 @@ public class PricelistController : Controller
         };
         return View(viewModel);
     }
+    [HttpGet]
+    public IActionResult CreatePricelist()
+    {
+        return PartialView(viewName: "../Shared/Pricelist/_PricelistCreatePartialView", model:new Pricelist());
+    }
 }

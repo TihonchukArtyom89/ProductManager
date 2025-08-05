@@ -17,11 +17,11 @@
 
 make at now:
 
-- make auto calculate total prices in pricelist
-- fix pagination in page of pricelist list(not correct work date sorting when using pagination of pricelists)
+- make show modal popup for create new pricelist
 
 make in near future:
 
+- make saveOrderState in one function in some class(maybe systemvalues, google it)
 - make create new pricelist (name of pricelist and optional parameters)
 - make delete existing pricelist(two buttons on list and on poge of some pricelist - when delete this pricelist move to list of pricelists)
 - make read existing pricelist(view of some pricelist with read mode)
