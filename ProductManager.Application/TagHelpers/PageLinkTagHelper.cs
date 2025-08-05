@@ -36,14 +36,6 @@ public class PageLinkTagHelper : TagHelper
     {
         if (ViewContext != null && PageModel != null)
         {
-            //if (PageSortOrder == SortOrder.NameAsc || PageSortOrder == SortOrder.NameDesc)
-            //{
-            //    PageSortOrder = PageSortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
-            //}
-            //if (PageSortOrder == SortOrder.PriceAsc || PageSortOrder == SortOrder.PriceDesc)
-            //{
-            //    PageSortOrder = PageSortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
-            //}
             PageSortOrder = SaveSortOrderState(PageSortOrder ?? SortOrder.Neutral);
             IUrlHelper urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
             string css1 = "", css2 = "";
@@ -126,6 +118,14 @@ public class PageLinkTagHelper : TagHelper
         if (sortOrder == SortOrder.PriceAsc || sortOrder == SortOrder.PriceDesc)
         {
             sortOrder = sortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
+        }
+        if (sortOrder == SortOrder.DateCreationAsc || sortOrder == SortOrder.DateCreationDesc)
+        {
+            sortOrder = sortOrder == SortOrder.DateCreationDesc ? SortOrder.DateCreationAsc : SortOrder.DateCreationDesc;
+        }
+        if (sortOrder == SortOrder.DateModificationAsc || sortOrder == SortOrder.DateModificationDesc)
+        {
+            sortOrder = sortOrder == SortOrder.DateModificationDesc ? SortOrder.DateModificationAsc : SortOrder.DateModificationDesc;
         }
         return sortOrder;
     }

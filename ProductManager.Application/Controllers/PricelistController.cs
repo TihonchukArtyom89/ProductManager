@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ProductManager.Application.Models;
 using ProductManager.Application.Models.DBEntities;
 using ProductManager.Application.ViewModels;
-using System.Linq;
 
 namespace ProductManager.Application.Controllers;
 
@@ -96,38 +95,20 @@ public class PricelistController : Controller
         };
         return View(viewModel);
     }
-    public SortOrder SaveSortOrderState(SortOrder sortOrder)
-    {
-
-        if (sortOrder == SortOrder.NameAsc || sortOrder == SortOrder.NameDesc)
-        {
-            sortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
-        }
-        if (sortOrder == SortOrder.DateCreationAsc || sortOrder == SortOrder.DateCreationDesc)
-        {
-            sortOrder = sortOrder == SortOrder.DateCreationDesc ? SortOrder.DateCreationAsc : SortOrder.DateCreationDesc;
-        }
-        if (sortOrder == SortOrder.DateModificationAsc || sortOrder == SortOrder.DateModificationDesc)
-        {
-            sortOrder = sortOrder == SortOrder.DateModificationDesc ? SortOrder.DateModificationAsc : SortOrder.DateModificationDesc;
-        }
-        return sortOrder;
-    }
     public IActionResult PricelistPage(long? pricelistId = 0, int purchasePage = 1, int pageSize = 0)
     {
-        //действие для отображения страницы прайслиста с продуктами и дополнительными параметрами в нём
-        //в передаваемом параметре будет передаваться ИД прайслиста, который нужно отобразить(наверное на данном этапе это всё)
-        //сделать модель представления для страницы прайслиста, которая будет содержать в себе список продуктов и список опциональных параметров
         ViewBag.SelectedPricelistId = pricelistId;
         Pricelist pricelist = pricelistRepository.Pricelists.Where(e => e.PricelistID == pricelistId).FirstOrDefault() ?? SystemValues.GetPricelistNull();//получение прайлиста по ид
         List<PricelistProductPurchase> purchases = new List<PricelistProductPurchase>();
         List<PricelistProductPurchase> bufferPurchases = new List<PricelistProductPurchase>();
         List<PricelistOptionalParameter> optionalParameterValues = new List<PricelistOptionalParameter>();
+        decimal totalPrice = 0;
         foreach (PricelistProductPurchase purchase in pricelistRepository.PricelistProductPurchases)
         {//проход по всем покупками,что бы выбрать те которые принадлежат данному прайслисту
             if (pricelist.PricelistID == purchase.PricelistID)
             {
                 purchases.Add(purchase);
+                totalPrice += (decimal)purchase.ProductQuantityNumber + purchase.ProductPriceAtBuy;
                 foreach (PricelistOptionalParameter value in pricelistRepository.PricelistOptionalParameters)
                 {//проход по всем значениям опциональных параметров,что бы выбрать те которые принадлежат данной покупке в данном прайслисте
                     if (purchase.PurchaseID == value.PurchaseID)
@@ -178,7 +159,7 @@ public class PricelistController : Controller
                 CurrentPage = purchasePage,
                 PageSize = pageSize,
                 TotalItems = totalItems
-            },
+            },            
             Pricelist = pricelist,
             Purchases = purchases,
             PurchaseListViewModel = new PurchaseListViewModel()
@@ -196,6 +177,7 @@ public class PricelistController : Controller
                 SizeSelectorText = "Выберите количество отображаемых покупок: "
             },
             PricelistProducts = products,
+            TotalPrice = totalPrice,
             OptionalParameterNames = optionalParameterNames,
             OptionalParameterValues = optionalParameterValues
         };

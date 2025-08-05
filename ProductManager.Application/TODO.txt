@@ -17,15 +17,14 @@
 
 make at now:
 
-- make pagination of purchases in view of some pricelist
+- make auto calculate total prices in pricelist
+- fix pagination in page of pricelist list(not correct work date sorting when using pagination of pricelists)
 
 make in near future:
 
-- fix pagination in page of pricelist list(not correct work date sorting when using pagination of pricelists)
-- make auto calculate total prices in pricelist
-- make read existing pricelist(view of some pricelist with read mode)
 - make create new pricelist (name of pricelist and optional parameters)
-- make delete existing pricelist
+- make delete existing pricelist(two buttons on list and on poge of some pricelist - when delete this pricelist move to list of pricelists)
+- make read existing pricelist(view of some pricelist with read mode)
 - make edit existing pricelist(when editing pricelist you can (1, 2, 3, 6 -> devnote) - view of some pricelist with edit mode)
 - make CRUD for pricelist feature
 - rework txt DevNote to folder with txt files

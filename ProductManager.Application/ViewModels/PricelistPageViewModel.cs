@@ -15,4 +15,5 @@ public class PricelistPageViewModel : BaseListViewModel
     public List<String>? OptionalParameterNames { get; set; }
     public List<PricelistOptionalParameter>? OptionalParameterValues { get; set; }
     public PurchaseListViewModel? PurchaseListViewModel { get; set; }
+    public decimal TotalPrice { get; set; }
 }
