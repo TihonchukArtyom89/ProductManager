@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.IdentityModel.Tokens;
 using ProductManager.Application.ViewModels;
+using ProductManager.Application.Models;
 using SortOrder = ProductManager.Application.Models.SortOrder;
 
 namespace ProductManager.Application.Infrastructure;
@@ -36,7 +37,7 @@ public class PageLinkTagHelper : TagHelper
     {
         if (ViewContext != null && PageModel != null)
         {
-            PageSortOrder = SaveSortOrderState(PageSortOrder ?? SortOrder.Neutral);
+            PageSortOrder = ApplicationHelper.SaveSortOrderState(PageSortOrder ?? SortOrder.Neutral);
             IUrlHelper urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
             string css1 = "", css2 = "";
             TagBuilder pagination = new TagBuilder("div");
@@ -107,26 +108,5 @@ public class PageLinkTagHelper : TagHelper
         pageLink.AddCssClass(css2);
         pageLink.InnerHtml.Append(pageText);
         return pageLink;
-    }
-    public SortOrder SaveSortOrderState(SortOrder sortOrder)
-    {
-
-        if (sortOrder == SortOrder.NameAsc || sortOrder == SortOrder.NameDesc)
-        {
-            sortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
-        }
-        if (sortOrder == SortOrder.PriceAsc || sortOrder == SortOrder.PriceDesc)
-        {
-            sortOrder = sortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
-        }
-        if (sortOrder == SortOrder.DateCreationAsc || sortOrder == SortOrder.DateCreationDesc)
-        {
-            sortOrder = sortOrder == SortOrder.DateCreationDesc ? SortOrder.DateCreationAsc : SortOrder.DateCreationDesc;
-        }
-        if (sortOrder == SortOrder.DateModificationAsc || sortOrder == SortOrder.DateModificationDesc)
-        {
-            sortOrder = sortOrder == SortOrder.DateModificationDesc ? SortOrder.DateModificationAsc : SortOrder.DateModificationDesc;
-        }
-        return sortOrder;
     }
 }

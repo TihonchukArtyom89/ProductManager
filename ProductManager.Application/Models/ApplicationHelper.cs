@@ -2,7 +2,7 @@
 
 namespace ProductManager.Application.Models;
 
-public class SystemValues
+public class ApplicationHelper
 {
     public static Product GetProductNotFound(string searchQuery)
     {
@@ -43,5 +43,26 @@ public class SystemValues
             PriceListDateCreation = null,
             PriceListDateModification = null,
         };
+    }
+    public static SortOrder SaveSortOrderState(SortOrder sortOrder)
+    {
+
+        if (sortOrder == SortOrder.NameAsc || sortOrder == SortOrder.NameDesc)
+        {
+            sortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
+        }
+        if (sortOrder == SortOrder.PriceAsc || sortOrder == SortOrder.PriceDesc)
+        {
+            sortOrder = sortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
+        }
+        if (sortOrder == SortOrder.DateCreationAsc || sortOrder == SortOrder.DateCreationDesc)
+        {
+            sortOrder = sortOrder == SortOrder.DateCreationDesc ? SortOrder.DateCreationAsc : SortOrder.DateCreationDesc;
+        }
+        if (sortOrder == SortOrder.DateModificationAsc || sortOrder == SortOrder.DateModificationDesc)
+        {
+            sortOrder = sortOrder == SortOrder.DateModificationDesc ? SortOrder.DateModificationAsc : SortOrder.DateModificationDesc;
+        }
+        return sortOrder;
     }
 }

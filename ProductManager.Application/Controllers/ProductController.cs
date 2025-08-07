@@ -27,7 +27,7 @@ public class ProductController : Controller
         Category? CurrentCategory = category == null ? null : productRepository.Categories.Where(e => e.CategoryName == category).FirstOrDefault();
         ViewBag.Categories = new SelectList(productRepository.Categories, "CategoryID", "CategoryName");
         IEnumerable<Product> products = productRepository.Products;
-        Product SystemProduct = SystemValues.GetProductNull(CurrentCategory ?? new Category());
+        Product SystemProduct = ApplicationHelper.GetProductNull(CurrentCategory ?? new Category());
         int totalItems = category == null ? productRepository.Products.Count() : productRepository.Products.Where(e => e.CategoryID == CurrentCategory!.CategoryID).Count();
         if (CurrentCategory == null && category != null)//check if category not right transferred to product controller 
         {
@@ -37,7 +37,7 @@ public class ProductController : Controller
         if (!String.IsNullOrEmpty(searchString))
         {
             ViewBag.SearchString = searchString;
-            SystemProduct = SystemValues.GetProductNotFound(ViewBag.SearchString);
+            SystemProduct = ApplicationHelper.GetProductNotFound(ViewBag.SearchString);
             products = products.Where(e => e.ProductName.ToLower().Contains(searchString.ToLower()) || e.ProductDescription.ToLower().Contains(searchString.ToLower()));
             totalItems = category == null ? products.Count() : products.Where(e => e.CategoryID == CurrentCategory!.CategoryID).Count();
         }
@@ -96,19 +96,6 @@ public class ProductController : Controller
         ViewBag.CurrentCategory = viewModel.CurrentCategory;
         return View(viewModel);
     }
-    public SortOrder SaveSortOrderState(SortOrder sortOrder)
-    {
-
-        if (sortOrder == SortOrder.NameAsc || sortOrder == SortOrder.NameDesc)
-        {
-            sortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
-        }
-        if (sortOrder == SortOrder.PriceAsc || sortOrder == SortOrder.PriceDesc)
-        {
-            sortOrder = sortOrder == SortOrder.PriceDesc ? SortOrder.PriceAsc : SortOrder.PriceDesc;
-        }
-        return sortOrder;
-    }
     [HttpGet]
     public IActionResult CreateProduct()
     {
@@ -118,7 +105,7 @@ public class ProductController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult CreateProduct(ProductPageViewModel productViewModel, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
-        sortOrder = SaveSortOrderState(sortOrder);
+        sortOrder = ApplicationHelper.SaveSortOrderState(sortOrder);
         SetProductData(productViewModel);
         productRepository.CreateProduct(productViewModel.Product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
@@ -135,13 +122,13 @@ public class ProductController : Controller
     [HttpGet]
     public IActionResult UpdateProduct(long id)
     {
-        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? SystemValues.GetProductNull();
+        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? ApplicationHelper.GetProductNull();
         return PartialView(viewName: "../Shared/Product/_ProductUpdatePartialView", model: product);
     }
     [HttpPost]
     public IActionResult UpdateProduct(ProductPageViewModel productViewModel, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
-        sortOrder = SaveSortOrderState(sortOrder);
+        sortOrder = ApplicationHelper.SaveSortOrderState(sortOrder);
         SetProductData(productViewModel);
         productRepository.UpdateProduct(productViewModel.Product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
@@ -158,13 +145,13 @@ public class ProductController : Controller
     [HttpGet]
     public IActionResult DeleteProduct(long id)
     {
-        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? SystemValues.GetProductNull();
+        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? ApplicationHelper.GetProductNull();
         return PartialView(viewName: "../Shared/Product/_ProductDeletePartialView", model: product);
     }
     [HttpPost]
     public IActionResult DeleteProduct(Product product, string? category, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int productPage = 1, int pageSize = 1)
     {
-        sortOrder = SaveSortOrderState(sortOrder);
+        sortOrder = ApplicationHelper.SaveSortOrderState(sortOrder);
         productRepository.DeleteProduct(product);
         return RedirectToAction(actionName: "Productlist", controllerName: "Product", routeValues: new
         {
@@ -180,7 +167,7 @@ public class ProductController : Controller
     [HttpGet]
     public IActionResult ProductDetails(long id)
     {
-        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? SystemValues.GetProductNull();
+        Product product = productRepository.Products.Where(e => e.ProductID == id).FirstOrDefault() ?? ApplicationHelper.GetProductNull();
         return PartialView(viewName: "../Shared/Product/_ProductDetailsPartialView", model: product);
     }
     public void SetProductData(ProductPageViewModel productViewModel)

@@ -17,12 +17,12 @@
 
 make at now:
 
-- make show modal popup for create new pricelist
+- make saveOrderState in one function in some class
 
 make in near future:
 
-- make saveOrderState in one function in some class(maybe systemvalues, google it)
-- make create new pricelist (name of pricelist and optional parameters)
+- fix exception divide by zero when create pricelist 
+- make create new pricelist (name of pricelist, names of optional parameters, try to add some start purchases - redirect to another modal popup?)
 - make delete existing pricelist(two buttons on list and on poge of some pricelist - when delete this pricelist move to list of pricelists)
 - make read existing pricelist(view of some pricelist with read mode)
 - make edit existing pricelist(when editing pricelist you can (1, 2, 3, 6 -> devnote) - view of some pricelist with edit mode)
@@ -41,6 +41,7 @@ make in distant future(after making pricelist page and features):
 - rename page parameter for routes to actions of controller in one naming
 - make one form for different forms in page size selection view component
 - make display pages without reloading
+- make default constructors without parameters
 - make improvments from list of errors in info messages
 - use linq more often
 - replace foreach for getting with LINQ set of variables

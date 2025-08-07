@@ -19,6 +19,7 @@ public class PricelistController : Controller
     {
         pageSize = pageSize == 0 ? pricelistNumberOnPage[0] : pageSize;
         ViewBag.SelectedPageSize = pageSize;
+        ViewBag.SelectedPage = pricelistPage;
         ViewBag.DateCreationSortOrder = sortOrder == SortOrder.DateCreationDesc ? SortOrder.DateCreationAsc : SortOrder.DateCreationDesc;
         ViewBag.DateModificationSortOrder = sortOrder == SortOrder.DateModificationDesc ? SortOrder.DateModificationAsc : SortOrder.DateModificationDesc;
         ViewBag.NameSortOrder = sortOrder == SortOrder.NameDesc ? SortOrder.NameAsc : SortOrder.NameDesc;
@@ -26,12 +27,12 @@ public class PricelistController : Controller
         ViewBag.DateModificationSortingText = sortOrder != SortOrder.DateModificationDesc ? "От поздних к ранним по дате изменения" : "От ранних к поздним по дате изменения";
         ViewBag.NameSortingText = sortOrder != SortOrder.NameDesc ? "От Я до А" : "От А до Я";
         IEnumerable<Pricelist> pricelists = pricelistRepository.Pricelists;
-        Pricelist SystemPricelist = SystemValues.GetPricelistNull();
+        Pricelist SystemPricelist = ApplicationHelper.GetPricelistNull();
         int totalItems = pricelists.Count();
         if (!String.IsNullOrEmpty(searchString))
         {
             ViewBag.SearchString = searchString;
-            SystemPricelist = SystemValues.GetPricelistNotFound(ViewBag.SearchString);
+            SystemPricelist = ApplicationHelper.GetPricelistNotFound(ViewBag.SearchString);
             pricelists = pricelists.Where(e => e.PricelistName.ToLower().Contains(searchString.ToLower()));
             totalItems = pricelists.Count();
         }
@@ -86,8 +87,8 @@ public class PricelistController : Controller
             {
                 CurrentPage = ViewBag.SelectedPage,
                 PageSize = pageSize,
-                TotalItems = totalItems                
-            },            
+                TotalItems = totalItems
+            },
             ControllerName = ControllerContext.ActionDescriptor.ControllerName ?? "",
             ActionName = ControllerContext.ActionDescriptor.ActionName ?? "",
             PageSizes = pricelistNumberOnPage,
@@ -98,7 +99,7 @@ public class PricelistController : Controller
     public IActionResult PricelistPage(long? pricelistId = 0, int purchasePage = 1, int pageSize = 0)
     {
         ViewBag.SelectedPricelistId = pricelistId;
-        Pricelist pricelist = pricelistRepository.Pricelists.Where(e => e.PricelistID == pricelistId).FirstOrDefault() ?? SystemValues.GetPricelistNull();//получение прайлиста по ид
+        Pricelist pricelist = pricelistRepository.Pricelists.Where(e => e.PricelistID == pricelistId).FirstOrDefault() ?? ApplicationHelper.GetPricelistNull();//получение прайлиста по ид
         List<PricelistProductPurchase> purchases = new List<PricelistProductPurchase>();
         List<PricelistProductPurchase> bufferPurchases = new List<PricelistProductPurchase>();
         List<PricelistOptionalParameter> optionalParameterValues = new List<PricelistOptionalParameter>();
@@ -154,18 +155,18 @@ public class PricelistController : Controller
         ViewBag.SelectedPurchasePage = purchasePage;
         PricelistPageViewModel viewModel = new PricelistPageViewModel
         {
-            PageViewModel = new PageViewModel 
+            PageViewModel = new PageViewModel
             {
                 CurrentPage = purchasePage,
                 PageSize = pageSize,
                 TotalItems = totalItems
-            },            
+            },
             Pricelist = pricelist,
             Purchases = purchases,
             PurchaseListViewModel = new PurchaseListViewModel()
             {
                 Purchases = purchases,
-                PageViewModel = new PageViewModel 
+                PageViewModel = new PageViewModel
                 {
                     CurrentPage = purchasePage,
                     PageSize = pageSize,
@@ -186,6 +187,22 @@ public class PricelistController : Controller
     [HttpGet]
     public IActionResult CreatePricelist()
     {
-        return PartialView(viewName: "../Shared/Pricelist/_PricelistCreatePartialView", model:new Pricelist());
+        return PartialView(viewName: "../Shared/Pricelist/_PricelistCreatePartialView", model: new Pricelist());
+    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult CreatePricelist(PricelistPageViewModel pricelistPageViewModel, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int pricelistPage = 1, int pageSize = 1)
+    {
+        sortOrder = ApplicationHelper.SaveSortOrderState(sortOrder);
+        pricelistRepository.CreatePriceList(pricelistPageViewModel.Pricelist!);
+        return RedirectToAction(actionName: pricelistPageViewModel.ActionName, controllerName: pricelistPageViewModel.ControllerName, routeValues: new
+        {
+            controller = pricelistPageViewModel.ControllerName,
+            action = pricelistPageViewModel.ActionName,
+            searchString = searchString,
+            pageSize = pageSize,
+            pricelistPage = pricelistPage,
+            sortOrder = sortOrder
+        });
     }
 }

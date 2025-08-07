@@ -8,40 +8,18 @@
                 <h5 class="modal-title" id="createPricelistLabel">Добавление нового прайслиста</h5>
             </div>
             <div class="modal-body">
-                <div> modal popup window for creating pricelist </div>
-                <div> enter name for price list </div>
-                <div> enter number and names for optional parameters</div>
-                <div> try make a list of purchases in this modal popup window </div>
-@*                 <form asp-controller="Pricelist" asp-action="CreatePricelist" method="post" asp-route-category="@ViewBag.CurrentCategory" asp-route-searchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-productPage="@ViewBag.SelectedPage" asp-route-pageSize="@ViewBag.SelectedPageSize">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    
+                <form asp-controller="Pricelist" asp-action="CreatePricelist" method="post" asp-route-searchString="@ViewBag.SearchString" asp-route-sortOrder="@ViewBag.SortOrder" asp-route-pricelistPage="@ViewBag.SelectedPage" asp-route-pageSize="@ViewBag.SelectedPageSize">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>                   
                     <div class="form-group">
-                        <label asp-for="@Model.Product.ProductName" class="control-label"></label>
-                        <input asp-for="@Model.Product.ProductName" class="form-control" />
-                        <span asp-validation-for="@Model.Product.ProductName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="@Model.ProductCategoryString" class="control-label">Категория продукта</label>
-                        <select asp-for="@Model.ProductCategoryString" class="form-control" name="ProductCategoryString" asp-items="ViewBag.Categories">
-                            <option value="1">Выберите категорию продукта</option>
-                        </select>
-                        <span asp-validation-for="@Model.ProductCategoryString" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="@Model.Product.ProductDescription" class="control-label"></label>
-                        <input asp-for="@Model.Product.ProductDescription" class="form-control" />
-                        <span asp-validation-for="@Model.Product.ProductDescription" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="@Model.ProductPriceString" class="control-label"></label>
-                        <input asp-for="@Model.ProductPriceString" class="form-control" />
-                        <span asp-validation-for="@Model.ProductPriceString" class="text-danger"></span>
+                        <label asp-for="@(Model.Pricelist!).PricelistName" class="control-label"></label>
+                        <input asp-for="@(Model.Pricelist!).PricelistName" class="form-control" />
+                        <span asp-validation-for="@(Model.Pricelist!).PricelistName" class="text-danger"></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                         <button type="submit" class="btn btn-primary" id="">Добавить</button>
                     </div>
-                </form> *@
+                </form> 
             </div>
         </div>
     </div>

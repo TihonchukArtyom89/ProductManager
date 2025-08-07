@@ -45,7 +45,7 @@
                         <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="@("#productDetails_" + @purchase.ProductID)" asp-controller="Product" asp-action="ProductDetails">
                             @purchase.ProductNameAtBuy
                         </button>
-                        <partial name="../Shared/Product/_ProductDetailsPartialView" , model="new ProductPageViewModel(Model!.PricelistProducts!.Where(e=>e.ProductID == purchase.ProductID).FirstOrDefault() ?? SystemValues.GetProductNull(), ViewBag.PricelistCategories)" />
+                        <partial name="../Shared/Product/_ProductDetailsPartialView" , model="new ProductPageViewModel(Model!.PricelistProducts!.Where(e=>e.ProductID == purchase.ProductID).FirstOrDefault() ?? ApplicationHelper.GetProductNull(), ViewBag.PricelistCategories)" />
                     </td>                     
                 }
                 else
