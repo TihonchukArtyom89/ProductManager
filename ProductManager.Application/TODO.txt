@@ -17,11 +17,12 @@
 
 make at now:
 
-- make saveOrderState in one function in some class
+- fix exception when create a pricelist(add base constructor of pricelist view model)
+- know reason why not working action of create pricelist(not pass data of controller and action names)
 
 make in near future:
 
-- fix exception divide by zero when create pricelist 
+- fix not working action of create pricelist 
 - make create new pricelist (name of pricelist, names of optional parameters, try to add some start purchases - redirect to another modal popup?)
 - make delete existing pricelist(two buttons on list and on poge of some pricelist - when delete this pricelist move to list of pricelists)
 - make read existing pricelist(view of some pricelist with read mode)

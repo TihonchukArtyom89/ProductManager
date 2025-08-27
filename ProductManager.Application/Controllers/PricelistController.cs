@@ -187,7 +187,7 @@ public class PricelistController : Controller
     [HttpGet]
     public IActionResult CreatePricelist()
     {
-        return PartialView(viewName: "../Shared/Pricelist/_PricelistCreatePartialView", model: new Pricelist());
+        return PartialView(viewName: "../Shared/Pricelist/_PricelistCreatePartialView", model: new Pricelist() { PricelistName="ntcn"});
     }
     [HttpPost]
     [ValidateAntiForgeryToken]

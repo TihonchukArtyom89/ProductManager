@@ -6,6 +6,8 @@ public class PricelistPageViewModel : BaseListViewModel
 {
     public PricelistPageViewModel()
     {
+        ActionName = "action_base";
+        ControllerName = "controller_base";
         PageViewModel = new BaseListViewModel().PageViewModel;
         PageSizes = new BaseListViewModel().PageSizes;
     }
