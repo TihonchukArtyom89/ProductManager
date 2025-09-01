@@ -155,6 +155,8 @@ public class PricelistController : Controller
         ViewBag.SelectedPurchasePage = purchasePage;
         PricelistPageViewModel viewModel = new PricelistPageViewModel
         {
+            ControllerName = ControllerContext.ActionDescriptor.ControllerName ?? "",
+            ActionName = ControllerContext.ActionDescriptor.ActionName ?? "",
             PageViewModel = new PageViewModel
             {
                 CurrentPage = purchasePage,
@@ -194,15 +196,13 @@ public class PricelistController : Controller
     public IActionResult CreatePricelist(PricelistPageViewModel pricelistPageViewModel, string? searchString, SortOrder sortOrder = SortOrder.Neutral, int pricelistPage = 1, int pageSize = 1)
     {
         sortOrder = ApplicationHelper.SaveSortOrderState(sortOrder);
+        pricelistPageViewModel.ActionName = "PricelistList";
+        pricelistPageViewModel.ControllerName = ControllerContext.ActionDescriptor.ControllerName;
         pricelistRepository.CreatePriceList(pricelistPageViewModel.Pricelist!);
         return RedirectToAction(actionName: pricelistPageViewModel.ActionName, controllerName: pricelistPageViewModel.ControllerName, routeValues: new
         {
             controller = pricelistPageViewModel.ControllerName,
-            action = pricelistPageViewModel.ActionName,
-            searchString = searchString,
-            pageSize = pageSize,
-            pricelistPage = pricelistPage,
-            sortOrder = sortOrder
+            action = pricelistPageViewModel.ActionName
         });
     }
 }

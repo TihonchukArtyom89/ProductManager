@@ -55,11 +55,11 @@
     @if (ViewBag.PricelistCount > 0)
     {
         <vc:page-size-selector list-view-model="@Model" />
-        <div page-model="@Model?.PageViewModel" page-action="@Model?.ActionName" page-controller="@Model?.ControllerName"  page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark"
+        <div page-model="@Model?.PageViewModel" page-action="@Model?.ActionName" page-controller="@Model?.ControllerName" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark"
              page-class-selected="btn-primary" page-class-arrow="btn-secondary"
              page-url-searchString="@ViewBag.SearchString" page-sort-order="@ViewBag.SortOrder" page-url-pageSize="@Model?.PageViewModel.PageSize ?? 1"
              class="btn-group pull-right m-1">
         </div>
     }
 </div>
-<partial name="../Shared/Pricelist/_PricelistCreatePartialView" , model="new PricelistPageViewModel()" />
+<partial name="../Shared/Pricelist/_PricelistCreatePartialView" , model="new PricelistPageViewModel(){ ActionName = Model?.ActionName, ControllerName = Model?.ControllerName }" />

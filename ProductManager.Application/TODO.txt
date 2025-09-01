@@ -17,13 +17,15 @@
 
 make at now:
 
-- fix exception when create a pricelist(add base constructor of pricelist view model)
+- fix exception when create a pricelist
 - know reason why not working action of create pricelist(not pass data of controller and action names)
+- fix not working action of create pricelist 
+- make create pricelist without purchases nd optional parameters 
 
 make in near future:
 
-- fix not working action of create pricelist 
-- make create new pricelist (name of pricelist, names of optional parameters, try to add some start purchases - redirect to another modal popup?)
+- make select and add optional parametrs of purchases to new pricelist when create this pricelist(go to technical specification)
+- make select and add purchases to new pricelist when create this pricelist (go to view of modal popup of pricelist creating)
 - make delete existing pricelist(two buttons on list and on poge of some pricelist - when delete this pricelist move to list of pricelists)
 - make read existing pricelist(view of some pricelist with read mode)
 - make edit existing pricelist(when editing pricelist you can (1, 2, 3, 6 -> devnote) - view of some pricelist with edit mode)
@@ -38,6 +40,7 @@ make in near future:
 
 make in distant future(after making pricelist page and features):
 
+- in crud actions get all data field of object in parameters of action function
 - make view for some pricelist without reloading
 - rename page parameter for routes to actions of controller in one naming
 - make one form for different forms in page size selection view component
